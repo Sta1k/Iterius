@@ -1,0 +1,66 @@
+<ion-view class="background" title="Sign-In">
+  <ion-content>
+    <div class="logo">
+      <img id="logo" src="img/logo.png" alt="">
+    </div>
+    <form name="form">
+      <div class="list list-inset">
+
+        <label class="item item-input">
+          <input name="login"
+                 type="text"
+                 ng-maxlength="32"
+                 ng-minlength="3"
+                 ng-pattern="/^[a-zA-Z0-9._]*$/"
+                 ng-model="user.username"
+                 required
+          >
+        </label>
+
+        <label class="item item-input">
+          <input name="pass"
+                 type="password"
+                 ng-maxlength="32"
+                 ng-minlength="7"
+                 ng-pattern="/^[a-zA-Z0-9._]*$/"
+                 ng-model="user.password"
+                 required
+          >
+        </label>
+      </div>
+      <div style="text-align: center; color: #ff0500;" ng-show="form.$submitted || form.login.$touched || form.pass.$touched">
+        <div ng-show="form.login.$error.required">Tell us your name.</div>
+        <div ng-show="form.login.$error.minlength">Login is too short</div>
+        <div ng-show="form.login.$error.maxlength">Login is too long</div>
+        <div ng-show="form.login.$error.pattern">Special simbols not allowed</div>
+        <div ng-show="form.pass.$error.required">Need Password</div>
+        <div ng-show="form.pass.$error.minlength">Password is too short</div>
+        <div ng-show="form.pass.$error.maxlength">Password is too long</div>
+        <div ng-show="form.pass.$error.pattern">Special simbols not allowed</div>
+      </div>
+      <ion-checkbox class="login-check" ng-model="user.remember">Remember me</ion-checkbox>
+      <div class="padding">
+        <input class="button button-block button-positive"
+               id="loginButton"
+
+               ng-click="LogIn(user)"
+               value='Sign-In'>
+        <!--ng-disabled="form.pass.$invalid || form.login.$invalid"-->
+
+      </div>
+      <!--<input type="button" class="button button-block button-positive" ng-click="test()">-->
+      <!--<div ng-messages="login.login.$error" style="color:maroon" role="alert">-->
+        <!--<div ng-message="required">You did !!!not enter a field</div>-->
+        <!--<div ng-message="minlength">Your field is too short</div>-->
+        <!--<div ng-message="maxlength">Your field is too long</div>-->
+        <!--<div ng-message="pattern">Only letters(a-zA-Z) and numbers are allowed</div>-->
+      <!--</div>-->
+      <!--<div ng-messages="login.pass.$error" style="color:maroon" role="alert">-->
+        <!--<div ng-message="required">You did not enter a field</div>-->
+        <!--<div ng-message="minlength">Your field is too short</div>-->
+        <!--<div ng-message="maxlength">Your field is too long</div>-->
+        <!--<div ng-message="pattern">Only letters(a-zA-Z) and numbers are allowed</div>-->
+      <!--</div>-->
+    </form>
+  </ion-content>
+</ion-view>

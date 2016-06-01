@@ -1,0 +1,26 @@
+<!--<ion-nav-view animation="slide-left-right">-->
+
+<ion-view animation="slide-left-right" title="Tasks">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <div class="time-now"><p>today: <br> 07:25:06</p></div>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item
+        ng-repeat="task in tasksList" >
+        <div class="task"><div ng-click="clicked({{task}})" class="nameTask">
+          <span ng-bind="task.name"></span>
+        </div>
+          <div class="currentTime">
+            <span ng-bind="task.time"></span>
+          </div></div>
+        <div class="startStop" ng-click='toggle({{task}})'>
+          <i ng-if="!task.current" class="icon icon-right ion-ios-play-outline"></i>
+          <i ng-if="task.current" class="icon icon-right ion-ios-pause-outline"></i>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+<!--</ion-nav-view>-->

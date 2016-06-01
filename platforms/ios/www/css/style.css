@@ -1,0 +1,55 @@
+/* Empty. Add your own CSS if you like */
+.background, ion-content,ion-item{
+  background-color: #282d39;
+}
+.list.list-inset{
+  border-radius:10px ;
+}
+.logo{
+  padding: 5% 0;
+  text-align: center;
+}
+.login-check{
+  border-style: hidden;
+  background-color: inherit;
+  color: white;
+}
+.list-task{
+  margin:10% 5%;
+}
+label.item.item-input {
+  border-radius: 5px;
+}
+.time-now{
+  position: absolute;
+  left:77%;
+  color: #ffffff;
+}
+.button-create{
+  width: 100%;
+  margin: 0 auto;
+}
+.item-complex .item-content, .item-radio .item-content {
+  background-color: #282d39;
+  color: #ffffff;
+}
+.bar.bar-stable .title,.button {
+  /*background-color: #282d39;*/
+  color: #ffffff;
+}
+.bar-stable .button:hover {
+  color: #FFF;
+
+}
+label.item.item-radio {
+  margin: 0 3%;
+  border-style: none;
+
+}
+.bar.bar-stable{
+  background-color: #282d39;
+}
+.item-radio input:checked + .radio-content .item-content {
+  background: #282d39;
+  color: white;
+}

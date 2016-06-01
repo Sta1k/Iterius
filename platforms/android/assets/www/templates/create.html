@@ -1,0 +1,63 @@
+<ion-view class="background" title="Create Task">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <div class="time-now"><p >today: <br> 07:25:06</p></div>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <div id="wrapper">
+      <header id="header">
+
+
+      </header>
+      <main id="main">
+
+        <section>
+          <div class="container-fluid">
+            <div class="create-block">
+              <form action="#" method="get" id="create-form-id" name="create-form">
+                <div class="list-task">
+
+                  <label  class="item item-input">
+                    <input type="text" placeholder="Title">
+                  </label>
+                  <label style="margin-top: 3%" class="item item-input">
+                    <textarea rows='5' placeholder="Description"></textarea>
+                  </label>
+                </div>
+                <div class="list-task">
+
+                  <label class="item item-input item-select">
+                    <div class="input-label">
+                      Assign:
+                    </div>
+                    <select>
+                      <option selected>Assign</option>
+                      <option >Superadmin</option>
+                      <option>Admin</option>
+                      <option>Manager</option>
+                      <option>User</option>
+                      <option>Guest</option>
+                    </select>
+                  </label>
+
+                </div>
+                <ion-list>
+                  <ion-radio   ng-model="choice" ng-value="'A'">Not associate</ion-radio>
+                  <ion-radio ng-model="choice" ng-value="'B'">Associated with project</ion-radio>
+                  <ion-radio ng-model="choice" ng-value="'С'">Associated with task</ion-radio>
+                </ion-list>
+                <div class="row button-create">
+                  <button class="button button-block button-positive">
+                    Create
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer id="footer"></footer>
+    </div>
+  </ion-content>
+</ion-view>
