@@ -11,25 +11,34 @@ angular.module('tt')
 
 angular.module('tt')
 
-  .service('updateTaskTime',function (dataService) {
-    return function (task) {
-      var taskTime = 0;
-      
-      var workedTime = task.time;
-      if (!workedTime && workedTime !== 0)
-        return;
-      var clientTime = Math.floor(Date.now() / 1000);
-      var startTime = clientTime - workedTime;
-      var now = Math.floor(Date.now() / 1000);
-      var diff = now - startTime;
-      var h = Math.floor(diff / 3600);
-      var m = Math.floor(diff / 60) % 60;
-      var s = diff % 60;
-      if (m < 10)
-        m = '0' + m;
-      if (s < 10)
-        s = '0' + s;
-      dataService.allWorkedTime = h + ' : ' + m + ' : ' + s;
-    };
+  .factory('updateTaskTime',function () {
+    return function ($scope, $interval) {
+      $scope.Timer = null;
+
+      //Timer start function.
+      this.StartTimer = function () {
+        //Set the Timer start message.
+        $scope.showTime = "Timer started. ";
+
+        //Initialize the Timer to run every 1000 milliseconds i.e. one second.
+        $scope.Timer = $interval(function () {
+          //Display the current time.
+          var time = $filter('date')(new Date(), 'HH:mm:ss');
+          $scope.showTime = "Timer Ticked. " + time;
+        }, 1000);
+      };
+
+      //Timer stop function.
+      this.StopTimer = function () {
+
+        //Set the Timer stop showTime.
+        $scope.showTime = "Timer stopped.";
+
+        //Cancel the Timer.
+        if (angular.isDefined($scope.Timer)) {
+          $interval.cancel($scope.Timer);
+        }
+      }
+    }
   });
 

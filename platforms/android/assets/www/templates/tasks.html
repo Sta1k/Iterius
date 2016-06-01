@@ -13,9 +13,9 @@
           <span ng-bind="task.name"></span>
         </div>
           <div class="currentTime">
-            <span ng-bind="task.time"></span>
+            <span ng-bind="showTime"></span>
           </div></div>
-        <div class="startStop" ng-click='toggle({{task}})'>
+        <div class="startStop" ng-click='toggleT({{task}})'>
           <i ng-if="!task.current" class="icon icon-right ion-ios-play-outline"></i>
           <i ng-if="task.current" class="icon icon-right ion-ios-pause-outline"></i>
         </div>

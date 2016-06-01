@@ -10,28 +10,19 @@
         <div class="container-fluid">
           <div class="row">
             <h1>{{currentTask.name}}</h1>
-            <i ng-if="!task.current" class="icon icon-right ion-ios-play-outline"></i>
-            <i ng-if="task.current" class="icon icon-right ion-ios-pause-outline"></i>
+
           </div>
         </div>
       </section>
       <section>
         <div class="container-fluid">
-          <div class="row">
-            <div class="task-button-block">
-              <div class="task-button">
-                <button type="button" class="button-start">
-                  <span class="glyphicon glyphicon-play"></span>
-                </button>
-                <button type="button" class="button-pause dsp-none">
-                  <span class="glyphicon glyphicon-pause"></span>
-                </button>
-              </div>
-            </div>
+          <div class="startStopOrder" ng-click='toggleT({{currentTask}})'>
+            <i ng-if="!currentTask.current" class="icon icon-right ion-ios-play-outline"></i>
+            <i ng-if="currentTask.current" class="icon icon-right ion-ios-pause-outline"></i>
           </div>
           <div class="row">
             <div class="process-time">
-              <p>06 : 08 : 10</p>
+              <span ng-bind="showTime||currentTask.time"></span>
             </div>
           </div>
         </div>
