@@ -1,7 +1,7 @@
 /**
  * Created by smissltd on 16.05.16.
  */
-angular.module('tt', ['ionic'])//'tt.services'
+var APP = angular.module('tt', ['ionic'])//'tt.services'
 
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -14,7 +14,7 @@ angular.module('tt', ['ionic'])//'tt.services'
         controller: 'AppCtrl'
       })
 
-      
+
 
       .state('app.create', {
         url: "/create",
@@ -53,7 +53,7 @@ angular.module('tt', ['ionic'])//'tt.services'
           }
         }
       })
-      
+
 
       .state('app.login-into-menucontent', {
         url: "/login-into-menucontent",

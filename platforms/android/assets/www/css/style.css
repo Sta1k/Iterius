@@ -75,4 +75,10 @@ div .startStop {
 div.time-now > p {
   margin: 0;
 }
+div .startStopOrder {
+  width: 100%;
+  height: inherit;
 
+  text-align: center;
+  font-size: 500%;
+}

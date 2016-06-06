@@ -1,42 +1,52 @@
 /**
  * Created by smissltd on 19.05.16.
  */
-angular.module('tt')
-  
-  .service('dataService',function () {
+APP
+
+  .service('dataService', function () {
     this.tasksList = {};
-    this.currentTask = undefined;
-    this.AllWorkedTime=0
+    this.currentTask = {
+      // id: null,
+      // time: function (num) {
+      //   var h = Math.floor(num / 3600);
+      //   var m = Math.floor(num / 60) % 60;
+      //   var s = num % 60;
+      //   if (m < 10)
+      //     m = '0' + m;
+      //   if (s < 10)
+      //     s = '0' + s;
+      //   var time = h + ':' + m + ':' + s;
+      //   return time
+      //}
+      current: null,
+      name: 'stringName'
+
+    };
+    this.AllWorkedTime = 0;
+    this.showTime = undefined;
   });
 
-angular.module('tt')
+APP
 
-  .factory('updateTaskTime',function () {
-    return function ($scope, $interval) {
-      $scope.Timer = null;
-
-      //Timer start function.
-      this.StartTimer = function () {
+  .factory('updateTaskTime', function ($interval, dataService) {//$scope нельзя передавать в сервисы
+    return { //function ($scope, $interval)
+      Timer: null,
+      StartTimer: function (task) {
         //Set the Timer start message.
-        $scope.showTime = "Timer started. ";
-
+        dataService.showTime = "Timer started. ";
+        var obj = _.findWhere(dataService.tasksList, {id: task.id});
         //Initialize the Timer to run every 1000 milliseconds i.e. one second.
-        $scope.Timer = $interval(function () {
-          //Display the current time.
-          var time = $filter('date')(new Date(), 'HH:mm:ss');
-          $scope.showTime = "Timer Ticked. " + time;
+        this.Timer = $interval(function () {
+       
+          obj.time++;
+          console.log(obj.time);
+
+
         }, 1000);
-      };
-
-      //Timer stop function.
-      this.StopTimer = function () {
-
-        //Set the Timer stop showTime.
-        $scope.showTime = "Timer stopped.";
-
-        //Cancel the Timer.
-        if (angular.isDefined($scope.Timer)) {
-          $interval.cancel($scope.Timer);
+      },
+      StopTimer: function (task) {
+        if (angular.isDefined(this.Timer)) {
+          $interval.cancel(this.Timer);
         }
       }
     }

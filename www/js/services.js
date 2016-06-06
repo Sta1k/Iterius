@@ -1,4 +1,4 @@
-angular.module('tt')
+APP
   .service('loginService', function ($http, $httpParamSerializerJQLike) {
 
     this.sendData = function (request) {
@@ -15,7 +15,7 @@ angular.module('tt')
       return $http({
         method: 'POST',
         // permissions: ['http://172.16.3.141/'],
-        url: 'http://172.16.3.18:81/api/login',
+        url: 'http://dev.tt.smiss.ua/api/login',
         data: $httpParamSerializerJQLike(login),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).success(function (data, status, headers, config) {
@@ -27,7 +27,7 @@ angular.module('tt')
     };
   });
 
-angular.module('tt')
+APP
   .service('taskService',function ($http/*, $httpParamSerializerJQLike*/ ) {
   this.requestData = function () {
     // console.log(req);
@@ -35,12 +35,12 @@ angular.module('tt')
       method: 'POST',
       // data: $httpParamSerializerJQLike(),
       // permissions: ['http://172.16.3.141/'],
-      url: 'http://172.16.3.18:81/api/tasks'
+      url: 'http://dev.tt.smiss.ua/api/tasks'
     });
   };
 });
 
-angular.module('tt')
+APP
   .service('taskToggle',function ($http, $httpParamSerializerJQLike ) {
     this.toggleState = function (id) {
 
@@ -50,11 +50,24 @@ angular.module('tt')
         method: 'POST',
         data: $httpParamSerializerJQLike({id:id}),
         // permissions: ['http://172.16.3.141/'],
-        url: 'http://172.16.3.18:81/api/toggle'
+        url: 'http://dev.tt.smiss.ua/api/toggle'
       })
     };
   });
-
+APP
+  .filter('timing',function () {
+    return function (num) {
+      var h = Math.floor(num / 3600);
+      var m = Math.floor(num / 60) % 60;
+      var s = num % 60;
+      if (m < 10)
+        m = '0' + m;
+      if (s < 10)
+        s = '0' + s;
+      out = h+':'+m+':'+s;
+      return out;
+    }
+});
 // angular.module('tt',[])
 //   .factory('TIMER',function ($scope, $interval) {
 //
