@@ -21,8 +21,10 @@ label.item.item-input {
   border-radius: 5px;
 }
 .time-now{
+  font-size: xx-large;
+  top: 10px;
   position: absolute;
-  left:77%;
+  left:50%;
   color: #ffffff;
 }
 .button-create{

@@ -22,6 +22,7 @@ APP
                 $state,
                 $interval,
                 $stateParams) {
+        console.log('tasksCtrl');
         $scope.tasksList = dataService.tasksList;//взяли из сервиса
 
         $scope.checkStarted = function () {
@@ -30,6 +31,7 @@ APP
             return false
           }
           else if (obj.current == true) {
+            dataService.showTime = true;
             updateTaskTime.StartTimer(obj);
             $interval(function () {
               $scope.tasksList = dataService.tasksList;
@@ -39,22 +41,28 @@ APP
           // console.log(obj)
         };
         $scope.checkStarted();
-
+        if (dataService.showTime === true) {
+          $interval(function () {
+            $scope.timeCount = dataService.AllWorkedTime;
+            // console.log(typeof $scope.timeCount)
+          }, 1000);
+        }
         $scope.clicked = function (task) {// переход в конкретную задачу
-          $state.go('app.order');
           dataService.currentTask = task;
-          // console.log(dataService.currentTask)
+          $state.go('app.order');
+          
+          console.log('SERVICE---'+dataService.currentTask);
         };
-        // $scope.allWorkedTime = dataService.allWorkedTime;
+        // Старт стоп задачи
         $scope.toggleT = function (task) {
-          //dataService.currentTask = task;
+          
           taskToggle.toggleState(task.id)
             .then(function success(resp) {
               console.log(resp);
 
               if (resp.data.started === false && resp.data.success === true) {
-                // task.current = false;
-                // start timer
+
+                dataService.showTime = false;
                 updateTaskTime.StopTimer(task);
                 taskService.requestData()
                   .then(function success(res) {
@@ -68,41 +76,36 @@ APP
                   });
 
                 $scope.tasksList = dataService.tasksList;
-                
-                console.log(resp.data.started);
               } else if (resp.data.started === true && resp.data.success === true) {
-                task.current = true;// stop timer
-                // taskService.requestData()
-                //   .then(function (res) {
-                //     if (!res.data.success) {
-                //       alert(res.data.error);
-                //     } else {
-                //       //console.log(res);
-                //       dataService.tasksList = res.data.tasks;
-                //     }
-                //     $scope.tasksList = dataService.tasksList;
-                //   })
-                  
-                var obj = _.findWhere(dataService.tasksList, {id: task.id});
-                updateTaskTime.StartTimer(obj);
-                $interval(function () {
-                  dataService.tasksList = $scope.tasksList;
-                  console.log($scope.tasksList);
-                }, 1000);
+                taskService.requestData()
+                  .then(function success(res) {
+                    if (!res.data.success) {
+                      alert(res.data.error);
+                    } else {
+                      console.log(res);
+                      dataService.tasksList = res.data.tasks;
+                    }
 
+                  }).then(function () {
+                  $scope.tasksList = dataService.tasksList;
 
-              }
-              taskService.requestData()
-                .then(function success(res) {
-                  if (!res.data.success) {
-                    alert(res.data.error);
-                  } else {
-                    console.log(res);
-                    dataService.tasksList = res.data.tasks;
+                  var obj = _.findWhere(dataService.tasksList, {id: task.id});
+                  console.log(obj);
+                  if (obj == undefined) {
+                    return false
                   }
+                  else if (obj.current == true) {
+                    dataService.showTime = true;
+                    updateTaskTime.StartTimer(obj);
+                    $interval(function () {
+                      dataService.tasksList = $scope.tasksList;
+                      $scope.timeCount = dataService.AllWorkedTime;
+                      // console.log(typeof $scope.timeCount);
+                    }, 1000);
 
-                });
-
+                  }
+                })
+              }
             })
         }
       }])
@@ -121,53 +124,14 @@ APP
       '$stateParams',
 
       function ($scope, timing, $stateParams, taskToggle, taskService, dataService, $interval) {
+        console.log('orderCtrl');
         $scope.currentTask = dataService.currentTask;
-
-        $scope.Timer = null;
-        $scope.StartTimer = function (num) {
-          //Set the Timer start message.
-          //$scope.showTime = "Timer started. ";
-
-
-          //Initialize the Timer to run every 1000 milliseconds i.e. one second.
-          $scope.Timer = $interval(function () {
-            var h = Math.floor(num / 3600);
-            var m = Math.floor(num / 60) % 60;
-            var s = num % 60;
-            if (m < 10)
-              m = '0' + m;
-            if (s < 10)
-              s = '0' + s;
-            //Display the current time.
-            $scope.currentTask.time++;
-            num++;
-            var time = h + ':' + m + ':' + s;
-            $scope.showTime = time;
-
-          }, 1000);
-
-        };
-        $scope.StopTimer = function (num) {
-          //Set the Timer stop showTime.
-          var h = Math.floor(num / 3600);
-          var m = Math.floor(num / 60) % 60;
-          var s = num % 60;
-          if (m < 10)
-            m = '0' + m;
-          if (s < 10)
-            s = '0' + s;
-          var time = h + ':' + m + ':' + s;
-          $scope.showTime = time;
-          //Cancel the Timer.
-          if (angular.isDefined($scope.Timer)) {
-            $interval.cancel($scope.Timer);
-          }
-          console.log($scope.showTime)
-        };
-
-        if ($scope.currentTask.current === true) {
-          $scope.StartTimer($scope.currentTask.time)
-        }
+        console.log('TASK---'+dataService.currentTask);
+        // if ($scope.currentTask.current === true) {
+        //   $scope.StartTimer($scope.currentTask.time)
+        // }else{
+        //   return false
+        // }
         $scope.toggleT = function (task) {
           taskToggle.toggleState(task.id)
             .then(function success(resp) {
@@ -203,14 +167,23 @@ APP
             })
         }
       }])
-  .controller('CreateCtrl', function ($scope, $stateParams) {
+  
+  .controller('CreateCtrl', function ($scope,dataService, createTask, $stateParams) {
+    console.log('createCtrl');
+    $scope.task={};
+    $scope.timeCount = dataService.AllWorkedTime;
+    $scope.createT = function () {
+      createTask.TaskCreate().then(function (res) {
+        console.log(res)
+      })
+    }
   })
   .controller('TeamCtrl', function ($scope, $stateParams) {
   })
   .controller('SplashController', function ($scope, $stateParams) {
   });
 
-angular.module('tt')
+APP
   .controller('LoginCtrl',
     function ($scope, loginService, taskService, $state, dataService, $stateParams) {
       $scope.user = {
@@ -237,6 +210,12 @@ angular.module('tt')
 
                   } else {
                     dataService.tasksList = res.data.tasks;
+                    var arr= _.pluck(dataService.tasksList, 'time');
+                    summa = function(m) {
+                      for(var s = 0, k = m.length; k; s += m[--k]);
+                      dataService.AllWorkedTime = s;
+                    };
+                    summa(arr);
                     console.log(dataService.tasksList);
                     $state.go('app.tasks');
                   }
@@ -249,16 +228,9 @@ angular.module('tt')
 
           }, function err(res) {
             console.log(res.status + ' ' + res.statusText);
-          })
-          .finally(function ($stateParams) {
-            // $state.go('app.tasks');
+          });
 
-          })
-        ;
-        // $state.go('app.tasks');
       };
-
-
     });
 
 

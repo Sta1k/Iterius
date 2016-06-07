@@ -4,11 +4,10 @@ APP
     this.sendData = function (request) {
       //console.log(request);
       var login = {
-        model:
-        {
+        model: {
           username: request.username,
           password: request.password,
-          remember: request.remember||false
+          remember: request.remember || false
         }
       };
       //console.log(login);
@@ -28,34 +27,51 @@ APP
   });
 
 APP
-  .service('taskService',function ($http/*, $httpParamSerializerJQLike*/ ) {
-  this.requestData = function () {
-    // console.log(req);
-    return $http({
-      method: 'POST',
-      // data: $httpParamSerializerJQLike(),
-      // permissions: ['http://172.16.3.141/'],
-      url: 'http://dev.tt.smiss.ua/api/tasks'
-    });
-  };
-});
+  .service('taskService', function ($http/*, $httpParamSerializerJQLike*/) {
+    this.requestData = function () {
+      // console.log(req);
+      return $http({
+        method: 'POST',
+        // data: $httpParamSerializerJQLike(),
+        // permissions: ['http://172.16.3.141/'],
+        url: 'http://dev.tt.smiss.ua/api/tasks'
+      });
+    };
+  });
 
 APP
-  .service('taskToggle',function ($http, $httpParamSerializerJQLike ) {
+  .service('taskToggle', function ($http, $httpParamSerializerJQLike) {
     this.toggleState = function (id) {
 
       // console.log(req);
       return $http({
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         method: 'POST',
-        data: $httpParamSerializerJQLike({id:id}),
+        data: $httpParamSerializerJQLike({id: id}),
         // permissions: ['http://172.16.3.141/'],
         url: 'http://dev.tt.smiss.ua/api/toggle'
       })
     };
   });
 APP
-  .filter('timing',function () {
+  .service('createTask', function ($http, $httpParamSerializerJQLike) {
+    this.TaskCreate = function (object) {
+
+      // console.log(req);
+      return $http({
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        method: 'POST',
+        data: $httpParamSerializerJQLike({
+          title:        object.title,
+          description:  object.desc
+        }),
+
+        url: 'http://dev.tt.smiss.ua/api/createTask'
+      })
+    };
+  });
+APP
+  .filter('timing', function () {
     return function (num) {
       var h = Math.floor(num / 3600);
       var m = Math.floor(num / 60) % 60;
@@ -64,38 +80,7 @@ APP
         m = '0' + m;
       if (s < 10)
         s = '0' + s;
-      out = h+':'+m+':'+s;
+      out = h + ':' + m + ':' + s;
       return out;
     }
-});
-// angular.module('tt',[])
-//   .factory('TIMER',function ($scope, $interval) {
-//
-//
-//     $scope.Timer = null;
-//
-//     //Timer start function.
-//     $scope.StartTimer = function () {
-//       //Set the Timer start message.
-//       $scope.showTime = "Timer started. ";
-//
-//       //Initialize the Timer to run every 1000 milliseconds i.e. one second.
-//       $scope.Timer = $interval(function () {
-//         //Display the current time.
-//         var time = $filter('date')(new Date(), 'HH:mm:ss');
-//         $scope.showTime = "Timer Ticked. " + time;
-//       }, 1000);
-//     };
-//
-//     //Timer stop function.
-//     $scope.StopTimer = function () {
-//
-//       //Set the Timer stop showTime.
-//       $scope.showTime = "Timer stopped.";
-//
-//       //Cancel the Timer.
-//       if (angular.isDefined($scope.Timer)) {
-//         $interval.cancel($scope.Timer);
-//       }
-//     };
-//   });
+  });
