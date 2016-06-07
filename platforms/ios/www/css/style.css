@@ -21,8 +21,11 @@ label.item.item-input {
   border-radius: 5px;
 }
 .time-now{
+  width:100%;
+  font-size: xx-large;
+  top: 10px;
   position: absolute;
-  left:77%;
+  left:50%;
   color: #ffffff;
 }
 .button-create{
@@ -51,5 +54,43 @@ label.item.item-radio {
 }
 .item-radio input:checked + .radio-content .item-content {
   background: #282d39;
+  color: white;
+}
+
+div .task{
+  width: 80%;
+  float: left;
+  margin: 0;
+  overflow: hidden;
+}
+div .startStop {
+  width: 20%;
+  height: inherit;
+  float: right;
+  text-align: center;
+  font-size: 200%;
+}
+div.time-now > p {
+  margin: 0;
+}
+div .startStopOrder {
+  width: 100%;
+  height: inherit;
+
+  text-align: center;
+  font-size: 500%;
+}
+.ActiveBackground{
+  background-color: #282d39;
+  color: white;
+}
+.icon.ion-android-exit,
+.icon .ion-ios-gear,
+.icon .ion-plus-circled,
+.icon .ion-person-stalker,
+.icon .ion-briefcase{
+  font-size: 150% !important;
+}
+.radio-icon.disable-pointer-events.icon.ion-checkmark {
   color: white;
 }

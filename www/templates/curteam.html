@@ -11,18 +11,20 @@
         <input type="text" placeholder="Search" ng-model="query">
       </label>
     </div>
+    <span ng-bind="currentTeam.title"></span>
     <ion-list>
-      <ion-item ng-repeat="team in Global"> <!--| filter:query not works because Global is object, need array of objects-->
+      <ion-item ng-repeat="user in currentTeam.users | filter : query">
         <div class="team">
-          <div ng-click="showTeam(team)" class="nameTask">
-            <span ng-bind="team.title"></span>
+          <div ng-click="showUser(user)" class="nameTask">
+            <div style="width: 50%; float:left"><span ng-bind="user.name"></span></div>
+            <div style="width: 50%; float:right"><span ng-bind="user.status||'Not Working'"></span></div>
           </div>
           <!--<ion-list ng-show='showTeam'  class="teamMembers">-->
-            <!--<ion-item ng-repeat="user in team.users">-->
-              <!--<div ng-click="clicked({{user}})" class="nameTask">-->
-                <!--<span ng-bind="user.name"></span><span ng-bind="user.status|| 'Not Working'"></span>-->
-              <!--</div>-->
-            <!--</ion-item>-->
+          <!--<ion-item ng-repeat="user in team.users">-->
+          <!--<div ng-click="clicked({{user}})" class="nameTask">-->
+          <!--<span ng-bind="user.name"></span><span ng-bind="user.status|| 'Not Working'"></span>-->
+          <!--</div>-->
+          <!--</ion-item>-->
           <!--</ion-list>-->
         </div>
       </ion-item>

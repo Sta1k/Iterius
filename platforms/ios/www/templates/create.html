@@ -1,7 +1,8 @@
 <ion-view class="background" title="Create Task">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    <div class="time-now"><p >today: <br> 07:25:06</p></div>
+    <div ng-if="timeCount>0"
+         ng-bind="timeCount | timing" class="time-now" ng-controller="timeCtrl"></div>
   </ion-nav-buttons>
 
   <ion-content>
@@ -15,15 +16,31 @@
         <section>
           <div class="container-fluid">
             <div class="create-block">
-              <form action="#" method="get" id="create-form-id" name="create-form">
+              <form id="create-form-id" name="createForm">
                 <div class="list-task">
 
-                  <label  class="item item-input">
-                    <input type="text" placeholder="Title">
+                  <label class="item item-input">
+                    <input name="title"
+                           type="text"
+                           ng-maxlength="255"
+                           ng-minlength="4"
+                           placeholder="Title"
+                           ng-model="task.title"
+                           required
+                    >
                   </label>
                   <label style="margin-top: 3%" class="item item-input">
-                    <textarea rows='5' placeholder="Description"></textarea>
+                    <textarea rows='5'
+                              placeholder="Description"
+                              ng-model="task.desc"
+                    ></textarea>
                   </label>
+                </div>
+                <div style="text-align: center; color: #ff0500;" ng-show="createForm.$submitted || createForm.title.$touched">
+                  <div ng-show="createForm.title.$error.required">Field "Title" is empty</div>
+                  <div ng-show="createForm.title.$error.minlength">Title is too short</div>
+                  <div ng-show="createForm.title.$error.maxlength">Title is too long</div>
+
                 </div>
                 <div class="list-task">
 
@@ -33,7 +50,7 @@
                     </div>
                     <select>
                       <option selected>Assign</option>
-                      <option >Superadmin</option>
+                      <option>Superadmin</option>
                       <option>Admin</option>
                       <option>Manager</option>
                       <option>User</option>
@@ -43,14 +60,19 @@
 
                 </div>
                 <ion-list>
-                  <ion-radio   ng-model="choice" ng-value="'A'">Not associate</ion-radio>
+                  <ion-radio ng-model="choice" ng-value="'A'">Not associate</ion-radio>
                   <ion-radio ng-model="choice" ng-value="'B'">Associated with project</ion-radio>
                   <ion-radio ng-model="choice" ng-value="'С'">Associated with task</ion-radio>
                 </ion-list>
                 <div class="row button-create">
-                  <button class="button button-block button-positive">
-                    Create
-                  </button>
+                  <input ng-click="createT(task)"
+                         class="button button-block button-positive"
+                         value="Create"
+                         ng-disabled="createForm.title.$invalid"
+                         type="submit"
+                  >
+
+
                 </div>
               </form>
             </div>
