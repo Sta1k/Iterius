@@ -17,11 +17,11 @@
     <!--</div>-->
     <div class="titlePage"><h3>My Tasks</h3></div>
     <ion-list>
-      <ion-item ng-class="{ActiveBackground: task.current == true}"
+      <ion-item style="height: 13%" ng-class="{ActiveBackground: task.current == true}"
         ng-repeat="task in tasksList | filter : query">
         <div class="task">
           <div ng-click="clicked({{task}})" class="nameTask">
-            <div  ng-bind="task.name"></div>
+            <div  ng-bind="task.name|sliceString"></div>
           </div>
         </div>
         <div class="currentTime">

@@ -1,67 +1,93 @@
 /* Empty. Add your own CSS if you like */
-.grey_back{
+.scroll {
+  padding-top: 5%;
+}
+
+.grey_back {
   background-color: #e1e1e1;
 }
-.background, ion-content,ion-item{
+
+.background, ion-content, ion-item {
   background-color: #282d39;
 }
-.list.list-inset{
-  border-radius:10px ;
+
+.list.list-inset {
+  border-radius: 10px;
 }
-.logo{
+
+.logo {
   padding: 5% 0;
   text-align: center;
 }
-.login-check{
+
+.login-check {
   border-style: hidden;
   background-color: inherit;
   color: white;
 }
-.list-task{
-  margin:10% 5%;
+
+.list-task {
+  margin: 0 5% 5% 5%;
 }
+
 label.item.item-input {
   border-radius: 5px;
 }
-.time-now{
+
+.time-now {
   height: 25px;
-  width:100%;
+  width: 100%;
   font-size: xx-large;
   top: 10px;
   position: absolute;
-  left:45%;
+  left: 45%;
   color: #ffffff;
 }
-.button-create{
+
+.button-create {
   width: 100%;
   margin: 0 auto;
 }
-.item-complex .item-content, .item-radio .item-content {
+
+.item-complex .item-content {
   background-color: #282d39;
   color: #ffffff;
 }
-.bar.bar-stable .title,.button {
+
+.item-radio .item-content {
+  background-color: #e1e1e1;
+}
+
+.bar {
+  height: 60px;
+}
+
+.bar.bar-stable .title, .button {
   /*background-color: #282d39;*/
   color: #ffffff;
 }
+
 .bar-stable .button:hover {
   color: #FFF;
 
 }
+
 label.item.item-radio {
   margin: 0 3%;
   border-style: none;
 
 }
-.bar.bar-stable{
+
+.bar.bar-stable {
   background-color: #282d39;
 }
+
 .item-radio input:checked + .radio-content .item-content {
   background: #282d39;
   color: white;
 }
 
-div .task{
+div .task {
   width: 30%;
   float: left;
   margin: 0;
@@ -69,6 +95,7 @@ div .task{
   overflow: hidden;
   vertical-align: middle;
 }
+
 div .startStop {
   width: 20%;
   height: inherit;
@@ -76,49 +103,69 @@ div .startStop {
   text-align: center;
   font-size: 200%;
 }
+
 div.time-now > p {
   margin: 0;
 }
+
 div .startStopOrder {
   width: 100%;
-  height: inherit;
-
+  padding: 30%;
+  color: #FFFFFF;
   text-align: center;
-  font-size: 500%;
+  font-size: 700%;
 }
-.ActiveBackground{
+
+.ActiveBackground {
   background-color: #282d39;
   color: white;
 }
-.icon.ion-android-exit,
-.icon .ion-ios-gear,
-.icon .ion-plus-circled,
-.icon .ion-person-stalker,
-.icon .ion-briefcase{
-  font-size: 150% !important;
-  color: blue;
+
+.revertcolor {
+  background-color: #efeff4;
+  color: #282d39;
 }
+
+.icon.ion-android-exit,
+.icon.ion-ios-gear,
+.icon.ion-ios-plus-outline,
+.icon.ion-person-stalker,
+.icon.ion-briefcase {
+  padding-right: 10%;
+  font-size: 250% !important;
+  color: #116B97;
+}
+
 .radio-icon.disable-pointer-events.icon.ion-checkmark {
   color: white;
 }
-.teamName{
+
+.teamName {
   color: white;
   text-align: center;
 }
+
 .hour {
   text-align: center;
-  color: #282d39;
+  color: #ffffff;
   width: 12%;
-  background-color: #efeff4;
+  background-color: #282d39;
   display: inline-block;
   border-radius: 3px;
 }
-.currentTime{
+
+.hour p {
+  color: #FFFFFF;
+}
+
+.currentTime {
   display: inline;
 }
-.nameTask{
-  vertical-align: middle!important;
+
+.nameTask {
+  vertical-align: middle !important;
 }
+
 .upperhour {
   padding: 1%;
   height: inherit;
@@ -129,9 +176,41 @@ div .startStopOrder {
   display: inline-block;
   border-radius: 3px;
 }
+
 .titlePage {
   color: #282d39;
   background: #e1e1e1;
   text-align: center;
   padding: 3%;
+}
+
+.time-now p {
+  font-size: small;
+}
+
+.teamPage {
+  background: #597EAA;
+  text-align: center;
+  /*color: white;*/
+}
+
+.teamPage h4,.teamPage h3 {
+  margin: 0;
+  padding: 3%;
+  color: #FFFFFF;
+}
+.big_hour {
+  margin: 0 auto;
+  font-size: xx-large;
+  text-align: center;
+  color: #ffffff;
+  width: 20%;
+  background-color: #282d39;
+  display: inline-block;
+}
+.ticky{
+
+  text-align: center;
+  color: white;
+  font-size: 40pt;
 }

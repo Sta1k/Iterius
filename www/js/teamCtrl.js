@@ -12,6 +12,11 @@ APP
       .success(function (res) {
         console.log(res);
         $scope.Global = res
-      });
+      })
+      .error(function (res) {
+        console.log("ERROR");
+        console.log(res)
+        
+      })
 
   });

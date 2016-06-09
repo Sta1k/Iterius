@@ -16,11 +16,12 @@ APP
       console.log($scope.user);
       $scope.checkStarted = function () {
         var obj = _.findWhere(dataService.memberTasks, {current: true});
+        console.log(obj);
         if (obj == undefined) {
           return false
         }
         else if (obj.current == true) {
-          dataService.showTime = true;
+          // dataService.showTime = true;
           updateMemberTime.StartTimer(obj);
           $interval(function () {
             $scope.userTasks = dataService.memberTasks;
@@ -39,7 +40,7 @@ APP
 
             if (resp.data.started === false && resp.data.success === true) {
 
-              dataService.showTime = false;
+              // dataService.showTime = false;
               updateMemberTime.StopTimer(task);
               APIService.requestUserTasks($scope.user.id)
                 .then(function success(res) {
@@ -68,17 +69,17 @@ APP
                 $scope.userTasks = dataService.memberTasks;
 
                 var obj = _.findWhere(dataService.memberTasks, {id: task.id});
-                console.log(obj);
+                // console.log(obj);
                 if (obj == undefined) {
                   return false
                 }
                 else if (obj.current == true) {
-                  dataService.showTime = true;
+                  // dataService.showTime = true;
                   updateMemberTime.StartTimer(obj);
                   $interval(function () {
                     dataService.memberTasks = $scope.userTasks;
                     // $scope.timeCount = dataService.AllWorkedTime;
-                    // console.log(typeof $scope.timeCount);
+                    // console.log(dataService.memberTasks);
                   }, 1000);
 
                 }

@@ -2,8 +2,8 @@ APP
   .controller('LoginCtrl',
     function ($scope, APIService , $state, dataService, $stateParams) {
       $scope.user = {
-        username: "Admin11",
-        password: "Admin11",
+        username: "TTman11",
+        password: "TTman11",
         remember: true
       };
       $scope.LogIn = function () {

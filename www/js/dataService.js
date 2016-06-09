@@ -44,12 +44,7 @@ APP
         this.Timer = $interval(function () {
           obj.time++;
           // console.log(obj.time);
-          var arr = _.pluck(dataService.memberTasks, 'time');
-          summa = function (m) {
-            for (var s = 0, k = m.length; k; s += m[--k]);
-            dataService.AllWorkedTime = s;
-          };
-          summa(arr);
+          
         }, 1000);
       },
       StopTimer: function (task) {

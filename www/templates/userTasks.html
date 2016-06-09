@@ -13,18 +13,18 @@
         <!--<input type="text" placeholder="Search" ng-model="query">-->
       <!--</label>-->
     <!--</div>-->
-    <div class="titlePage"><h3>{{currentUser.name}}</h3></div>
+    <div class="titlePage"><h3>{{user.name}}</h3></div>
     <ion-list>
-      <ion-item ng-class="{ActiveBackground: task.current == true}"
+      <ion-item style="height: 13%" ng-class="{ActiveBackground: task.current == true}"
                 ng-repeat="task in userTasks | filter : query">
         <div class="task">
           <div class="nameTask">
-            <span ng-bind="task.name"></span>
+            <span ng-bind="task.name|sliceString"></span>
 
           </div>
 
         </div>
-        <div class="currentTime">
+        <div  class="currentTime">
           <span ng-bind-html="task.time | timing"></span>
 
         </div>
