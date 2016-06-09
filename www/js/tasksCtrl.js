@@ -46,9 +46,10 @@ APP.controller('TasksCtrl',
       // }
       $scope.clicked = function (task) {// переход в конкретную задачу
         dataService.currentTask = task;
+        console.log('in service'+(dataService.currentTask).toJSON);
         $state.go('app.order');
 
-        console.log('SERVICE---' + dataService.currentTask);
+        
       };
       // Старт стоп задачи
       $scope.toggleT = function (task) {

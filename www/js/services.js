@@ -1,5 +1,6 @@
 APP
   .service('APIService', function ($http, $httpParamSerializerJQLike) {
+    var url = 'http://dev.tt.smiss.ua/api/';
     this.login = function (request) {//loginService.sendData to APIService.login
       //console.log(request);
       var login = {
@@ -11,20 +12,16 @@ APP
       };      
       return $http({
         method: 'POST',
-        url: 'http://dev.tt.smiss.ua/api/login',
+        url: url+'login',
         data: $httpParamSerializerJQLike(login),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-      }).success(function (data, status, headers, config) {
-        // handle success things
-      }).error(function (data, status, headers, config) {
-        // handle error things
-      });
+      })
     };
     this.requestTasks = function () {//taskService.requestData заменить на APIService.requestTasks
       // console.log(req);
       return $http({
         method: 'POST',
-        url: 'http://dev.tt.smiss.ua/api/tasks'
+        url: url+'tasks'
       });
     };
     this.toggleState = function (id) {//taskToggle.toggleState to APIService.toggleState
@@ -33,7 +30,7 @@ APP
         method: 'POST',
         data: $httpParamSerializerJQLike({id: id}),
         // permissions: ['http://172.16.3.141/'],
-        url: 'http://dev.tt.smiss.ua/api/toggle'
+        url: url+'toggle'
       })
     };
     this.TaskCreate = function (object) {//createTask.TaskCreate to APIService.TaskCreate
@@ -46,7 +43,7 @@ APP
           title: object.title,
           description: object.desc
         }),
-        url: 'http://dev.tt.smiss.ua/api/createTask'
+        url: url+'createTask'
       })
     };
     this.logout=function () {
@@ -66,9 +63,20 @@ APP
         data: $httpParamSerializerJQLike({
          //data
         }),
-        url: 'http://dev.tt.smiss.ua/api/teamStatus'
+        url: url+'teamStatus'
       })
-    }
+    };
+    this.requestUserTasks = function (id) {//taskService.requestData заменить на APIService.requestTasks
+      // console.log(req);
+      return $http({
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        data: $httpParamSerializerJQLike({
+          user: id
+        }),
+        method: 'POST',
+        url: url+'tasks'
+      });
+    };
   });
 
 
