@@ -2,8 +2,8 @@ APP
   .controller('LoginCtrl',
     function ($scope, APIService , $state, dataService, $stateParams) {
       $scope.user = {
-        username: "TTman11",
-        password: "TTman11",
+        username: "Admin11",
+        password: "Admin11",
         remember: true
       };
       $scope.LogIn = function () {
@@ -13,7 +13,7 @@ APP
 
           .then(function
             success(response) {
-            // console.log(response);
+            console.log(response);
 
 
             if (response.data.success) {
@@ -37,7 +37,8 @@ APP
 
                 })
             } else {
-              alert('Server error');
+
+              alert(response.data.errors.password[0]);
 
             }
 

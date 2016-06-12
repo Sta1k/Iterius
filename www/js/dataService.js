@@ -44,7 +44,7 @@ APP
         this.Timer = $interval(function () {
           obj.time++;
           // console.log(obj.time);
-          
+
         }, 1000);
       },
       StopTimer: function (task) {
@@ -55,10 +55,25 @@ APP
     }
   });
 
- APP 
+ APP
    .factory('showTeam',function () {
      return{
        show:false
      }
    });
 
+APP
+  .factory('showTop',function () {
+    return function (message) {
+      window.plugins.toast.showWithOptions(
+        {
+          message: message,
+          duration: "short", // which is 2000 ms. "long" is 4000. Or specify the nr of ms yourself.
+          position: "top",
+          addPixelsY: -40  // added a negative value to move it up a bit (default 0)
+        },
+        onSuccess, // optional
+        onError    // optional
+      );
+    }
+  });

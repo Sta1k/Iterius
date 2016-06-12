@@ -78,7 +78,7 @@ APP
                 $interval(function () {
                   dataService.tasksList = $scope.tasksList;
                   $scope.timeCount = dataService.AllWorkedTime;
-                  $scope.currentUser.time++;
+                  $scope.currentTask.time++;
                   // console.log(typeof $scope.timeCount);
                 }, 1000);
 

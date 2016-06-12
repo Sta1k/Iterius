@@ -30,7 +30,7 @@ APP
         m = '0' + m;
       if (s < 10)
         s = '0' + s;
-      out = '<p style="font-size: x-small">today</p>\n'+h+':'+ m +':' + s;
+      out = h+':'+ m +':' + s;
       return out;
     }
   });
@@ -60,7 +60,7 @@ APP
       }else{
         out=num.substring(0,16)+'...';
       }
-      
+
       return out;
     }
   });

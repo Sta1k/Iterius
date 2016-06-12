@@ -1,8 +1,13 @@
 /* Empty. Add your own CSS if you like */
-.scroll {
-  padding-top: 5%;
-}
+/*.scroll {*/
+  /*padding-top: 5%;*/
+/*}*/
+.itemTask{
+  height: 13%;
+  border-radius: 3px;
+  margin: 5px;
 
+}
 .grey_back {
   background-color: #e1e1e1;
 }
@@ -11,16 +16,20 @@
   background-color: #282d39;
 }
 
-.list.list-inset {
+.login {
   border-radius: 10px;
+  margin: 0 3% 6%;
+
 }
 
 .logo {
-  padding: 5% 0;
+  padding: 10% 0 45% 0;
   text-align: center;
 }
 
 .login-check {
+  width: 50%;
+  margin: 0 auto;
   border-style: hidden;
   background-color: inherit;
   color: white;
@@ -33,14 +42,17 @@
 label.item.item-input {
   border-radius: 5px;
 }
-
+.iterius{
+  padding-left: 5px;
+  width: 35%;
+}
 .time-now {
   height: 25px;
   width: 100%;
   font-size: xx-large;
   top: 10px;
   position: absolute;
-  left: 45%;
+  left: 55%;
   color: #ffffff;
 }
 
@@ -59,17 +71,19 @@ label.item.item-input {
 }
 
 .bar {
-  height: 60px;
+  /*height: 60px;*/
+}
+.bar-stable .button.button-icon{
+  padding: 2 5 5 5;
+  color: #0a9dc7;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #0a9dc7;
 }
 
 .bar.bar-stable .title, .button {
   /*background-color: #282d39;*/
   color: #ffffff;
-}
-
-.bar-stable .button:hover {
-  color: #FFF;
-
 }
 
 label.item.item-radio {
@@ -97,11 +111,18 @@ div .task {
 }
 
 div .startStop {
+  background-repeat: no-repeat;
+  background-image: url("../img/ico/icons_buttons_large.png");
+  background-position: top;
   width: 20%;
-  height: inherit;
+  height: 100%;
   float: right;
-  text-align: center;
+  margin-top: 5px;
   font-size: 200%;
+}
+.started{
+  background-position: bottom !important;
+  margin-top: 0 !important;
 }
 
 div.time-now > p {
@@ -127,12 +148,16 @@ div .startStopOrder {
 }
 
 .icon.ion-android-exit,
-.icon.ion-ios-gear,
+.icon.ion-ios-gear-outline,
 .icon.ion-ios-plus-outline,
 .icon.ion-person-stalker,
-.icon.ion-briefcase {
+.icon.ion-ios-briefcase-outline {
   padding-right: 10%;
   font-size: 250% !important;
+  color: #116B97;
+}
+.icon.ion-ios-locked,
+.icon.ion-person{
   color: #116B97;
 }
 
@@ -146,6 +171,10 @@ div .startStopOrder {
 }
 
 .hour {
+
+  border-style: solid;
+  border-color: #FFFFFF;
+  border-width: 1px;
   text-align: center;
   color: #ffffff;
   width: 12%;
@@ -180,7 +209,7 @@ div .startStopOrder {
 .titlePage {
   color: #282d39;
   background: #e1e1e1;
-  text-align: center;
+  /*text-align: center;*/
   padding: 3%;
 }
 
