@@ -1,0 +1,21 @@
+<ion-view animation="slide-left-right" >
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <img class="iterius" src="img/h-logo.png">
+    <div ng-if="timeCount>0"
+         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header grey_back">
+    <div class="titlePage">
+        <h3>Preferences</h3>
+    </div>
+    <button class="button button-block button-positive" ng-click="buttonON()">
+  Write login with touchID
+</button>
+<button class="button button-block button-positive"  ng-click="buttonOff()">
+  Read login with touchID
+</button>
+
+  </ion-content>
+</ion-view>

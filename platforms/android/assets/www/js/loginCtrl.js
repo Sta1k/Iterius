@@ -1,10 +1,24 @@
 APP
   .controller('LoginCtrl',
-    function ($scope, APIService , $state, dataService, $stateParams) {
+    function ($scope, $ionicPlatform, $cordovaTouchID, data, APIService , $state, dataService, $stateParams) {
+//       dataService.checkDB().then(function(){
+//         if(!data.check){
+//           return false
+//         }else{
+//           console.log(data.check);
+$ionicPlatform.ready(function() {
+        $cordovaTouchID.checkSupport().then(function() {
+            $cordovaTouchID.authenticate("You must authenticate").then(function() {
+                alert("The authentication was successful");
+            }, function(error) {
+                console.log(JSON.stringify(error));
+            });
+        }, function(error) {
+            console.log(JSON.stringify(error));
+        });
+    });
       $scope.user = {
-        username: "Admin11",
-        password: "Admin11",
-        remember: true
+        
       };
       $scope.LogIn = function () {
         // document.getElementById('loginButton').disabled=true;
@@ -14,7 +28,7 @@ APP
           .then(function
             success(response) {
             console.log(response);
-
+            dataService.login = $scope.user;
 
             if (response.data.success) {
               APIService.requestTasks()

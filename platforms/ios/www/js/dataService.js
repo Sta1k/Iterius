@@ -1,16 +1,86 @@
 /**
  * Created by smissltd on 19.05.16.
  */
+APP.service('data',function(){
+  this.check=undefined;
+  this.user={};
+})
 APP
-  .service('dataService', function () {
+  .service('dataService', function (data) {
+    var db = window.openDatabase('iterius_db', 1, 'mobile', 2 * 1024 * 1024);
     this.tasksList = {};
-    currentTask = {
-      current: null,
-      name: 'stringName'
-    };
+    this.currentUser=null;
+    this.currentTask = {};
+    this.memberTasks=[];
+    this.login={};
     this.AllWorkedTime = 0;
     this.showTime = undefined;
-  });
+    this.check = undefined;
+    this.DBoff=function() {
+              db.transaction(function (tx) {
+            tx.executeSql('DROP TABLE IF EXISTS LOGS ');
+            console.log('DB deleted')
+        });      
+    }
+    this.checkDB=function(){
+   db.transaction(function (tx) {   
+      tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+        data.check=results.rows.item(10).log
+      }, null);
+   })
+  }
+    
+    // this.DBon=function(str){
+    //    db.transaction(function (tx) {
+    //         tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
+    //         tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (10, "'
+    //             + str + '")');
+    //     });
+      
+    // }
+    this.writeDB=function(obj) {
+      
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
+            tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (1, "'
+                + obj.username + '")');
+            tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (2, "'
+                + obj.password + '")'); 
+            tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (10, "'
+            + 'on' + '")');
+        });
+        console.log(
+          'SAVED \nLOGIN :'+ obj.username+
+          '\nPASSWORD :'+obj.password);
+        
+
+      
+        
+      
+    }
+    this.readDb=function() {
+      
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+                var len = results.rows.length, i;
+                msg = "Found rows: " + len;
+                console.log(msg+
+                    '\nlogin: '+results.rows.item(0).log+
+                    '\npass: '+results.rows.item(1).log);
+                data.user.username = results.rows.item(0).log;
+                data.user.password = results.rows.item(1).log;
+                
+                // console.log('LOADED \nLOGIN :'
+                //     + datasec.Username+'\nPASSWORD :'
+                //     +datasec.Password+'\nCODE :'+datasec.Code);
+
+
+            }, null);
+        });
+      }
+
+    
+});
 
 APP
   .factory('updateTaskTime', function ($interval, dataService) {//$scope нельзя передавать в сервисы
@@ -36,4 +106,45 @@ APP
       }
     }
   });
+APP
+  .factory('updateMemberTime', function ($interval, dataService) {//$scope нельзя передавать в сервисы
+    return {
+      Timer: null,
+      StartTimer: function (task) {
+        var obj = _.findWhere(dataService.memberTasks, {id: task.id});
+        this.Timer = $interval(function () {
+          obj.time++;
+          // console.log(obj.time);
 
+        }, 1000);
+      },
+      StopTimer: function (task) {
+        if (angular.isDefined(this.Timer)) {
+          $interval.cancel(this.Timer);
+        }
+      }
+    }
+  });
+
+ APP
+   .factory('showTeam',function () {
+     return{
+       show:false
+     }
+   });
+
+APP
+  .factory('showTop',function ($cordovaToast) {
+    return function (message) {
+      window.plugins.toast.showWithOptions(
+        {
+          message: message,
+          duration: "short", // which is 2000 ms. "long" is 4000. Or specify the nr of ms yourself.
+          position: "top",
+          addPixelsY: -40  // added a negative value to move it up a bit (default 0)
+        },
+        onSuccess, // optional
+        onError    // optional
+      );
+    }
+  });

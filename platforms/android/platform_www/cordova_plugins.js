@@ -22,12 +22,11 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
-        "id": "ionic-plugin-keyboard.keyboard",
+        "file": "plugins/cordova-plugin-touch-id/www/TouchID.js",
+        "id": "cordova-plugin-touch-id.TouchID",
         "clobbers": [
-            "cordova.plugins.Keyboard"
-        ],
-        "runs": true
+            "window.plugins.touchid"
+        ]
     },
     {
         "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
@@ -39,6 +38,14 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-x-toast/test/tests.js",
         "id": "cordova-plugin-x-toast.tests"
+    },
+    {
+        "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+        "id": "ionic-plugin-keyboard.keyboard",
+        "clobbers": [
+            "cordova.plugins.Keyboard"
+        ],
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -48,9 +55,10 @@ module.exports.metadata =
     "cordova-plugin-device": "1.1.2",
     "cordova-plugin-splashscreen": "3.2.2",
     "cordova-plugin-statusbar": "2.1.3",
+    "cordova-plugin-touch-id": "3.2.0",
     "cordova-plugin-whitelist": "1.2.2",
-    "ionic-plugin-keyboard": "2.2.0",
-    "cordova-plugin-x-toast": "2.5.2"
+    "cordova-plugin-x-toast": "2.5.2",
+    "ionic-plugin-keyboard": "2.2.0"
 };
 // BOTTOM OF METADATA
 });

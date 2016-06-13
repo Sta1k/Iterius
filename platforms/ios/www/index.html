@@ -8,8 +8,10 @@
   <link href="css/style.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
-
+  
+  
   <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/ngCordova/dist/ng-cordova.js"></script> 
   <script src="js/config.js"></script>
   <script src="js/appCtrl.js"></script>
   <script src="js/services.js"></script>
@@ -22,10 +24,14 @@
   <script src="js/teamCtrl.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/timeCtrl.js"></script>
+  <script src="js/currentTeamCtrl.js"></script>
+  <script src="js/userTasksCtrl.js"></script>
+  <!--<script src="js/Toast.js"></script>-->
+  <script src="js/prefCtrl.js"></script>
 
 </head>
 
-<body>
+<body class="platform-ios platform-cordova platform-webview">
 <ion-nav-view animation="slide-left-right"></ion-nav-view>
 </body>
 </html>

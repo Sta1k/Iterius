@@ -31,23 +31,22 @@ APP.controller('TasksCtrl',
           updateTaskTime.StartTimer(obj);
           $interval(function () {
             $scope.tasksList = dataService.tasksList;
+            $scope.timeCount = dataService.AllWorkedTime;
             //console.log(obj);
           }, 1000);
         }
         // console.log(obj)
       };
       $scope.checkStarted();
-      // if (dataService.showTime === true) {
-      //   $interval(function () {
-      //     $scope.timeCount = dataService.AllWorkedTime;
-      //     // console.log(typeof $scope.timeCount)
-      //   }, 1000);
-      // }
       $scope.clicked = function (task) {// переход в конкретную задачу
-        dataService.currentTask = task;
-        $state.go('app.order');
 
-        console.log('SERVICE---' + dataService.currentTask);
+        dataService.currentTask = task;
+        APIService.requestTasks().then(function () {
+          console.log(dataService.currentTask);
+          $state.go('app.order');
+        });
+        
+
       };
       // Старт стоп задачи
       $scope.toggleT = function (task) {
@@ -72,7 +71,7 @@ APP.controller('TasksCtrl',
 
                 });
 
-              
+
             } else if (resp.data.started === true && resp.data.success === true) {
               APIService.requestTasks()
                 .then(function success(res) {

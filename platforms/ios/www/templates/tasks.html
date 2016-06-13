@@ -1,36 +1,38 @@
 <!--<ion-nav-view animation="slide-left-right">-->
 
-<ion-view animation="slide-left-right" title="Tasks">
+<ion-view animation="slide-left-right" >
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <img class="iterius" src="img/h-logo.png">
     <div ng-if="timeCount>0"
-         ng-bind="timeCount | timing" class="time-now" ng-controller="timeCtrl"></div>
+         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
   </ion-nav-buttons>
 
-  <ion-content class="has-header">
+  <ion-content class="has-header grey_back">
 
-    <div class="list list-inset">
-      <label class="item item-input">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search" ng-model="query">
-      </label>
-    </div>
+    <!--<div class="list list-inset">-->
+      <!--<label class="item item-input">-->
+        <!--<i class="icon ion-search placeholder-icon"></i>-->
+        <!--<input type="text" placeholder="Search" ng-model="query">-->
+      <!--</label>-->
+    <!--</div>-->
+    <div class="titlePage"><h3>My Tasks</h3></div>
     <ion-list>
-      <ion-item ng-class="{ActiveBackground: task.current == true}"
+      <ion-item class='itemTask' ng-class="{ActiveBackground: task.current == true}"
         ng-repeat="task in tasksList | filter : query">
         <div class="task">
           <div ng-click="clicked({{task}})" class="nameTask">
-            <span ng-bind="task.name"></span>
-            <div class="currentTime">
-              <span ng-bind="task.time | timing"></span>
-
-            </div>
+            <div  ng-bind="task.name|sliceString"></div>
           </div>
+        </div>
+        <div class="currentTime">
+          <span ng-bind-html="task.time | timing"></span>
 
         </div>
-        <div class="startStop" ng-click='toggleT({{task}})'>
-          <i ng-if="!task.current" class="icon icon-right ion-ios-play-outline"></i>
-          <i ng-if="task.current" class="icon icon-right ion-ios-pause-outline"></i>
+        <div class="startStop" ng-class="{started:task.current == true}" ng-click='toggleT({{task}})'>
+
+          <!--<i ng-if="!task.current" class="icon icon-right ion-ios-play-outline"></i>-->
+          <!--<i ng-if="task.current" class="icon icon-right ion-ios-pause-outline"></i>-->
         </div>
       </ion-item>
     </ion-list>

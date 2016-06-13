@@ -1,14 +1,31 @@
-<ion-view class="background" title="Team">
+<ion-view class="background" title="ITERIUS">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    <div class="time-now"><p >today: <br> 07:25:06</p></div>
+    <div ng-if="timeCount>0"
+         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
   </ion-nav-buttons>
-  <ion-content padding="true">
-    <h3>Create hybrid mobile apps with the web technologies you love.</h3>
-    <p>Free and open source, Ionic offers a library of mobile-optimized HTML, CSS and JS components for building highly interactive apps.</p>
-    <p>Built with Sass and optimized for AngularJS.</p>
-    <p>
-
-    </p>
+  <ion-content padding="true" class="grey_back">
+    <!--<div class="list list-inset">-->
+      <!--<label class="item item-input">-->
+        <!--<i class="icon ion-search placeholder-icon"></i>-->
+        <!--<input type="text" placeholder="Search" ng-model="query">-->
+      <!--</label>-->
+    <!--</div>-->
+    <div class="titlePage"><h3>Teams</h3></div>
+    <ion-list>
+      <ion-item ng-repeat="team in Global"> <!--| filter:query not works because Global is object, need array of objects-->
+        <div class="team">
+          <div ng-click="showTeam(team)" class="nameTask">
+            <span ng-bind="team.title"></span>
+          </div>
+          <!--<ion-list ng-show='showTeam'  class="teamMembers">-->
+            <!--<ion-item ng-repeat="user in team.users">-->
+              <!--<div ng-click="clicked({{user}})" class="nameTask">-->
+                <!--<span ng-bind="user.name"></span><span ng-bind="user.status|| 'Not Working'"></span>-->
+              <!--</div>-->
+            <!--</ion-item>-->
+          <!--</ion-list>-->
+        </div>
+      </ion-item>
   </ion-content>
 </ion-view>

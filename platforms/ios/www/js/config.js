@@ -1,7 +1,7 @@
 /**
  * Created by smissltd on 16.05.16.
  */
-var APP = angular.module('tt', ['ionic'])//'tt.services'
+var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
 
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -35,6 +35,24 @@ var APP = angular.module('tt', ['ionic'])//'tt.services'
           }
         }
       })
+      .state('app.userTasks', {
+        url: "/usertask",
+        views: {
+          'menuContent' :{
+            templateUrl: "templates/userTasks.html",
+            controller: 'UserTasksCtrl'
+          }
+        }
+      })
+      .state('app.curteam', {
+        url: "/curteam",
+        views: {
+          'menuContent' :{
+            templateUrl: "templates/curteam.html",
+            controller: 'curTeamCtrl'
+          }
+        }
+      })
       .state('app.tasks', {
         url: "/tasks",
         views: {
@@ -55,12 +73,12 @@ var APP = angular.module('tt', ['ionic'])//'tt.services'
       })
 
 
-      .state('app.login-into-menucontent', {
-        url: "/login-into-menucontent",
+      .state('app.pref', {
+        url: "/pref",
         views: {
           'menuContent' :{
-            templateUrl: "templates/login.html",
-            controller: 'LoginCtrl'
+            templateUrl: "templates/pref.html",
+            controller: 'PrefCtrl'
           }
         }
       })
