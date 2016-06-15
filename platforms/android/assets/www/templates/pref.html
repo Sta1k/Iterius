@@ -1,20 +1,37 @@
 <ion-view animation="slide-left-right" >
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    <img class="iterius" src="img/h-logo.png">
-    <div ng-if="timeCount>0"
-         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
+   <img class="iterius" src="img/h-logo.png">
+    <span ng-if="timeCount>0"
+         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></span>
   </ion-nav-buttons>
 
   <ion-content class="has-header grey_back">
     <div class="titlePage">
-        <h3>Preferences</h3>
+        <h3>Settings</h3>
     </div>
+    <ul class="list">
+      <li class="item item-toggle">
+        Login with TouchID
+        <label class="toggle toggle-positive">
+          <input type="checkbox">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+    </ul>
     <button class="button button-block button-positive" ng-click="buttonON()">
   Write login with touchID
 </button>
-<button class="button button-block button-positive"  ng-click="buttonOff()">
+<button class="button button-block button-positive"  ng-click="check()">
   Read login with touchID
+</button>
+<button class="button button-block button-positive"  ng-click="buttonOff()">
+  delete support touchID
+</button>
+<button class="button button-block button-positive"  ng-click="write()">
+  check support touchID
 </button>
 
   </ion-content>

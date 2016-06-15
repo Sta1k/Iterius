@@ -1,8 +1,9 @@
 <ion-view class="background" title="ITERIUS">
   <ion-nav-buttons side="left">
     <!--<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>-->
-    <div ng-if="timeCount>0"
-         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
+    <img class="iterius" src="img/h-logo.png">
+    <span ng-if="timeCount>0"
+         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></span>
   </ion-nav-buttons>
   <ion-content padding="true" class="grey_back">
     <!--<div class="list list-inset">-->
@@ -15,7 +16,7 @@
     <div class="teamPage"><h4 ng-bind="currentTeam.title"></h4></div>
 
     <ion-list>
-      <ion-item ng-repeat="user in currentTeam.users | filter : query">
+      <ion-item class='itemTask' ng-repeat="user in currentTeam.users | filter : query">
         <div class="team">
           <div ng-click="showUser(user)" class="nameTask">
             <div style="width: 50%; float:left"><span ng-bind="user.name"></span></div>

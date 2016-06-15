@@ -1,11 +1,12 @@
 <ion-view animation="slide-left-right" title="ITERIUS">
   <ion-nav-buttons side="left">
     <!--<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>-->
-    <div ng-if="timeCount>0"
-         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
+    <img class="iterius" src="img/h-logo.png">
+    <span ng-if="timeCount>0"
+         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></span>
   </ion-nav-buttons>
 
-  <ion-content class="has-header">
+  <ion-content class="has-header grey_back">
 
     <!--<div class="list list-inset">-->
       <!--<label class="item item-input">-->
@@ -15,7 +16,7 @@
     <!--</div>-->
     <div class="titlePage"><h3>{{user.name}}</h3></div>
     <ion-list>
-      <ion-item style="height: 13%" ng-class="{ActiveBackground: task.current == true}"
+      <ion-item class='itemTask' ng-class="{ActiveBackground: task.current == true}"
                 ng-repeat="task in userTasks | filter : query">
         <div class="task">
           <div class="nameTask">
@@ -29,8 +30,8 @@
 
         </div>
         <div class="startStop" ng-click='toggleT({{task}})'>
-          <i ng-if="!task.current" class="icon icon-right ion-ios-play-outline"></i>
-          <i ng-if="task.current" class="icon icon-right ion-ios-pause-outline"></i>
+          <i ng-if="!task.current" class="icon icon-right ion-ios-play"></i>
+          <i ng-if="task.current" class="icon icon-right ion-ios-pause"></i>
         </div>
       </ion-item>
     </ion-list>

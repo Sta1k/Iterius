@@ -1,20 +1,21 @@
-<ion-view animation="slide-left-right" title="ITERIUS">
+<ion-view animation="slide-left-right">
   <!--<div>в тайтле разместить название задачи</div>-->
   <ion-nav-buttons side="left">
-    <div ng-if="timeCount>0"
-         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
+    <img class="iterius" src="img/h-logo.png">
+    <span ng-if="timeCount>0"
+         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></span>
   </ion-nav-buttons>
-  </ion-nav-buttons>
+  
 
   <ion-content class="has-header">
     <main id="main">
       <section class="task-name">
         <div class="container-fluid">
           <div class="titlePage">
-            <h3>{{currentTask.name}}</h3>
+            <h3 ng-bind="currentTask.name"></h3>
 
           </div>
-          <div class="startStopOrder" ng-click='toggleT({{currentTask}})'>
+          <div class="startStopOrder" ng-click="toggleT({{currentTask}})">
             <i ng-if="!currentTask.current" class="icon icon-right ion-ios-play-outline"></i>
             <i ng-if="currentTask.current" class="icon icon-right ion-ios-pause-outline"></i>
           </div>

@@ -1,5 +1,5 @@
 {
-    "LocalAuthentication.framework": 1,
-    "Security.framework": 1,
+    "LocalAuthentication.framework": 2,
+    "Security.framework": 2,
     "QuartzCore.framework": 1
 }

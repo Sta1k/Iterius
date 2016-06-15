@@ -1,8 +1,9 @@
 <ion-view class="background" title="ITERIUS">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    <div ng-if="timeCount>0"
-         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
+     <img class="iterius" src="img/h-logo.png">
+    <span ng-if="timeCount>0"
+         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></span>
   </ion-nav-buttons>
 
   <ion-content class="grey_back">
@@ -68,7 +69,7 @@
                   <input ng-click="createT(task)"
                          class="button button-block button-positive"
                          value="Create"
-                         ng-disabled="createForm.title.$invalid"
+                         ng-disabled="createForm.title.$invalid||choice==undefined"
                          type="submit"
                   >
 

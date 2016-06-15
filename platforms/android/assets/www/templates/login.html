@@ -48,8 +48,8 @@
                id="loginButton"
                type="submit"
                ng-click="LogIn(user)"
-               value='LOG IN'>
-        <!--ng-disabled="form.pass.$invalid || form.login.$invalid"-->
+               value='LOG IN'
+              ng-disabled="form.pass.$invalid || form.login.$invalid">
 
       </div>
       <ion-checkbox class="login-check" ng-model="user.remember">Remember me</ion-checkbox>

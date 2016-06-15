@@ -66,7 +66,7 @@ APP
         url: url+'teamStatus'
       })
     };
-    this.requestUserTasks = function (id) {//taskService.requestData заменить на APIService.requestTasks
+    this.requestUserTasks = function (id) {
       // console.log(req);
       return $http({
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},

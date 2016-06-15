@@ -25,7 +25,8 @@ APP
     this.checkDB=function(){
    db.transaction(function (tx) {   
       tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
-        data.check=results.rows.item(10).log
+        data.check=results.rows.item(2).log
+        console.log(data.check)
       }, null);
    })
   }
