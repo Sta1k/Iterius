@@ -208,6 +208,7 @@ div .startStopOrder {
 }
 
 .titlePage {
+  height: 10%;
   color: #282d39;
   background: #e1e1e1;
   /*text-align: center;*/
