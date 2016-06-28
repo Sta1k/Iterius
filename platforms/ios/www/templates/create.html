@@ -69,7 +69,7 @@
                   <input ng-click="createT(task)"
                          class="button button-block button-positive"
                          value="Create"
-                         ng-disabled="createForm.title.$invalid"
+                         ng-disabled="createForm.title.$invalid||choice==undefined"
                          type="submit"
                   >
 

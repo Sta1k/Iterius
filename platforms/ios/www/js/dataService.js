@@ -26,7 +26,8 @@ APP
    db.transaction(function (tx) {   
       tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
         data.check=results.rows.item(2).log
-        console.log(data.check)
+                    console.log('Login: '+results.rows.item(0).log+
+                                'Pass: '+results.rows.item(1).log);
       }, null);
    })
   }
@@ -90,7 +91,45 @@ APP
       StartTimer: function (task) {
         var obj = _.findWhere(dataService.tasksList, {id: task.id});
         this.Timer = $interval(function () {
+        // var clientTime = Math.floor(Date.now() / 1000);
+        // var startTime = clientTime - obj.time;
+
+        // var now = Math.floor(Date.now() / 1000);
+        // var diff = now - startTime;
+
           obj.time++;
+          
+          // console.log(obj.time);
+          var arr = _.pluck(dataService.tasksList, 'time');
+          summa = function (m) {
+            for (var s = 0, k = m.length; k; s += m[--k]);
+            dataService.AllWorkedTime = s;
+          };
+          summa(arr);
+        }, 1000);
+      },
+      StopTimer: function (task) {
+        if (angular.isDefined(this.Timer)) {
+          $interval.cancel(this.Timer);
+        }
+      }
+    }
+  });
+  APP
+  .factory('updateOneTime', function ($interval, dataService) {//$scope нельзя передавать в сервисы
+    return {
+      Timer: null,
+      StartTimer: function (task) {
+        var obj = _.findWhere(dataService.tasksList, {id: task.id});
+        this.Timer = $interval(function () {
+        // var clientTime = Math.floor(Date.now() / 1000);
+        // var startTime = clientTime - obj.time;
+
+        // var now = Math.floor(Date.now() / 1000);
+        // var diff = now - startTime;
+
+          obj.time++;
+          dataService.currentTask.time++
           // console.log(obj.time);
           var arr = _.pluck(dataService.tasksList, 'time');
           summa = function (m) {
@@ -135,17 +174,14 @@ APP
    });
 
 APP
-  .factory('showTop',function ($cordovaToast) {
-    return function (message) {
-      window.plugins.toast.showWithOptions(
-        {
-          message: message,
-          duration: "short", // which is 2000 ms. "long" is 4000. Or specify the nr of ms yourself.
-          position: "top",
-          addPixelsY: -40  // added a negative value to move it up a bit (default 0)
-        },
-        onSuccess, // optional
-        onError    // optional
-      );
+  .factory('Notification',function ($ionicPopup) {
+    return{
+      showAlert : function(message) {
+   var alertPopup = $ionicPopup.alert({
+     title: 'Alert',
+     template: message
+   });
+
     }
-  });
+  }
+})

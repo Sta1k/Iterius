@@ -1,17 +1,21 @@
 APP
   .controller('OrderCtrl',
     function ($scope,  $stateParams, APIService, dataService,updateOneTime, $interval) {
-      function orderTimer(){
-        $interval(function () {
-            $scope.tasksList = dataService.tasksList;
-            $scope.timeCount = dataService.AllWorkedTime;
-            $scope.currentTask.time=dataService.currentTask;
-            console.log($scope.currentTask.time);
-          }, 1000);
-      }
       console.log(dataService.currentTask);
       $scope.currentTask = dataService.currentTask;
-
+      var orderInterval;
+      function orderTimer(){
+          orderInterval=$interval(order, 1000)
+      }
+     function order (){
+            $scope.tasksList = dataService.tasksList;
+            $scope.timeCount = dataService.AllWorkedTime;
+            $scope.currentTask.time=dataService.currentTask.time;
+            console.log($scope.currentTask.time);
+     }
+      function stopInterval() {
+            $interval.cancel(orderInterval);
+        }
       $scope.checkStarted = function () {
         var obj = $scope.currentTask;
         if (obj == undefined) {
@@ -34,7 +38,7 @@ APP
               // start timer
               dataService.showTime = false;
               updateOneTime.StopTimer(task);
-              $interval.cancel(orderTimer)
+              stopInterval();
               // dataService.currentTask = $scope.currentTask;
               APIService.requestTasks()
                 .then(function success(res) {
@@ -44,7 +48,7 @@ APP
                     console.log(res);
                     dataService.tasksList = res.data.tasks;
                     $scope.tasksList = dataService.tasksList;
-                    $interval.cancel(orderTimer);
+                    stopInterval();
                     var obj = _.findWhere(dataService.tasksList, {id: task.id});
                     $scope.currentTask = obj;
                   }
@@ -88,7 +92,7 @@ APP
               else if(obj.current == false){
                 dataService.showTime = true;
                 updateOneTime.StopTimer(obj);
-              $interval.cancel(orderTimer);
+              stopInterval();
               }
             })
           })

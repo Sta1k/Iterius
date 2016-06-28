@@ -50,9 +50,18 @@
                ng-click="LogIn(user)"
                value='LOG IN'
               ng-disabled="form.pass.$invalid || form.login.$invalid">
+<input class="button button-block button-positive"
+               id="touchID"
+               type="submit"
+               ng-if="!isAndroid"
+               ng-click="StartTouch()"
+               value='LOG IN with Touch ID'
+               
+              >
 
       </div>
-      <ion-checkbox class="login-check" ng-model="user.remember">Remember me</ion-checkbox>
+      <ion-checkbox class="hide-on-keyboard-open login-check" ng-model="user.remember">Remember me</ion-checkbox>
+
       <!--<input type="button" class="button button-block button-positive" ng-click="test()">-->
       <!--<div ng-messages="login.login.$error" style="color:maroon" role="alert">-->
         <!--<div ng-message="required">You did !!!not enter a field</div>-->

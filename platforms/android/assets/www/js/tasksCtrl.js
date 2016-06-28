@@ -57,10 +57,10 @@ $scope.checkStarted = function () {
                       $scope.timeCount=dataService.AllWorkedTime;
                     };
                     summa(arr);
-                    console.log('INTERVAL');
+                    // console.log('INTERVAL');
                     $scope.checkStarted();
                   }
-                })},120000)
+                })},60000)
       console.log('tasksCtrl');
        APIService.requestTasks()
                 .then(function success(res) {

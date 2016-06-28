@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		03C4C0130ACB41CDAE334B84 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5104B2FE9F14FD99F2619C4 /* Toast+UIView.m */; };
@@ -25,7 +24,6 @@
 		49F3804D10174E01A3E7BF20 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CECF4C6199C64B97AB41B3DA /* LocalAuthentication.framework */; };
 		B136523770EE4B2FBB0E6065 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3532025DDF1F4E50811B8BF5 /* CDVStatusBar.m */; };
 		C32B56968D8F4633B28D81DB /* TouchID.m in Sources */ = {isa = PBXBuildFile; fileRef = AB423572029343009F04AA24 /* TouchID.m */; };
-		DAA6CA3277C7492A8F8E0040 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E7F9794BA542548A9F522C /* CDVLogger.m */; };
 		EF981CE5F9D64354B13D89BC /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AE2612DDE9489A9711D284 /* CDVSplashScreen.m */; };
 		FF4870C78658430092E841FC /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5C1BA51944F0CBBC6E91D /* Toast.m */; };
 /* End PBXBuildFile section */
@@ -73,8 +71,6 @@
 		3532025DDF1F4E50811B8BF5 /* CDVStatusBar.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVStatusBar.m; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; };
 		45F748F5862B4538A57B4EF2 /* Security.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		582E21F27E8544E6A79C18FF /* QuartzCore.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		58E7F9794BA542548A9F522C /* CDVLogger.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVLogger.m; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; };
-		5B95DC358E58400A80D547CF /* CDVLogger.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVLogger.h; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; };
 		6C557AF857EC48DF8FEE2055 /* TouchID.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = TouchID.h; path = "cordova-plugin-touchid/TouchID.h"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Timetracker-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Timetracker-Info.plist"; path = "Timetracker/Timetracker-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
 		AB423572029343009F04AA24 /* TouchID.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = TouchID.m; path = "cordova-plugin-touchid/TouchID.m"; sourceTree = "<group>"; };
@@ -196,8 +192,6 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				58E7F9794BA542548A9F522C /* CDVLogger.m */,
-				5B95DC358E58400A80D547CF /* CDVLogger.h */,
 				339F6C1E3E1C43DEABD7E462 /* CDVDevice.m */,
 				F92F7FCEFBC64242BFD21BCA /* CDVDevice.h */,
 				F9AE2612DDE9489A9711D284 /* CDVSplashScreen.m */,
@@ -331,7 +325,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				DAA6CA3277C7492A8F8E0040 /* CDVLogger.m in Sources */,
 				400C616050EE43379AE1BE87 /* CDVDevice.m in Sources */,
 				EF981CE5F9D64354B13D89BC /* CDVSplashScreen.m in Sources */,
 				259F9E9A126C493E8E7029A7 /* CDVViewController+SplashScreen.m in Sources */,

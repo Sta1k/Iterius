@@ -6,6 +6,7 @@
   height: 13%;
   border-radius: 3px;
   margin: 5px;
+  padding: 10px;
 
 }
 .grey_back {
@@ -108,14 +109,14 @@ div .task {
   vertical-align: middle;
 }
 .startStop {
-padding: 5px 20px;
+padding: 5px 10px;
 }
 
 div .startStop {
   /*background-repeat: no-repeat;
   background-image: url("../img/ico/icons_buttons_large.png");
   background-position: top;*/
-  width: 20%;
+  /*width: 20%;*/
   height: 100%;
   float: right;
   
@@ -178,7 +179,7 @@ div .startStopOrder {
   border-width: 1px;
   text-align: center;
   color: #ffffff;
-  width: 12%;
+  width: 40px;
   background-color: #282d39;
   display: inline-block;
   border-radius: 3px;

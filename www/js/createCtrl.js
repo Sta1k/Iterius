@@ -1,5 +1,5 @@
 APP
-  .controller('CreateCtrl', function ($scope, Notification, dataService, APIService, $stateParams) {
+  .controller('CreateCtrl', function ($scope, $state, Notification, dataService, APIService, $stateParams) {
   console.log('createCtrl');
     
   $scope.task={
@@ -11,9 +11,9 @@ APP
     APIService.TaskCreate($scope.task)
       .then(function (res) {
       console.log(res);
-        Notification.showAlert('Task created').then(function(res) {
-            $state.go('app.tasks');
-        })
+        Notification.showAlert('Task created')
+    }).then(function () {
+      $state.go('app.tasks');
     })
   }
 });

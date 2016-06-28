@@ -1,9 +1,21 @@
 APP
   .controller('OrderCtrl',
-    function ($scope,  $stateParams, APIService, dataService,updateTaskTime, $interval) {
+    function ($scope,  $stateParams, APIService, dataService,updateOneTime, $interval) {
       console.log(dataService.currentTask);
       $scope.currentTask = dataService.currentTask;
-
+      var orderInterval;
+      function orderTimer(){
+          orderInterval=$interval(order, 1000)
+      }
+     function order (){
+            $scope.tasksList = dataService.tasksList;
+            $scope.timeCount = dataService.AllWorkedTime;
+            $scope.currentTask.time=dataService.currentTask.time;
+            console.log($scope.currentTask.time);
+     }
+      function stopInterval() {
+            $interval.cancel(orderInterval);
+        }
       $scope.checkStarted = function () {
         var obj = $scope.currentTask;
         if (obj == undefined) {
@@ -11,13 +23,8 @@ APP
         }
         else if (obj.current == true) {
           dataService.showTime = true;
-          updateTaskTime.StartTimer(obj);
-          $interval(function () {
-            $scope.tasksList = dataService.tasksList;
-            $scope.timeCount = dataService.AllWorkedTime;
-            $scope.currentTask.time++
-            //console.log(obj);
-          }, 1000);
+          updateOneTime.StartTimer(obj);
+          orderTimer();
         }
         // console.log(obj)
       };
@@ -30,8 +37,9 @@ APP
 
               // start timer
               dataService.showTime = false;
-              updateTaskTime.StopTimer(task);
-              dataService.currentTask = $scope.currentTask;
+              updateOneTime.StopTimer(task);
+              stopInterval();
+              // dataService.currentTask = $scope.currentTask;
               APIService.requestTasks()
                 .then(function success(res) {
                   if (!res.data.success) {
@@ -40,6 +48,9 @@ APP
                     console.log(res);
                     dataService.tasksList = res.data.tasks;
                     $scope.tasksList = dataService.tasksList;
+                    stopInterval();
+                    var obj = _.findWhere(dataService.tasksList, {id: task.id});
+                    $scope.currentTask = obj;
                   }
 
                 });
@@ -74,14 +85,14 @@ APP
               }
               else if (obj.current == true) {
                 dataService.showTime = true;
-                updateTaskTime.StartTimer(obj);
-                $interval(function () {
-                  dataService.tasksList = $scope.tasksList;
-                  $scope.timeCount = dataService.AllWorkedTime;
-                  $scope.currentTask.time++;
-                  // console.log(typeof $scope.timeCount);
-                }, 1000);
+                updateOneTime.StartTimer(obj);
+                orderTimer();
 
+              }
+              else if(obj.current == false){
+                dataService.showTime = true;
+                updateOneTime.StopTimer(obj);
+              stopInterval();
               }
             })
           })

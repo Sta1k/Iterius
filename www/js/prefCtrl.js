@@ -9,26 +9,27 @@ APP
    $stateParams) {
       $ionicPlatform.ready(function() {
     console.log('PrefCtrl');
+    $scope.checkbox=false;
+    $scope.showState= function () {
+      console.log($scope.checkbox)
+    }
     $scope.buttonON = function () {
-      
-        $cordovaTouchID.authenticate("Please authenticate with your fingerprint!")
-          .success(function(res) {
-            console.log(res)
-            $scope.obj=dataService.login;
-            console.log($scope.obj);
-            dataService.writeDB($scope.obj)
-          }, function (error) {
-            if (error == "Fallback authentication mechanism selected.") {
-            // User selected to enter a password 
-        } else {
-            alert("Sorry, we are not able to grant access.");
-        }
-    })};
+      $cordovaTouchID.checkSupport().then(function() {
+            $cordovaTouchID.authenticate("You must authenticate").then(function() {
+                $scope.obj=dataService.login;
+                alert($scope.obj);
+                dataService.writeDB($scope.obj)
+
+            }, function(error) {
+                console.log(JSON.stringify(error));
+            });
+      })
+    };
     $scope.buttonOff = function () {
        dataService.DBoff()
     }
     $scope.check=function () {
-      dataService.checkDB()
+      dataService.readDb()
     }
     $scope.write=function () {
       $scope.obj=dataService.login;

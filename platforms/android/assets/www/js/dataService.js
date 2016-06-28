@@ -26,7 +26,8 @@ APP
    db.transaction(function (tx) {   
       tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
         data.check=results.rows.item(2).log
-        console.log(data.check)
+                    console.log('Login: '+results.rows.item(0).log+
+                                'Pass: '+results.rows.item(1).log);
       }, null);
    })
   }

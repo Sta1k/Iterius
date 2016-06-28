@@ -15,9 +15,9 @@
             <h3 ng-bind="currentTask.name"></h3>
 
           </div>
-          <div class="startStopOrder" ng-click="toggleT({{currentTask}})">
-            <i ng-if="!currentTask.current" class="icon icon-right ion-ios-play-outline"></i>
-            <i ng-if="currentTask.current" class="icon icon-right ion-ios-pause-outline"></i>
+          <div class="startStopOrder" ng-click="toggleT(currentTask)">
+            <i ng-if="!currentTask.current" class="icon icon-right ion-ios-play"></i>
+            <i ng-if="currentTask.current" class="icon icon-right ion-ios-pause"></i>
           </div>
 
           <div class="currentTime">

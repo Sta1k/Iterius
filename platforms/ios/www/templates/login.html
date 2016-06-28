@@ -32,7 +32,7 @@
           >
         </label>
       </div>
-      <div style="text-align: center; color: #ff0500;" ng-show="form.$submitted || form.login.$touched || form.pass.$touched">
+      <div class="hide-on-keyboard-open" style="text-align: center; color: #ff0500;" ng-show="form.$submitted || form.login.$touched || form.pass.$touched">
         <div ng-show="form.login.$error.required">Please fill in login</div>
         <div ng-show="form.login.$error.minlength">Login is too short</div>
         <div ng-show="form.login.$error.maxlength">Login is too long</div>
@@ -43,16 +43,25 @@
         <div ng-show="form.pass.$error.pattern">Special simbols not allowed</div>
       </div>
 
-      <div class="padding">
+      <div class="padding hide-on-keyboard-open">
         <input class="button button-block button-positive"
                id="loginButton"
                type="submit"
                ng-click="LogIn(user)"
-               value='LOG IN'>
-        <!--ng-disabled="form.pass.$invalid || form.login.$invalid"-->
+               value='LOG IN'
+              ng-disabled="form.pass.$invalid || form.login.$invalid">
+<input class="button button-block button-positive"
+               id="touchID"
+               type="submit"
+               ng-if="!isAndroid"
+               ng-click="StartTouch()"
+               value='LOG IN with Touch ID'
+               
+              >
 
       </div>
-      <ion-checkbox class="login-check" ng-model="user.remember">Remember me</ion-checkbox>
+      <ion-checkbox class="hide-on-keyboard-open login-check" ng-model="user.remember">Remember me</ion-checkbox>
+
       <!--<input type="button" class="button button-block button-positive" ng-click="test()">-->
       <!--<div ng-messages="login.login.$error" style="color:maroon" role="alert">-->
         <!--<div ng-message="required">You did !!!not enter a field</div>-->
