@@ -32,7 +32,7 @@
           >
         </label>
       </div>
-      <div class="hide-on-keyboard-open" style="text-align: center; color: #ff0500;" ng-show="form.$submitted || form.login.$touched || form.pass.$touched">
+      <div style="text-align: center; color: #ff0500;" ng-show="form.$submitted || form.login.$touched || form.pass.$touched">
         <div ng-show="form.login.$error.required">Please fill in login</div>
         <div ng-show="form.login.$error.minlength">Login is too short</div>
         <div ng-show="form.login.$error.maxlength">Login is too long</div>
@@ -43,7 +43,7 @@
         <div ng-show="form.pass.$error.pattern">Special simbols not allowed</div>
       </div>
 
-      <div class="padding hide-on-keyboard-open">
+      <div class="padding">
         <input class="button button-block button-positive"
                id="loginButton"
                type="submit"

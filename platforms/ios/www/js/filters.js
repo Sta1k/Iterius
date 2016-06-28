@@ -11,9 +11,9 @@ APP
         m = '0' + m;
       if (s < 10)
         s = '0' + s;
-      out = '<div  class="hour">'+h+'<p>час.</p>'+
-        '</div> : <div class="hour">' + m +'<p>мин.</p>'+
-        '</div> : <div class="hour">' + s+'<p>сек.</p></div>';
+      out = '<div  class="hour">'+h+'<p>hrs.</p>'+
+        '</div> : <div class="hour">' + m +'<p>min.</p>'+
+        '</div> : <div class="hour">' + s+'<p>sec.</p></div>';
       return out;
     }
   });

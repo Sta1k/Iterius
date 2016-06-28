@@ -9,7 +9,7 @@ APP
    $stateParams) {
       $ionicPlatform.ready(function() {
     console.log('PrefCtrl');
-    $scope.checkbox={};
+    $scope.checkbox=false;
     $scope.showState= function () {
       console.log($scope.checkbox)
     }
