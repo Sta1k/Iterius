@@ -60,7 +60,7 @@ APP
         
       
     }
-    this.readDb=function() {
+    this.readDb=function(success,error) {
       
         db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {

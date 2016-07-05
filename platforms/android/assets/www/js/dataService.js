@@ -31,15 +31,18 @@ APP
       }, null);
    })
   }
-    
-    // this.DBon=function(str){
-    //    db.transaction(function (tx) {
-    //         tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
-    //         tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (10, "'
-    //             + str + '")');
-    //     });
-      
-    // }
+  this.checkRemember=function(){
+   db.transaction(function (tx) {   
+      tx.executeSql('SELECT * FROM LOGS WHERE id>=4', [], function (tx, results) {
+        console.log(results)
+        data.check=results.rows.item(2).log
+                 
+       data.user.username = results.rows.item(0).log;
+      data.user.password = results.rows.item(1).log;
+      data.user.remember = true;
+      }, null);
+   })
+  }
     this.writeDB=function(obj) {
       
         db.transaction(function (tx) {
@@ -48,19 +51,30 @@ APP
                 + obj.username + '")');
             tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (2, "'
                 + obj.password + '")'); 
+            
+        });
+        console.log(
+          'SAVED \nLOGIN :'+ obj.username+
+          '\nPASSWORD :'+obj.password);
+          
+    }
+    this.rememberMe=function(obj) {
+      
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
+            tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (4, "'
+                + obj.username + '")');
+            tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (5, "'
+                + obj.password + '")'); 
             tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (10, "'
             + 'on' + '")');
         });
         console.log(
           'SAVED \nLOGIN :'+ obj.username+
           '\nPASSWORD :'+obj.password);
-        
-
-      
-        
-      
+          
     }
-    this.readDb=function() {
+    this.readDb=function(success,error) {
       
         db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
