@@ -3,7 +3,9 @@
  */
 APP.service('data', function () {
   this.check = undefined;
-  this.user = {};
+  this.user = {
+    role : undefined
+  };
 })
 APP
   .service('dataService', function (data, APIService) {

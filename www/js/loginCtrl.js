@@ -35,13 +35,20 @@ APP
             dataService.login = objUser;
 
             if (response.data.success) {
+              data.user.role = response.data.type;
+              console.log(data.user.role);
               if ($scope.user.remember == true && $scope.user.password.length > 6) {
                 dataService.rememberMe($scope.user)
               }
               if ($scope.user.remember == false) {
                 dataService.delRemember()
               }
-              $state.go('app.tasks', {}, {reload: true});
+              if(data.user.role>0){
+                $state.go('app.team', {}, {reload: true});
+              }else{
+                $state.go('app.tasks', {}, {reload: true});
+              }
+              
 
 
             } else {
