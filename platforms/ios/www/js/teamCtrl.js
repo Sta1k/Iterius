@@ -3,7 +3,7 @@ APP
     $scope.timeCount = dataService.AllWorkedTime;
     $scope.showTeam = function (team) {
       dataService.currentTeam=team;
-      $state.go('app.curteam');
+      $state.go('app.curteam',{},{reload:true});
     };
     // $scope.swipeLeft = function () {
     //   console.log('SWIPED')

@@ -13,7 +13,7 @@ APP
       console.log(res);
         Notification.showAlert('Task created')
     }).then(function () {
-      $state.go('app.tasks');
+      $state.go('app.tasks',{},{reload:true});
     })
   }
 });

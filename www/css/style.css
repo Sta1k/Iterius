@@ -3,7 +3,7 @@
   /*padding-top: 5%;*/
 /*}*/
 .itemTask{
-  height: 13%;
+  height: 70px;
   border-radius: 3px;
   margin: 5px;
   padding: 10px;
@@ -45,12 +45,13 @@ label.item.item-input {
 }
 .iterius{
   padding-left: 5px;
-  width: 35%;
+  height: 35px;
+  float: left;
 }
 .time-now {
-  display: block;
+  display: inline-block;
   float: right;
-  padding: 3% 0 3% 5%;
+  padding: 1%;
   font-size: xx-large;
   color: #ffffff;
 }
@@ -78,6 +79,7 @@ label.item.item-input {
   border-style: solid;
   border-width: 1px;
   border-color: #0a9dc7;
+  float: left;
 }
 
 .bar.bar-stable .title, .button {
@@ -120,7 +122,7 @@ div .startStop {
   /*width: 20%;*/
   height: 100%;
   float: right;
-  
+
   font-size: 200%;
 }
 .started{
@@ -247,4 +249,17 @@ div .startStopOrder {
   text-align: center;
   color: white;
   font-size: 40pt;
+}
+span.left-buttons:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+span.left-buttons{
+  width: 100%;
+}
+div.buttons.buttons-left{
+  width: 100%;
 }

@@ -1,18 +1,23 @@
-<ion-view class="background" title="ITERIUS">
+<ion-view hide-back-button="true" class="background" title="ITERIUS">
   <ion-nav-buttons side="left">
-    <!--<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>-->
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     <img class="iterius" src="img/h-logo.png">
-    <span ng-if="timeCount>0"
-         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></span>
+    <div ng-if="timeCount>0"
+         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
   </ion-nav-buttons>
   <ion-content padding="true" class="grey_back">
     <!--<div class="list list-inset">-->
-      <!--<label class="item item-input">-->
-        <!--<i class="icon ion-search placeholder-icon"></i>-->
-        <!--<input type="text" placeholder="Search" ng-model="query">-->
-      <!--</label>-->
+    <!--<label class="item item-input">-->
+    <!--<i class="icon ion-search placeholder-icon"></i>-->
+    <!--<input type="text" placeholder="Search" ng-model="query">-->
+    <!--</label>-->
     <!--</div>-->
-    <div class="titlePage"><h3 >Status of Team</h3></div>
+    <div class="titlePage">
+      <div><h3>Status of Team</h3></div>
+      <div ng-if="busy">
+        <ion-spinner></ion-spinner>
+      </div>
+    </div>
     <div class="teamPage"><h4 ng-bind="currentTeam.title"></h4></div>
 
     <ion-list>

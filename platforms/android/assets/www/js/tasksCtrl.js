@@ -1,6 +1,3 @@
-/**
- * Created by smissltd on 07.06.16.
- */
 APP.controller('TasksCtrl',
   ['$scope',
     'dataService',
@@ -19,19 +16,19 @@ APP.controller('TasksCtrl',
               $interval,
               $stateParams) {
 
-$scope.checkStarted = function () {
+      $scope.checkStarted = function () {
         var obj = _.findWhere(dataService.tasksList, {current: true});
         if (obj == undefined) {
           console.log('no active task')
           return false
-      
+
         }
         else if (obj.current == true) {
           dataService.showTime = true;
           updateTaskTime.StartTimer(obj);
           $interval(function () {
             $scope.tasksList = dataService.tasksList;
-            
+
             $scope.timeCount = dataService.AllWorkedTime;
 
             // console.log($scope.timeCount);
@@ -39,68 +36,69 @@ $scope.checkStarted = function () {
         }
         // console.log(obj)
       };
-      
-                $interval( function () {
-                        APIService.requestTasks()
-                .then(function success(res) {
-                  if (!res.data.success) {
 
-                    alert(res.data.error);
+      $interval(function () {
+        APIService.requestTasks()
+          .then(function success(res) {
+            if (!res.data.success) {
 
-                  } else {
-                    dataService.tasksList = res.data.tasks;
-                    $scope.tasksList = dataService.tasksList;
-                    var arr= _.pluck(dataService.tasksList, 'time');
-                    summa = function(m) {
-                      for(var s = 0, k = m.length; k; s += m[--k]);
-                      dataService.AllWorkedTime = s;
-                      $scope.timeCount=dataService.AllWorkedTime;
-                    };
-                    summa(arr);
-                    // console.log('INTERVAL');
-                    $scope.checkStarted();
-                  }
-                })},60000)
+              alert(res.data.error);
+
+            } else {
+              dataService.tasksList = res.data.tasks;
+              $scope.tasksList = dataService.tasksList;
+              var arr = _.pluck(dataService.tasksList, 'time');
+              summa = function (m) {
+                for (var s = 0, k = m.length; k; s += m[--k]);
+                dataService.AllWorkedTime = s;
+                $scope.timeCount = dataService.AllWorkedTime;
+              };
+              summa(arr);
+              // console.log('INTERVAL');
+              $scope.checkStarted();
+            }
+          })
+      }, 60000);
       console.log('tasksCtrl');
-       APIService.requestTasks()
-                .then(function success(res) {
-                  $scope.busy=true
-                  if (!res.data.success) {
-                    $scope.busy=false
-                    alert(res.data.error);
+      APIService.requestTasks()
+        .then(function success(res) {
+          $scope.busy = true;
+          if (!res.data.success) {
+            $scope.busy = false;
+            alert(res.data.error);
 
-                  } else {
-                    dataService.tasksList = res.data.tasks;
-                    $scope.tasksList = dataService.tasksList;
-                    var arr= _.pluck(dataService.tasksList, 'time');
-                    summa = function(m) {
-                      for(var s = 0, k = m.length; k; s += m[--k]);
-                      dataService.AllWorkedTime = s;
-                      $scope.timeCount=dataService.AllWorkedTime;
-                    };
-                    summa(arr);
-                    console.log(dataService.tasksList);
-                    $scope.checkStarted();
-                  }
-                }).finally(function(){
-                  $scope.busy=false
-                })
-                
+          } else {
+            dataService.tasksList = res.data.tasks;
+            $scope.tasksList = dataService.tasksList;
+            var arr = _.pluck(dataService.tasksList, 'time');
+            summa = function (m) {
+              for (var s = 0, k = m.length; k; s += m[--k]);
+              dataService.AllWorkedTime = s;
+              $scope.timeCount = dataService.AllWorkedTime;
+            };
+            summa(arr);
+            console.log(dataService.tasksList);
+            $scope.checkStarted();
+          }
+        }).finally(function () {
+        $scope.busy = false
+      })
+
       //взяли из сервиса
 
-    
+
       $scope.clicked = function (task) {
-        $scope.busy=true;
+        $scope.busy = true;
 
         $scope.currentTask = task;
-        dataService.currentTask=task;
+        dataService.currentTask = task;
         // $scope.currentTask = dataService.currentTask;
         APIService.requestTasks().then(function () {
           console.log(dataService.currentTask);
-          $scope.busy=false;
+          $scope.busy = false;
           $state.go('app.order');
         });
-        
+
 
       };
       // Старт стоп задачи

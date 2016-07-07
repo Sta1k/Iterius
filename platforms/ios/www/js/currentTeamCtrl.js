@@ -12,7 +12,7 @@ APP
           dataService.currentUser=user;
         })
         .finally(function () {
-          $state.go('app.userTasks')
+          $state.go('app.userTasks',{},{reload:true})
         });
       
     };
