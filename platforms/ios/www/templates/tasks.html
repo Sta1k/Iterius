@@ -33,7 +33,7 @@
         <div class="currentTime">
           <span ng-bind-html="task.time | timing"></span>
         </div>
-        <div class="startStop" ng-click="clicked({{task}})">
+        <div class="startStop" ng-click="clicked(task)">
           <i class="icon icon-right ion-ios-arrow-forward"></i>
           <!--<i ng-if="!task.current" class="icon icon-right ion-ios-play-outline"></i>-->
           <!--<i ng-if="task.current" class="icon icon-right ion-ios-pause-outline"></i>-->

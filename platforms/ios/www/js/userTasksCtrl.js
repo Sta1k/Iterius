@@ -7,6 +7,7 @@ APP
               APIService,
               showTeam,
               dataService,
+              $cordovaToast,
               $stateParams) {
       $scope.timeCount = dataService.AllWorkedTime;
       console.log('UserTasksCtrl');
@@ -39,7 +40,7 @@ APP
             console.log(resp);
 
             if (resp.data.started === false && resp.data.success === true) {
-
+              $cordovaToast.showShortTop('Task stopped');
               // dataService.showTime = false;
               updateMemberTime.StopTimer(task);
               APIService.requestUserTasks($scope.user.id)
@@ -56,6 +57,7 @@ APP
 
 
             } else if (resp.data.started === true && resp.data.success === true) {
+              $cordovaToast.showShortTop('Task stopped');
               APIService.requestUserTasks($scope.user.id)
                 .then(function success(res) {
                   if (!res.data.success) {

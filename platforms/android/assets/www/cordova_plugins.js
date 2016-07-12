@@ -46,6 +46,14 @@ module.exports = [
         "clobbers": [
             "touchid"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-vibration/www/vibration.js",
+        "id": "cordova-plugin-vibration.notification",
+        "merges": [
+            "navigator.notification",
+            "navigator"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -57,7 +65,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.2.2",
     "cordova-plugin-x-toast": "2.5.2",
     "ionic-plugin-keyboard": "2.2.0",
-    "cordova-plugin-touchid": "0.3.1"
+    "cordova-plugin-touchid": "0.3.1",
+    "cordova-plugin-vibration": "2.1.1"
 };
 // BOTTOM OF METADATA
 });

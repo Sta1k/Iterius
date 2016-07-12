@@ -1,8 +1,10 @@
 APP
-  .controller('CreateCtrl', function ($scope, $state, Notification, dataService, APIService, $stateParams) {
+  .controller('CreateCtrl', function ($scope, $state, $cordovaToast, dataService, APIService, $stateParams) {
   console.log('createCtrl');
-    
+
   $scope.task={
+    associated:'',
+    assigned:'',
     title:'',
     desc: ''
   };
@@ -11,9 +13,17 @@ APP
     APIService.TaskCreate($scope.task)
       .then(function (res) {
       console.log(res);
-        Notification.showAlert('Task created')
-    }).then(function () {
-      $state.go('app.tasks',{},{reload:true});
-    })
-  }
+        $cordovaToast.show('Task created','short','top')
+          .then(function (success) {
+          $state.go('app.tasks',{},{reload:true});
+        })
+    });
+
+    // $scope.taskCreated=function () {
+    //   $state.go('app.tasks',{},{reload:true});
+    // }
+  };
+    $scope.clearForm = function () {
+      $scope.task = {};
+    }
 });

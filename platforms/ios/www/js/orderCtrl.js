@@ -1,8 +1,9 @@
 APP
   .controller('OrderCtrl',
-    function ($scope,  $stateParams, APIService, dataService,updateOneTime, $interval) {
-      console.log(dataService.currentTask);
+    function ($scope,  $stateParams, APIService,$cordovaToast, dataService,updateOneTime, $interval) {
+      
       $scope.currentTask = dataService.currentTask;
+      console.log($scope.currentTask);
       var orderInterval;
       function orderTimer(){
           orderInterval=$interval(order, 1000)
@@ -34,7 +35,7 @@ APP
           .then(function success(resp) {
             console.log(resp);
             if (resp.data.started === false && resp.data.success === true) {
-
+              $cordovaToast.showShortTop('Task stopped');
               // start timer
               dataService.showTime = false;
               updateOneTime.StopTimer(task);
@@ -58,7 +59,7 @@ APP
               console.log(resp.data.started);
             } else if (resp.data.started === true && resp.data.success === true) {
               // stop timer
-              
+              $cordovaToast.showShortTop('Task started');
               $scope.currentTask.current = true;
 
               dataService.currentTask = $scope.currentTask;

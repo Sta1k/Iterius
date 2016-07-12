@@ -4,9 +4,10 @@
 APP.service('data', function () {
   this.check = undefined;
   this.user = {
-    role : undefined
+    role: undefined,
+    finger: undefined
   };
-})
+});
 APP
   .service('dataService', function (data, APIService) {
     var db = window.openDatabase('iterius_db', 1, 'mobile', 2 * 1024 * 1024);
@@ -63,6 +64,8 @@ APP
           + obj.username + '")');
         tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (2, "'
           + obj.password + '")');
+        tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (3, "'
+          + obj.touch + '")');
 
       });
       console.log(
@@ -84,6 +87,19 @@ APP
       console.log(
         'SAVED \nLOGIN :' + obj.username +
         '\nPASSWORD :' + obj.password);
+
+    };
+    this.checkFinger = function () {
+      db.transaction(function (tx) {
+        tx.executeSql('SELECT * FROM LOGS WHERE id=3', [], function (tx, results) {
+          var len = results.rows.length, i;
+          msg = "Found rows: " + len;
+          console.log(msg +
+            '\ncheck: ' + results.rows.item(0).log);
+          return results.rows.item(0).log;
+
+        })
+      })
 
     };
     this.readDb = function (success, error) {
@@ -155,7 +171,7 @@ APP
           // var diff = now - startTime;
 
           obj.time++;
-          dataService.currentTask.time++
+          dataService.currentTask.time++;
           // console.log(obj.time);
           var arr = _.pluck(dataService.tasksList, 'time');
           summa = function (m) {
@@ -197,17 +213,5 @@ APP
     return {
       show: false
     }
-  });
+  })
 
-APP
-  .factory('Notification', function ($ionicPopup) {
-    return {
-      showAlert: function (message) {
-        var alertPopup = $ionicPopup.alert({
-          title: 'Alert',
-          template: message
-        });
-
-      }
-    }
-  });

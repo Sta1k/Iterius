@@ -2,7 +2,10 @@
  * Created by smissltd on 16.05.16.
  */
 var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
+  .config(function($compileProvider) {
 
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+  })
   .config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
@@ -54,7 +57,9 @@ var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
         }
       })
       .state('app.tasks', {
-        url: "/tasks",
+       // abstract:true,
+        //parent:'app',
+        url: "/tasks/",
         views: {
           'menuContent' :{
             templateUrl: "templates/tasks.html",
@@ -62,8 +67,10 @@ var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
           }
         }
       })
-      .state('app.order', {
-        url: "/order",
+      .state('app.tasks/:orderId', {
+        //parent:'app.tasks',
+        //abstract:true,
+        url: "/tasks/:orderId",
         views: {
           'menuContent' :{
             templateUrl: "templates/order.html",

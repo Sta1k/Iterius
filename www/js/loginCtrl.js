@@ -3,6 +3,7 @@ APP
     function ($scope,
               $ionicPlatform,
               $cordovaTouchID,
+              $cordovaToast,
               data,
               APIService,
               $state,
@@ -14,7 +15,7 @@ APP
         $scope.user = {};
 
         dataService.checkRemember();//.then(function (res) {
-        $timeout(remember, 1000);
+        $timeout(remember, 800);
       });
 
       function remember() {
@@ -31,12 +32,12 @@ APP
         APIService.login(objUser)
           .then(function
             success(response) {
-            console.log(response);
+            // console.log(response);
             dataService.login = objUser;
 
             if (response.data.success) {
               data.user.role = response.data.type;
-              console.log(data.user.role);
+              // console.log(data.user.role);
               if ($scope.user.remember == true && $scope.user.password.length > 6) {
                 dataService.rememberMe($scope.user)
               }
@@ -66,11 +67,10 @@ APP
       $scope.StartTouch = function () {
         $cordovaTouchID.checkSupport().then(function () {
           $cordovaTouchID.authenticate("You must authenticate").then(function () {
-            $timeout(dataService.readDb()).then(function () {
+            $cordovaToast.showShortTop('Please wait');
+            $timeout(dataService.readDb()).then($timeout(function () {
               $scope.LogIn(data.user)
-            }, function (error) {
-              alert('error DB')
-            });
+            },500));
             // success
           }, function () {
             // error

@@ -13,7 +13,7 @@
 
       </header>
       <main id="main">
-        <div class="titlePage"><h3>Create Task</h3></div>
+        <div class="titlePage hide-on-keyboard-open"><h3>Create Task</h3></div>
         <section>
           <div class="container-fluid">
             <div class="create-block">
@@ -25,11 +25,18 @@
                            type="text"
                            ng-maxlength="255"
                            ng-minlength="4"
-                           placeholder="Title"
+                           placeholder="Title: *"
                            ng-model="task.title"
                            required
                     >
                   </label>
+                  <div style="text-align: center; color: #ff0500;"
+                       ng-show="createForm.$submitted || createForm.title.$touched">
+                    <div ng-show="createForm.title.$error.required">Field "Title" is empty</div>
+                    <div ng-show="createForm.title.$error.minlength">Title is too short</div>
+                    <div ng-show="createForm.title.$error.maxlength">Title is too long</div>
+
+                  </div>
                   <label style="margin-top: 3%" class="item item-input">
                     <textarea rows='5'
                               placeholder="Description"
@@ -37,20 +44,14 @@
                     ></textarea>
                   </label>
                 </div>
-                <div style="text-align: center; color: #ff0500;"
-                     ng-show="createForm.$submitted || createForm.title.$touched">
-                  <div ng-show="createForm.title.$error.required">Field "Title" is empty</div>
-                  <div ng-show="createForm.title.$error.minlength">Title is too short</div>
-                  <div ng-show="createForm.title.$error.maxlength">Title is too long</div>
 
-                </div>
                 <div class="list-task">
 
                   <label class="item item-input item-select">
                     <div class="input-label">
-                      Assign:
+                      Assign: *
                     </div>
-                    <select>
+                    <select ng-model="task.assigned">
                       <option selected>Assign</option>
                       <option>Superadmin</option>
                       <option>Admin</option>
@@ -62,15 +63,24 @@
 
                 </div>
                 <ion-list>
-                  <ion-radio ng-model="choice" ng-value="'A'">Not associate</ion-radio>
-                  <ion-radio ng-model="choice" ng-value="'B'">Associated with project</ion-radio>
-                  <ion-radio ng-model="choice" ng-value="'С'">Associated with task</ion-radio>
+                  <ion-radio ng-model="task.associated" ng-value="'A'">Not associate</ion-radio>
+                  <ion-radio ng-model="task.associated" ng-value="'B'">Associated with project</ion-radio>
+                  <ion-radio ng-model="task.associated" ng-value="'С'">Associated with task</ion-radio>
                 </ion-list>
                 <div class="row button-create">
                   <input ng-click="createT(task)"
                          class="button button-block button-positive"
                          value="Create"
-                         ng-disabled="createForm.title.$invalid||choice==undefined"
+                         ng-disabled="createForm.title.$invalid||task.associated==undefined"
+                         type="submit"
+                  >
+
+
+                </div>
+                <div class="row button-create">
+                  <input ng-click="clearForm()"
+                         class="button button-block button-positive"
+                         value="Clear"
                          type="submit"
                   >
 

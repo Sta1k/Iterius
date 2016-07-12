@@ -14,7 +14,7 @@
       <li class="item item-toggle">
         Login with TouchID
         <label class="toggle toggle-positive">
-          <input type="checkbox" ng-model="checkbox" ng-checked="true" ng-click="showState()">
+          <input type="checkbox" ng-model="checkbox" ng-checked="checkbox" ng-click="showState()">
           <div class="track">
             <div class="handle"></div>
           </div>
@@ -23,25 +23,14 @@
        <li class="item item-toggle">
         Unsafe Login
         <label class="toggle toggle-positive">
-          <input type="checkbox" ng-model="checkbox2" ng-checked="checkbox" ng-click="showState()">
+          <input type="checkbox" ng-model="checkbox2" ng-checked="checkbox2" ng-click="showState1()">
           <div class="track">
             <div class="handle"></div>
           </div>
         </label>
       </li>
     </ul>
-    <button class="button button-block button-positive" ng-click="buttonON()">
-  Write login with touchID
-</button>
-<!--<button class="button button-block button-positive"  ng-click="check()">
-  Read login with touchID
-</button>-->
-<button class="button button-block button-positive"  ng-click="buttonOff()">
-  delete support touchID
-</button>
-<!--<button class="button button-block button-positive"  ng-click="write()">
-  check support touchID
-</button>-->
+<p>For use touchID please swipe left on Login Screen </p>
 
   </ion-content>
 </ion-view>

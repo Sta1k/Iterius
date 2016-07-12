@@ -3,7 +3,7 @@
  */
 var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
 
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider,$stateParams) {
 
     $stateProvider
 

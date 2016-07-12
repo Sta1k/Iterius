@@ -1,5 +1,6 @@
 {
     "LocalAuthentication.framework": 2,
     "Security.framework": 2,
-    "QuartzCore.framework": 1
+    "QuartzCore.framework": 1,
+    "AudioToolbox.framework": 1
 }

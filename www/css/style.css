@@ -122,8 +122,12 @@ div .startStop {
   /*width: 20%;*/
   height: 100%;
   float: right;
+  color: #282d39;
 
   font-size: 200%;
+}
+.startStop a{
+  color: #282d39;
 }
 .started{
   background-position: bottom !important;
