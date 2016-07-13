@@ -15,7 +15,7 @@ APP
         $scope.user = {};
 
         dataService.checkRemember();//.then(function (res) {
-        $timeout(remember, 1000);
+        $timeout(remember, 800);
       });
 
       function remember() {
@@ -32,12 +32,12 @@ APP
         APIService.login(objUser)
           .then(function
             success(response) {
-            console.log(response);
+            // console.log(response);
             dataService.login = objUser;
 
             if (response.data.success) {
               data.user.role = response.data.type;
-              console.log(data.user.role);
+              // console.log(data.user.role);
               if ($scope.user.remember == true && $scope.user.password.length > 6) {
                 dataService.rememberMe($scope.user)
               }

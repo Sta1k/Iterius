@@ -122,8 +122,12 @@ div .startStop {
   /*width: 20%;*/
   height: 100%;
   float: right;
+  color: #282d39;
 
   font-size: 200%;
+}
+a{
+  color: #282d39;
 }
 .started{
   background-position: bottom !important;
@@ -145,6 +149,10 @@ div .startStopOrder {
 .ActiveBackground {
   background-color: #282d39;
   color: white;
+}
+.ActiveBackground2 {
+
+  color: white !important;
 }
 
 .revertcolor {

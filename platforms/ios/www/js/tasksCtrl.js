@@ -96,7 +96,7 @@ APP.controller('TasksCtrl',
         APIService.requestTasks().then(function () {
           console.log(dataService.currentTask);
           $scope.busy = false;
-          $state.go('app.order', {}, {reload: true});
+          $state.go('app.tasks/'+task.id);
         });
 
 

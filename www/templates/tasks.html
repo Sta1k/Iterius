@@ -34,7 +34,7 @@
           <span ng-bind-html="task.time | timing"></span>
         </div>
         <div class="startStop" >
-          <a href="#/app/tasks/{{task.id}}"><i class="icon icon-right ion-ios-arrow-forward" ></i></a>
+          <a ng-class="{ActiveBackground2: task.current == true}" href="#/app/tasks/{{task.id}}"><i class="icon icon-right ion-ios-arrow-forward" ></i></a>
           <!--<i ng-if="!task.current" class="icon icon-right ion-ios-play-outline"></i>-->
           <!--<i ng-if="task.current" class="icon icon-right ion-ios-pause-outline"></i>-->
         </div>
