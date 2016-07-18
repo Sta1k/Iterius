@@ -21,9 +21,9 @@
     <div class="teamPage"><h4 ng-bind="currentTeam.title"></h4></div>
 
     <ion-list>
-      <ion-item class='itemTask' ng-repeat="user in currentTeam.users | filter : query">
+      <ion-item class='itemTask' ng-click="showUser(user)"  ng-repeat="user in currentTeam.users | filter : query">
         <div class="team">
-          <div ng-click="showUser(user)" class="nameTask">
+          <div class="nameTask">
             <div style="width: 50%; float:left"><span ng-bind="user.name"></span></div>
             <div style="width: 50%; float:right"><span ng-bind="user.status||'Not Working'"></span></div>
           </div>

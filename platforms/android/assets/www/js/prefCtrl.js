@@ -15,7 +15,7 @@ APP
           $scope.checkbox = res == true ? true : false;
           console.log($scope.checkbox)
         });
-        
+        $scope.timeCount = dataService.AllWorkedTime;
         // $scope.$watch('checkbox',function () {
         //   if($scope.checkbox==true){
         //    

@@ -1,22 +1,21 @@
 APP
-  .controller('TeamCtrl', function ($scope, $state, APIService, showTeam,dataService, $stateParams) {
+  .controller('TeamCtrl', function ($scope, $state, $cordovaToast, APIService, showTeam,dataService, $stateParams) {
     $scope.timeCount = dataService.AllWorkedTime;
     $scope.showTeam = function (team) {
+      $cordovaToast.showShortTop('Loading...');
       dataService.currentTeam=team;
-      $state.go('app.curteam',{},{reload:true});
+      $state.go('app.curteam/:teamId',{teamId: team.title},{reload:true});
     };
-    // $scope.swipeLeft = function () {
-    //   console.log('SWIPED')
-    // };
+
     APIService.teamStatus()
       .success(function (res) {
         console.log(res);
-        $scope.Global = res
+        $scope.Global = dataService.Global=res
       })
       .error(function (res) {
         console.log("ERROR");
         console.log(res)
-        
+
       })
 
   });

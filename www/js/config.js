@@ -38,8 +38,8 @@ var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
           }
         }
       })
-      .state('app.userTasks', {
-        url: "/usertask",
+      .state('app.userTasks/:id', {
+        url: "/usertask/:id",
         views: {
           'menuContent' :{
             templateUrl: "templates/userTasks.html",
@@ -47,8 +47,8 @@ var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
           }
         }
       })
-      .state('app.curteam', {
-        url: "/curteam",
+      .state('app.curteam/:teamId', {
+        url: "/curteam/:teamId",
         views: {
           'menuContent' :{
             templateUrl: "templates/curteam.html",

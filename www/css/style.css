@@ -22,7 +22,9 @@
   margin: 0 3% 6%;
 
 }
-
+.has-header.delete-overscroll.scroll-content.ionic-scroll.overflow-scroll{
+  overflow-y: hidden;
+}
 .logo {
   padding: 10% 0 45% 0;
   text-align: center;
@@ -71,7 +73,9 @@ label.item.item-input {
 .item-radio .item-content {
   background-color: #e1e1e1;
 }
-
+.item{
+  border-style: none;
+}
 
 .bar-stable .button.button-icon{
   padding: 2 5 0 5;
@@ -122,13 +126,11 @@ div .startStop {
   /*width: 20%;*/
   height: 100%;
   float: right;
-  color: #282d39;
+  /*color: #282d39;*/
 
   font-size: 200%;
 }
-a{
-  color: #282d39;
-}
+
 .started{
   background-position: bottom !important;
   margin-top: 0 !important;

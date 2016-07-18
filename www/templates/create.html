@@ -32,7 +32,7 @@
                   </label>
                   <div style="text-align: center; color: #ff0500;"
                        ng-show="createForm.$submitted || createForm.title.$touched">
-                    <div ng-show="createForm.title.$error.required">Field "Title" is empty</div>
+                    <div ng-show="createForm.title.$error.required">Task "Title" is required</div>
                     <div ng-show="createForm.title.$error.minlength">Title is too short</div>
                     <div ng-show="createForm.title.$error.maxlength">Title is too long</div>
 

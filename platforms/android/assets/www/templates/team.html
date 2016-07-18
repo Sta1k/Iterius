@@ -19,10 +19,10 @@
       </div>
     </div>
     <ion-list>
-      <ion-item class='itemTask' ng-repeat="team in Global">
+      <ion-item class='itemTask' ng-repeat="team in Global" ng-click="showTeam(team)">
         <!--| filter:query not works because Global is object, need array of objects-->
         <div class="team">
-          <div ng-click="showTeam(team)" class="nameTask">
+          <div  class="nameTask">
             <span ng-bind="team.title"></span>
           </div>
           <!--<ion-list ng-show='showTeam'  class="teamMembers">-->

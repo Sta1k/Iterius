@@ -34,7 +34,7 @@
           <span ng-bind-html="task.time | timing"></span>
 
         </div>
-        <div class="startStop" ng-click='toggleT(task)'>
+        <div class="startStop" ng-click='toggleT(task)' ng-class="{ActiveBackground2: task.current == true}">
           <i ng-if="!task.current" class="icon icon-right ion-ios-play"></i>
           <i ng-if="task.current" class="icon icon-right ion-ios-pause"></i>
         </div>

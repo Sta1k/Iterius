@@ -9,12 +9,18 @@ APP
               dataService,
               $cordovaToast,
               $stateParams) {
+      $scope.user=_.findWhere(dataService.currentTeam.users, {id: $stateParams.id});
+      APIService.requestUserTasks($stateParams.id)
+        .success(function (res) {
+
+          $scope.userTasks = dataService.memberTasks=res.tasks;
+          console.log(dataService.memberTasks);
+          $scope.id = $stateParams.id;
+        })
       $scope.timeCount = dataService.AllWorkedTime;
       console.log('UserTasksCtrl');
-      $scope.userTasks = dataService.memberTasks;//взяли из сервиса
-      console.log($scope.userTasks);
-      $scope.user = dataService.currentUser;
-      console.log($scope.user);
+
+
       $scope.checkStarted = function () {
         var obj = _.findWhere(dataService.memberTasks, {current: true});
         console.log(obj);
@@ -38,12 +44,14 @@ APP
         APIService.toggleState(task.id)
           .then(function success(resp) {
             console.log(resp);
-
+            if (resp.data.success === false) {
+              $cordovaToast.showShortTop(resp.data.error);
+            }
             if (resp.data.started === false && resp.data.success === true) {
               $cordovaToast.showShortTop('Task stopped');
               // dataService.showTime = false;
               updateMemberTime.StopTimer(task);
-              APIService.requestUserTasks($scope.user.id)
+              APIService.requestUserTasks($scope.id)
                 .then(function success(res) {
                   if (!res.data.success) {
                     alert(res.data.error);
@@ -58,7 +66,7 @@ APP
 
             } else if (resp.data.started === true && resp.data.success === true) {
               $cordovaToast.showShortTop('Task stopped');
-              APIService.requestUserTasks($scope.user.id)
+              APIService.requestUserTasks($scope.id)
                 .then(function success(res) {
                   if (!res.data.success) {
                     alert(res.data.error);

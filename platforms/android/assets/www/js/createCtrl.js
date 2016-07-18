@@ -1,7 +1,7 @@
 APP
-  .controller('CreateCtrl', function ($scope, $state, $cordovaToast, dataService, APIService, $stateParams) {
+  .controller('CreateCtrl', function ($scope, $state, $cordovaToast, $ionicNavBarDelegate, dataService, APIService, $stateParams) {
     console.log('createCtrl');
-
+    $ionicNavBarDelegate.showBackButton(false);
     $scope.task = {
       associated: '',
       assigned: '',
@@ -25,6 +25,7 @@ APP
               }
             })
             .then(function (success) {
+              $cordovaToast.showShortTop('Please wait...');
               $state.go('app.tasks', {}, {reload: true});
             })
         });
