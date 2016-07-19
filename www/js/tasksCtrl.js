@@ -1,22 +1,33 @@
 APP.controller('TasksCtrl',
   ['$scope',
+    '$rootScope',
     'dataService',
     'updateTaskTime',
     '$filter',
     '$cordovaVibration',
+    '$cordovaToast',
     'APIService',
     '$state',
     '$interval',
     '$stateParams',
     function ($scope,
+              $rootScope,
               dataService,
               updateTaskTime,
               $filter,
               $cordovaVibration,
+              $cordovaToast,
               APIService,
               $state,
               $interval,
               $stateParams) {
+      $rootScope.$on("logout", function(){
+        console.log('!!!!!!');
+        $rootScope = $rootScope.$new(true);
+        $scope = $scope.$new(true);
+        dataService=undefined;
+        data=undefined;
+      });
       APIService.requestTasks()
         .then(function success(res) {
           $scope.busy = true;
@@ -38,7 +49,7 @@ APP.controller('TasksCtrl',
             $scope.checkStarted();
           }
         }).finally(function () {
-        $scope.busy = false
+        $scope.busy = false;
       });
 
       $scope.checkStarted = function () {
@@ -78,12 +89,13 @@ APP.controller('TasksCtrl',
         }
       });
       $interval(function () {
+        $cordovaToast.showShortTop('Checking the server time');
         APIService.requestTasks()
           .then(function success(res) {
             if (!res.data.success) {
-      
+
               alert(res.data.error);
-      
+
             } else {
               dataService.tasksList = res.data.tasks;
               $scope.tasksList = dataService.tasksList;
@@ -99,9 +111,9 @@ APP.controller('TasksCtrl',
             }
           })
       }, 60000);
-      
 
-      
+
+
 
       //взяли из сервиса
 

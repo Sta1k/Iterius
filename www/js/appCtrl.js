@@ -1,5 +1,5 @@
 APP
-  .controller('AppCtrl', function ($scope, $state, $stateParams, $cordovaVibration,APIService) {
+  .controller('AppCtrl', function ($scope,$rootScope, $state,dataService,data, $stateParams, $cordovaVibration,APIService) {
     //$scope.role = data.user.role;
 
     // $scope.$watch(function () {
@@ -26,12 +26,13 @@ APP
     $scope.logout = function () {
       APIService.logout().then(
         function (res) {
+          $rootScope.$broadcast("logout");
           console.log(res);
           $cordovaVibration.vibrate(50);
           $state.go('login', {}, {reload: true})
         })
     };
     
-    
-    
+
+
   });

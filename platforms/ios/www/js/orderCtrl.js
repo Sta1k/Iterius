@@ -33,6 +33,7 @@ APP
       );
 
       $scope.toggleT = function (task) {
+        $scope.busy=true;
         dataService.currentTask = task;
         APIService.toggleState(task.id)
           .then(function success(resp) {
@@ -40,7 +41,7 @@ APP
             console.log(resp);
             if (resp.data.started === false && resp.data.success === true) {
               $cordovaToast.showShortTop('Task stopped');
-              // start timer
+              $scope.busy=false;
               dataService.showTime = false;
               updateOneTime.StopTimer(task);
               // stopInterval();
@@ -56,6 +57,7 @@ APP
                     // stopInterval();
                     var obj = _.findWhere(dataService.tasksList, {id: task.id});
                     $scope.currentTask = obj;
+                    
                   }
 
                 });
@@ -65,7 +67,7 @@ APP
               // stop timer
               $cordovaToast.showShortTop('Task started');
               $scope.currentTask.current = true;
-
+              $scope.busy=false;
               // dataService.currentTask = $scope.currentTask;
               console.log(resp.data.started);
             }

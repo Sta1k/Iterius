@@ -9,7 +9,7 @@ APP
           password: request.password,
           remember: request.remember || false
         }
-      };      
+      };
       return $http({
         method: 'POST',
         url: url+'login',

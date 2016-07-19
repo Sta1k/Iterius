@@ -9,7 +9,7 @@ APP.service('data', function () {
   };
 });
 APP
-  .service('dataService', function (data, APIService) {
+  .service('dataService', function (data) {
     var db = window.openDatabase('iterius_db', 1, 'mobile', 2 * 1024 * 1024);
     this.Global = {};
     this.tasksList = {};

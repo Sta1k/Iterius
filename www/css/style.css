@@ -46,18 +46,18 @@ label.item.item-input {
   border-radius: 5px;
 }
 .iterius{
-  padding-left: 5px;
+  padding-right: 5px;
   height: 35px;
   float: left;
 }
 .time-now {
   display: inline-block;
   float: right;
-  padding: 1%;
-  font-size: xx-large;
+  padding: 7 5 5 0;
+  font-size: x-large;
   color: #ffffff;
 }
-.bar .buttons-left span {
+.bar .buttons-right span {
   display: block;
 }
 .button-create {
@@ -82,8 +82,8 @@ label.item.item-input {
   color: #0a9dc7;
   border-style: solid;
   border-width: 1px;
-  border-color: #0a9dc7;
-  float: left;
+  /*border-color: #0a9dc7;*/
+  float: right;
 }
 
 .bar.bar-stable .title, .button {
@@ -260,16 +260,16 @@ div .startStopOrder {
   color: white;
   font-size: 40pt;
 }
-span.left-buttons:after {
+span.right-buttons:after {
   content: ".";
   display: block;
   height: 0;
   clear: both;
   visibility: hidden;
 }
-span.left-buttons{
+span.right-buttons{
   width: 100%;
 }
-div.buttons.buttons-left{
+div.buttons.buttons-right{
   width: 100%;
 }

@@ -15,7 +15,8 @@ APP
 
           }
         })
-      } if(unbindWatch){
+      }
+      if (unbindWatch) {
         unbindWatch();
       }
 
@@ -23,31 +24,24 @@ APP
         function () {
           return dataService.AllWorkedTime
         },
-        function( newVal ) {
-          if ( newVal ) {
+        function (newVal) {
+          if (newVal) {
             $scope.timeCount = newVal;
             unbindTimeWatcher();
           }
         }
       );
-      // $scope.$watch(function () {//отслеживаем общее время
-      //   return dataService.AllWorkedTime
-      // }, function (newVal, oldVal, scope) {
-      //   if (newVal) {
-      //     $scope.timeCount = newVal;
-      //     // console.log($scope.timeCount)
-      //   }
-      // });
 
       $scope.toggleT = function (task) {
-        dataService.currentTask=task;
+        $scope.busy=true;
+        dataService.currentTask = task;
         APIService.toggleState(task.id)
           .then(function success(resp) {
             dataService.showTime = true;
             console.log(resp);
             if (resp.data.started === false && resp.data.success === true) {
               $cordovaToast.showShortTop('Task stopped');
-              // start timer
+              $scope.busy=false;
               dataService.showTime = false;
               updateOneTime.StopTimer(task);
               // stopInterval();
@@ -63,6 +57,7 @@ APP
                     // stopInterval();
                     var obj = _.findWhere(dataService.tasksList, {id: task.id});
                     $scope.currentTask = obj;
+                    
                   }
 
                 });
@@ -72,7 +67,7 @@ APP
               // stop timer
               $cordovaToast.showShortTop('Task started');
               $scope.currentTask.current = true;
-
+              $scope.busy=false;
               // dataService.currentTask = $scope.currentTask;
               console.log(resp.data.started);
             }
