@@ -7,7 +7,7 @@ var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
   })
   .config(function($stateProvider, $urlRouterProvider) {
-
+    
     $stateProvider
 
       .state('app', {
@@ -68,6 +68,7 @@ var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
         }
       })
       .state('app.tasks/:orderId', {
+        cache:false,
         //parent:'app.tasks',
         //abstract:true,
         url: "/tasks/:orderId",

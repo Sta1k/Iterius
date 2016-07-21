@@ -65,7 +65,7 @@ APP
 
 
             } else if (resp.data.started === true && resp.data.success === true) {
-              $cordovaToast.showShortTop('Task stopped');
+              $cordovaToast.showShortTop('Task started');
               APIService.requestUserTasks($scope.id)
                 .then(function success(res) {
                   if (!res.data.success) {

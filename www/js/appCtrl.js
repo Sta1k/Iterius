@@ -10,7 +10,6 @@ APP
     $scope.tasks = function () {
       APIService.requestTasks().then(
         function (res) {
-          console.log(res);
           $state.go('app.tasks', {}, {reload: true})
         })
     };

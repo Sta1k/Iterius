@@ -122,10 +122,10 @@ APP.controller('TasksCtrl',
         $scope.busy = true;
 
         //$scope.currentTask = task;
-        //dataService.currentTask = task;
+        dataService.currentTask = task;
         // $scope.currentTask = dataService.currentTask;
         APIService.requestTasks().then(function () {
-          console.log(dataService.currentTask);
+          // console.log(dataService.currentTask);
           $scope.busy = false;
           $state.go('app.tasks/:orderId',{orderId:task.id});
         });

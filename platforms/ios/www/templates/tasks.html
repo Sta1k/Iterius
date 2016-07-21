@@ -30,10 +30,10 @@
             <div  ng-bind="task.name|sliceString"></div>
           </div>
         </div>
-        <div class="currentTime" >
+        <div class="currentTime2" >
           <span ng-bind-html="task.time | timing"></span>
         </div>
-        <div class="startStop" ng-click="clicked(task)">
+        <div class="startStop" ng-click="clicked({{task}})">
           <!--<a ng-class="{ActiveBackground2: task.current == true}" href="#/app/tasks/{{task.id}}">-->
             <i class="icon icon-right ion-ios-arrow-forward" ></i>
           <!--</a>-->
