@@ -1,13 +1,13 @@
 /**
  * Created by smissltd on 16.05.16.
  */
-var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
-  .config(function($compileProvider) {
+var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
+  .config(function ($compileProvider) {
 
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
   })
-  .config(function($stateProvider, $urlRouterProvider) {
-    
+  .config(function ($stateProvider, $urlRouterProvider) {
+
     $stateProvider
 
       .state('app', {
@@ -18,11 +18,10 @@ var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
       })
 
 
-
       .state('app.create', {
         url: "/create",
         views: {
-          'menuContent' :{
+          'menuContent': {
             templateUrl: "templates/create.html",
             controller: 'CreateCtrl'
           }
@@ -32,7 +31,7 @@ var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
       .state('app.team', {
         url: "/team",
         views: {
-          'menuContent' :{
+          'menuContent': {
             templateUrl: "templates/team.html",
             controller: 'TeamCtrl'
           }
@@ -40,8 +39,9 @@ var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
       })
       .state('app.userTasks/:id', {
         url: "/usertask/:id",
+        cache: false,
         views: {
-          'menuContent' :{
+          'menuContent': {
             templateUrl: "templates/userTasks.html",
             controller: 'UserTasksCtrl'
           }
@@ -50,30 +50,30 @@ var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
       .state('app.curteam/:teamId', {
         url: "/curteam/:teamId",
         views: {
-          'menuContent' :{
+          'menuContent': {
             templateUrl: "templates/curteam.html",
             controller: 'curTeamCtrl'
           }
         }
       })
       .state('app.tasks', {
-       // abstract:true,
+        // abstract:true,
         //parent:'app',
         url: "/tasks/",
         views: {
-          'menuContent' :{
+          'menuContent': {
             templateUrl: "templates/tasks.html",
             controller: 'TasksCtrl'
           }
         }
       })
       .state('app.tasks/:orderId', {
-        cache:false,
+        cache: false,
         //parent:'app.tasks',
         //abstract:true,
         url: "/tasks/:orderId",
         views: {
-          'menuContent' :{
+          'menuContent': {
             templateUrl: "templates/order.html",
             controller: 'OrderCtrl'
           }
@@ -84,7 +84,7 @@ var APP = angular.module('tt', ['ionic','ngCordova'])//'tt.services'
       .state('app.pref', {
         url: "/pref",
         views: {
-          'menuContent' :{
+          'menuContent': {
             templateUrl: "templates/pref.html",
             controller: 'PrefCtrl'
           }

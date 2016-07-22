@@ -1,4 +1,4 @@
-<ion-view hide-back-button="true" animation="slide-left-right">
+<ion-view hide-back-button="true" animation="slide-right-left">
   <ion-nav-buttons side="right">
     <img class="iterius" src="img/h-logo.png">
     <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
@@ -24,7 +24,7 @@
 
     </div>
     <div class="teamPage">
-      <h4>began to work: {{user.status}}</h4>
+      <h4 ng-bind="user.startedTime|bigTiming"></h4>
     </div>
     <ion-list>
       <ion-item class='itemTask' ng-class="{ActiveBackground: task.current == true}"
@@ -36,7 +36,7 @@
           </div>
 
         </div>
-        <div class="currentTime">
+        <div class="currentTime2">
           <span ng-bind-html="task.time | timing"></span>
 
         </div>

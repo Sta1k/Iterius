@@ -140,7 +140,9 @@ div .startStop {
 
   font-size: 200%;
 }
-
+.playPause{
+  height:150px;
+}
 .started {
   background-position: bottom !important;
   margin-top: 0 !important;
@@ -149,15 +151,13 @@ div .startStop {
 div.time-now > p {
   margin: 0;
 }
-
+.margin-left{
+  margin-left: 10px;
+}
 div .startStopOrder {
-  width: 120;
   margin: 28% auto;
   color: #FFFFFF;
   text-align: center;
-  font-size: 825%;
-  border-radius: 100;
-  background: white;
 }
 .startStopOrder .icon.icon-right.ion-ios-play{
   color: #282d39;

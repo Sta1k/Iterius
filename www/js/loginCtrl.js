@@ -1,6 +1,7 @@
 APP
   .controller('LoginCtrl',
     function ($scope,
+              $rootScope,
               $ionicPlatform,
               $cordovaTouchID,
               $cordovaToast,
@@ -17,12 +18,13 @@ APP
         dataService.checkRemember();//.then(function (res) {
         $timeout(remember, 800);
       });
-
+      $rootScope.$on('logout', function () {
+        $scope.user = undefined;
+      });
       function remember() {
         $scope.check = data.check;
-        console.log($scope.check);
         if ($scope.check == 'on') {
-          //$scope.LogIn(data.user)
+          // $scope.LogIn(data.user);
           $scope.user = data.user
         }
 
@@ -44,12 +46,11 @@ APP
               if ($scope.user.remember == false) {
                 dataService.delRemember()
               }
-              if(data.user.role>0){
+              if (data.user.role > 0) {
                 $state.go('app.team', {}, {reload: true});
-              }else{
+              } else {
                 $state.go('app.tasks', {}, {reload: true});
               }
-              
 
 
             } else {
@@ -70,7 +71,7 @@ APP
             $cordovaToast.showShortTop('Please wait');
             $timeout(dataService.readDb()).then($timeout(function () {
               $scope.LogIn(data.user)
-            },500));
+            }, 500));
             // success
           }, function () {
             // error

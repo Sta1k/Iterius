@@ -19,12 +19,12 @@
 
           </div>
           <div class="startStopOrder" ng-click="toggleT(currentTask)">
-            <i ng-if="!currentTask.current" class="icon icon-right ion-ios-play"></i>
-            <i ng-if="currentTask.current" class="icon icon-right ion-ios-pause"></i>
+            <img ng-if="!currentTask.current" class="playPause" ng-src="img/play.png"/>
+            <img ng-if="currentTask.current" class="playPause" ng-src="img/pause.png"/>
           </div>
 
           <div class="currentTime">
-            <div class="ticky" ng-bind-html="currentTask.time | bigTiming"></div>
+            <div class="ticky" ng-bind-html="currentTask.time | upperTiming"></div>
           </div>
         </div>
       </section>

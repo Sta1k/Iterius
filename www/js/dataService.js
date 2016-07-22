@@ -26,15 +26,7 @@ APP
         console.log('DB deleted')
       });
     };
-    this.checkDB = function () {
-      db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
-          data.check = results.rows.item(2).log
-          console.log('Login: ' + results.rows.item(0).log +
-            'Pass: ' + results.rows.item(1).log);
-        }, null);
-      })
-    };
+
     this.checkRemember = function () {
       db.transaction(function (tx) {
         tx.executeSql('SELECT * FROM LOGS WHERE id>=4', [], function (tx, results) {
