@@ -1,6 +1,6 @@
 APP
   .service('APIService', function ($http, $httpParamSerializerJQLike) {
-    var url = 'http://tt.smiss.ua/api/';
+    var url = 'http://dev.tt.smiss.ua/api/';
     this.login = function (request) {//loginService.sendData to APIService.login
       // console.log(request);
       var login = {
@@ -76,6 +76,30 @@ APP
         method: 'POST',
         url: url+'tasks'
       });
+    };
+    this.TaskUpdate = function (object) {//createTask.TaskCreate to APIService.TaskCreate
+
+      // console.log(req);
+      return $http({
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        method: 'POST',
+        data: $httpParamSerializerJQLike({
+          id:object.id
+        }),
+        url: url+'getTaskModel'
+      })
+    };
+    this.TaskDelete = function (object) {//createTask.TaskCreate to APIService.TaskCreate
+
+      // console.log(req);
+      return $http({
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        method: 'POST',
+        data: $httpParamSerializerJQLike({
+          id:object.id
+        }),
+        url: url+'deleteTask'
+      })
     };
   });
 

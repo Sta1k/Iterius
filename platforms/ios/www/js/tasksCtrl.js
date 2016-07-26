@@ -21,12 +21,14 @@ APP.controller('TasksCtrl',
               $state,
               $interval,
               $stateParams) {
-      $rootScope.$on("logout", function(){
+
+      $rootScope.$on("logout", function () {
         console.log('!!!!!!');
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
-        dataService=undefined;
-        data=undefined;
+        dataService = undefined;
+        data = undefined;
+        $interval.cancel(stopInterval)
       });
       APIService.requestTasks()
         .then(function success(res) {
@@ -88,7 +90,8 @@ APP.controller('TasksCtrl',
           // console.log($scope.timeCount)
         }
       });
-      $interval(function () {
+
+      function reqServ() {
         $cordovaToast.showShortTop('Checking the server time');
         APIService.requestTasks()
           .then(function success(res) {
@@ -110,10 +113,9 @@ APP.controller('TasksCtrl',
               $scope.checkStarted();
             }
           })
-      }, 60000);
+      }
 
-
-
+      var stopInterval = $interval(reqServ, 60000);
 
       //взяли из сервиса
 
@@ -127,10 +129,26 @@ APP.controller('TasksCtrl',
         APIService.requestTasks().then(function () {
           // console.log(dataService.currentTask);
           $scope.busy = false;
-          $state.go('app.tasks/:orderId',{orderId:task.id});
+          $state.go('app.tasks/:orderId', {orderId: task.id});
         });
 
 
+      };
+      $scope.editTask = function (task) {
+        APIService.TaskUpdate(task).then(function (res) {
+          console.log(res)
+        })
+
+      };
+      
+      $scope.deleteTask = function (task) {
+        APIService.TaskDelete(task).then(function(res){
+          if(res.data.success){
+            console.log(res);
+            dataService.tasksList = res.data.tasks;
+            $scope.tasksList = dataService.tasksList;
+          }
+        })
       };
       // Старт стоп задачи
       // $scope.toggleT = function (task) {

@@ -14,7 +14,7 @@
 
       </header>
       <main id="main">
-        <div class="titlePage hide-on-keyboard-open"><h3>Create Task</h3></div>
+        <div class="titlePage hide-on-keyboard-open"><h3 ng-bind="title"></h3></div>
         <section>
           <div class="container-fluid">
             <div class="create-block">
@@ -71,7 +71,7 @@
                 <div class="row button-create">
                   <input ng-click="createT(task)"
                          class="button button-block button-positive"
-                         value="Create"
+                         ng-value="button"
                          ng-disabled="createForm.title.$invalid||task.associated==undefined"
                          type="submit"
                   >

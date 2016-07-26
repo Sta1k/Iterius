@@ -27,7 +27,16 @@ var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
           }
         }
       })
-
+      .state('app.create/:id', {
+        url: "/create/:id",
+        cache: false,
+        views: {
+          'menuContent': {
+            templateUrl: "templates/create.html",
+            controller: 'EditCtrl'
+          }
+        }
+      })
       .state('app.team', {
         url: "/team",
         views: {
@@ -58,7 +67,7 @@ var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
       })
       .state('app.tasks', {
         // abstract:true,
-        //parent:'app',
+        cache: false,
         url: "/tasks/",
         views: {
           'menuContent': {

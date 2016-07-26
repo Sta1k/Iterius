@@ -12,6 +12,7 @@ APP
   .service('dataService', function (data) {
     var db = window.openDatabase('iterius_db', 1, 'mobile', 2 * 1024 * 1024);
     this.Global = {};
+    this.editingTask={};
     this.tasksList = {};
     this.currentUser = null;
     this.currentTask = {};

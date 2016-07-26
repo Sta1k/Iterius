@@ -22,9 +22,10 @@
       <div ng-if="busy"><ion-spinner></ion-spinner></div>
     </div>
 
-    <ion-list>
+    <ion-list can-swipe='true'>
       <ion-item class='itemTask' ng-class="{ActiveBackground: task.current == true}"
         ng-repeat="task in tasksList">
+
         <div class="task">
           <div  class="nameTask">
             <div  ng-bind="task.name|sliceString"></div>
@@ -39,6 +40,14 @@
           <!--</a>-->
           <!--<i ng-if="!task.current" class="icon icon-right ion-ios-play-outline"></i>-->
           <!--<i ng-if="task.current" class="icon icon-right ion-ios-pause-outline"></i>-->
+          <ion-option-button class="hiding button-positive"
+                             ng-click="editTask(task)">
+            Edit
+          </ion-option-button>
+          <ion-option-button class="hiding button-assertive"
+                             ng-click="deleteTask(task)">
+            Delete
+          </ion-option-button>
         </div>
       </ion-item>
     </ion-list>

@@ -1,6 +1,8 @@
 APP.controller('TasksCtrl',
   ['$scope',
     '$rootScope',
+    '$ionicPopup',
+    '$ionicListDelegate',
     'dataService',
     'updateTaskTime',
     '$filter',
@@ -12,6 +14,8 @@ APP.controller('TasksCtrl',
     '$stateParams',
     function ($scope,
               $rootScope,
+              $ionicPopup,
+              $ionicListDelegate,
               dataService,
               updateTaskTime,
               $filter,
@@ -21,12 +25,14 @@ APP.controller('TasksCtrl',
               $state,
               $interval,
               $stateParams) {
-      $rootScope.$on("logout", function(){
+
+      $rootScope.$on("logout", function () {
         console.log('!!!!!!');
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
-        dataService=undefined;
-        data=undefined;
+        dataService = undefined;
+        data = undefined;
+        $interval.cancel(stopInterval)
       });
       APIService.requestTasks()
         .then(function success(res) {
@@ -88,8 +94,9 @@ APP.controller('TasksCtrl',
           // console.log($scope.timeCount)
         }
       });
-      $interval(function () {
-        $cordovaToast.showShortTop('Checking the server time');
+
+      function reqServ() {
+        // $cordovaToast.showShortTop('Checking the server time');
         APIService.requestTasks()
           .then(function success(res) {
             if (!res.data.success) {
@@ -110,10 +117,9 @@ APP.controller('TasksCtrl',
               $scope.checkStarted();
             }
           })
-      }, 60000);
+      }
 
-
-
+      var stopInterval = $interval(reqServ, 60000);
 
       //взяли из сервиса
 
@@ -127,10 +133,50 @@ APP.controller('TasksCtrl',
         APIService.requestTasks().then(function () {
           // console.log(dataService.currentTask);
           $scope.busy = false;
-          $state.go('app.tasks/:orderId',{orderId:task.id});
+          $state.go('app.tasks/:orderId', {orderId: task.id});
         });
 
 
+      };
+      $scope.editTask = function (task) {
+        $ionicListDelegate.closeOptionButtons();
+        APIService.TaskUpdate(task).then(function (res) {
+          if (!res.data) {
+            alert('Server error')
+          } else {
+            dataService.editingTask = res.data;
+            console.log(dataService.editingTask);
+          }
+        }).then(function () {
+          $state.go('app.create/:id', {id: task.id});
+        })
+
+      };
+      $scope.showConfirm = function (obj) {
+        var confirmPopup = $ionicPopup.confirm({
+          title: 'Delete this Task',
+          template: 'Are you sure you want to delete this Task?',
+          cancelType: 'button-positive',
+          okType: 'button-assertive'
+        });
+        confirmPopup.then(function (res) {
+          if (res) {
+            APIService.TaskDelete(obj).then(function (resp) {
+              if (resp.data.success) {
+                console.log(resp);
+                reqServ();
+
+              }
+            })
+          } else {
+            console.log('You are not sure');
+          }
+        });
+      };
+
+      $scope.deleteTask = function (task) {
+        $ionicListDelegate.closeOptionButtons();
+        $scope.showConfirm(task)
       };
       // Старт стоп задачи
       // $scope.toggleT = function (task) {

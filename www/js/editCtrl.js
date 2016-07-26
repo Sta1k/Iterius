@@ -1,17 +1,16 @@
 APP
-  .controller('CreateCtrl', function ($scope, $state, $cordovaToast, $ionicNavBarDelegate, dataService, APIService, $stateParams) {
-    console.log('createCtrl');
+  .controller('EditCtrl', function ($scope, $state, $cordovaToast, $ionicNavBarDelegate, dataService, APIService, $stateParams) {
+    console.log('editCtrl');
     $ionicNavBarDelegate.showBackButton(false);
-    $scope.task = {
-      associated: '',
-      assigned: '',
-      title: '',
-      desc: ''
-    };
-    $scope.button='Create';
-    $scope.title='Create Task';
+    $scope.task = dataService.editingTask;
     $scope.timeCount = dataService.AllWorkedTime;
+    $scope.title='Edit Task';
+    $scope.button='Edit';
+    $scope.clearForm = function () {
+      $scope.task = {};
+    };
     $scope.createT = function () {
+      console.log($scope.task);
       APIService.TaskCreate($scope.task)
         .then(function (res) {
           APIService.requestTasks()
@@ -23,11 +22,11 @@ APP
 
               } else {
                 dataService.tasksList = res.data.tasks;
-                $cordovaToast.show('Task created', 'short', 'top')
+                $cordovaToast.show('Task edited', 'short', 'top')
               }
             })
             .then(function (success) {
-              $cordovaToast.showShortTop('Please wait...');
+              
               $state.go('app.tasks', {}, {reload: true});
             })
         });
@@ -36,7 +35,4 @@ APP
       //   $state.go('app.tasks',{},{reload:true});
       // }
     };
-    $scope.clearForm = function () {
-      $scope.task = {};
-    }
   });

@@ -6,7 +6,7 @@
   height: 70px;
   border-radius: 3px;
   margin: 5px;
-  padding: 10px;
+
 
 }
 
@@ -85,7 +85,17 @@ label.item.item-input {
 .item {
   border-style: none;
 }
+.itemTask.item.item-complex.ActiveBackground .item-content {
+  padding: 10;
+  background-color: #282d39;
+  color: white;
 
+}
+.itemTask.item.item-complex .item-content {
+  padding: 10;
+  background-color: white;
+  color: #282d39;
+}
 .bar-stable .button.button-icon {
   padding: 2 5 0 5;
   color: #0a9dc7;
