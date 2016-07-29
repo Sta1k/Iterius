@@ -1,4 +1,4 @@
-<ion-view animation="slide-right-left" >
+<ion-view hide-back-button="true" animation="slide-right-left" >
   <ion-nav-buttons side="right">
     <img class="iterius" src="img/h-logo.png">
     <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
@@ -12,7 +12,7 @@
         <h3>Settings</h3>
     </div>
     <ul class="list">
-      <li class="item item-toggle">
+      <li style="padding-left: 3%" class="item item-toggle">
         Login with TouchID
         <label class="toggle toggle-positive">
           <input type="checkbox" ng-model="checkbox" ng-checked="checkbox" ng-click="showState()">
@@ -21,15 +21,7 @@
           </div>
         </label>
       </li>
-       <li class="item item-toggle">
-        Unsafe Login
-        <label class="toggle toggle-positive">
-          <input type="checkbox" ng-model="checkbox2" ng-checked="checkbox2" ng-click="showState1()">
-          <div class="track">
-            <div class="handle"></div>
-          </div>
-        </label>
-      </li>
+
     </ul>
 <p class="margin-left">For use touchID please swipe left on Login Screen </p>
 

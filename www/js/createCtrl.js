@@ -1,5 +1,5 @@
 APP
-  .controller('CreateCtrl', function ($scope, $state, $cordovaToast, $ionicNavBarDelegate, dataService, APIService, $stateParams) {
+  .controller('CreateCtrl', function ($scope, $state, $cordovaToast,data, $ionicNavBarDelegate, dataService, APIService, $stateParams) {
     console.log('createCtrl');
     $ionicNavBarDelegate.showBackButton(false);
     $scope.task = {
@@ -11,6 +11,13 @@ APP
     $scope.button='Create';
     $scope.title='Create Task';
     $scope.timeCount = dataService.AllWorkedTime;
+    if(data.user.role==1){
+      $scope.currentTeam = dataService.currentTeam.users;
+    }
+    if(data.user.role==2){
+      $scope.currentTeam = dataService.Global.all;
+    }
+    console.log($scope.currentTeam);
     $scope.createT = function () {
       APIService.TaskCreate($scope.task)
         .then(function (res) {

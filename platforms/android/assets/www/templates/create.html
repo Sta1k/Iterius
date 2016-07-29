@@ -1,4 +1,4 @@
-<ion-view class="background">
+<ion-view class="background" animation="slide-right-left">
   <ion-nav-buttons side="right">
     <img class="iterius" src="img/h-logo.png">
     <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
@@ -14,7 +14,7 @@
 
       </header>
       <main id="main">
-        <div class="titlePage hide-on-keyboard-open"><h3>Create Task</h3></div>
+        <div class="titlePage hide-on-keyboard-open"><h3 ng-bind="title"></h3></div>
         <section>
           <div class="container-fluid">
             <div class="create-block">
@@ -31,7 +31,7 @@
                            required
                     >
                   </label>
-                  <div style="text-align: center; color: #ff0500;"
+                  <div style="text-align: left;padding-left: 3$; color: #ff0500;"
                        ng-show="createForm.$submitted || createForm.title.$touched">
                     <div ng-show="createForm.title.$error.required">Task "Title" is required</div>
                     <div ng-show="createForm.title.$error.minlength">Title is too short</div>
@@ -41,7 +41,7 @@
                   <label style="margin-top: 3%" class="item item-input">
                     <textarea rows='5'
                               placeholder="Description"
-                              ng-model="task.desc"
+                              ng-model="task.description"
                     ></textarea>
                   </label>
                 </div>
@@ -52,26 +52,21 @@
                     <div class="input-label">
                       Assign: *
                     </div>
-                    <select ng-model="task.assigned">
-                      <option selected>Assign</option>
-                      <option>Superadmin</option>
-                      <option>Admin</option>
-                      <option>Manager</option>
-                      <option>User</option>
-                      <option>Guest</option>
+                    <select  ng-model="task.assigned">
+                      <option ng-repeat="user in currentTeam" ng-value="user.id">{{user.name}}</option>
                     </select>
                   </label>
 
                 </div>
-                <ion-list>
-                  <ion-radio ng-model="task.associated" ng-value="'A'">Not associate</ion-radio>
-                  <ion-radio ng-model="task.associated" ng-value="'B'">Associated with project</ion-radio>
-                  <ion-radio ng-model="task.associated" ng-value="'С'">Associated with task</ion-radio>
+                <ion-list ng-model="task.associated">
+                  <ion-radio  ng-value="'0'">Not associate</ion-radio>
+                  <ion-radio  ng-value="1">Associated with project</ion-radio>
+                  <ion-radio  ng-value="2">Associated with task</ion-radio>
                 </ion-list>
                 <div class="row button-create">
                   <input ng-click="createT(task)"
                          class="button button-block button-positive"
-                         value="Create"
+                         ng-value="button"
                          ng-disabled="createForm.title.$invalid||task.associated==undefined"
                          type="submit"
                   >

@@ -1,6 +1,8 @@
 APP.controller('TasksCtrl',
   ['$scope',
     '$rootScope',
+    '$ionicPopup',
+    '$ionicListDelegate',
     'dataService',
     'updateTaskTime',
     '$filter',
@@ -9,9 +11,12 @@ APP.controller('TasksCtrl',
     'APIService',
     '$state',
     '$interval',
+    '$timeout',
     '$stateParams',
     function ($scope,
               $rootScope,
+              $ionicPopup,
+              $ionicListDelegate,
               dataService,
               updateTaskTime,
               $filter,
@@ -20,8 +25,9 @@ APP.controller('TasksCtrl',
               APIService,
               $state,
               $interval,
+              $timeout,
               $stateParams) {
-
+      $timeout(navigator.splashscreen.hide(),2000);
       $rootScope.$on("logout", function () {
         console.log('!!!!!!');
         $rootScope = $rootScope.$new(true);
@@ -92,7 +98,7 @@ APP.controller('TasksCtrl',
       });
 
       function reqServ() {
-        $cordovaToast.showShortTop('Checking the server time');
+        // $cordovaToast.showShortTop('Checking the server time');
         APIService.requestTasks()
           .then(function success(res) {
             if (!res.data.success) {
@@ -135,20 +141,44 @@ APP.controller('TasksCtrl',
 
       };
       $scope.editTask = function (task) {
+        $ionicListDelegate.closeOptionButtons();
         APIService.TaskUpdate(task).then(function (res) {
-          console.log(res)
+          if (!res.data) {
+            alert('Server error')
+          } else {
+            dataService.editingTask = res.data;
+            console.log(dataService.editingTask);
+          }
+        }).then(function () {
+          $state.go('app.create/:id', {id: task.id});
         })
 
       };
-      
-      $scope.deleteTask = function (task) {
-        APIService.TaskDelete(task).then(function(res){
-          if(res.data.success){
-            console.log(res);
-            dataService.tasksList = res.data.tasks;
-            $scope.tasksList = dataService.tasksList;
+      $scope.showConfirm = function (obj) {
+        var confirmPopup = $ionicPopup.confirm({
+          title: 'Delete this Task',
+          template: 'Are you sure you want to delete this Task?',
+          cancelType: 'button-positive',
+          okType: 'button-assertive'
+        });
+        confirmPopup.then(function (res) {
+          if (res) {
+            APIService.TaskDelete(obj).then(function (resp) {
+              if (resp.data.success) {
+                console.log(resp);
+                reqServ();
+
+              }
+            })
+          } else {
+            console.log('You are not sure');
           }
-        })
+        });
+      };
+
+      $scope.deleteTask = function (task) {
+        $ionicListDelegate.closeOptionButtons();
+        $scope.showConfirm(task)
       };
       // Старт стоп задачи
       // $scope.toggleT = function (task) {

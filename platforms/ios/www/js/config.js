@@ -20,6 +20,7 @@ var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
 
       .state('app.create', {
         url: "/create",
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: "templates/create.html",
@@ -27,7 +28,16 @@ var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
           }
         }
       })
-
+      .state('app.create/:id', {
+        url: "/create/:id",
+        cache: false,
+        views: {
+          'menuContent': {
+            templateUrl: "templates/create.html",
+            controller: 'EditCtrl'
+          }
+        }
+      })
       .state('app.team', {
         url: "/team",
         views: {
@@ -49,6 +59,7 @@ var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
       })
       .state('app.curteam/:teamId', {
         url: "/curteam/:teamId",
+        cache:false,
         views: {
           'menuContent': {
             templateUrl: "templates/curteam.html",
@@ -58,7 +69,7 @@ var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
       })
       .state('app.tasks', {
         // abstract:true,
-        //parent:'app',
+        cache: false,
         url: "/tasks/",
         views: {
           'menuContent': {
@@ -90,14 +101,25 @@ var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
           }
         }
       })
-
+      
+      .state('splash', {
+        url: "/splash",
+        templateUrl: "templates/splash.html",
+        controller: 'SplashCtrl'
+      })
+      
       .state('login', {
         url: "/login",
         templateUrl: "templates/login.html",
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        // onEnter: function($state, Auth){
+        //   if(!Auth.isLoggedIn()){
+        //     $state.go('login');
+        //   }
+        // }
       });
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/splash');
 
   });
 

@@ -32,7 +32,7 @@
           >
         </label>
       </div>
-      <div style="text-align: center; color: #ff0500;" ng-show="form.$submitted || form.login.$touched || form.pass.$touched">
+      <div style="text-align: left;padding-left: 3%; color: #ff0500;" ng-show="form.$submitted || form.login.$touched || form.pass.$touched">
         <div ng-show="form.login.$error.required">Please fill in login</div>
         <div ng-show="form.login.$error.minlength">Login is too short</div>
         <div ng-show="form.login.$error.maxlength">Login is too long</div>
@@ -54,7 +54,7 @@
 
 
       </div>
-      <ion-checkbox  class="hide-on-keyboard-open login-check" ng-model="user.remember">Remember me</ion-checkbox>
+      <ion-checkbox  class="login-check" ng-model="user.remember">Remember me</ion-checkbox>
 
       <!--<input type="button" class="button button-block button-positive" ng-click="test()">-->
       <!--<div ng-messages="login.login.$error" style="color:maroon" role="alert">-->

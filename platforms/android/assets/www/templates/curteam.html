@@ -14,7 +14,7 @@
     <!--</label>-->
     <!--</div>-->
     <div class="titlePage">
-      <div><h3>Status of Team</h3></div>
+      <div style="width:90%; float:left;"><h3>Status of Team</h3></div>
       <div ng-if="busy">
         <ion-spinner></ion-spinner>
       </div>
@@ -26,7 +26,7 @@
         <div class="team">
           <div class="nameTask">
             <div style="width: 50%; float:left"><span ng-bind="user.name"></span></div>
-            <div style="width: 50%; float:right"><span ng-bind="user.status||'Not Working'"></span></div>
+            <div style="width: 30%; float:right"><span ng-bind="user.status||'Not Working'"></span></div>
           </div>
           <!--<ion-list ng-show='showTeam'  class="teamMembers">-->
           <!--<ion-item ng-repeat="user in team.users">-->

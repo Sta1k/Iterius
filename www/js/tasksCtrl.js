@@ -11,6 +11,7 @@ APP.controller('TasksCtrl',
     'APIService',
     '$state',
     '$interval',
+    '$timeout',
     '$stateParams',
     function ($scope,
               $rootScope,
@@ -24,8 +25,9 @@ APP.controller('TasksCtrl',
               APIService,
               $state,
               $interval,
+              $timeout,
               $stateParams) {
-
+      $timeout(navigator.splashscreen.hide(),2000);
       $rootScope.$on("logout", function () {
         console.log('!!!!!!');
         $rootScope = $rootScope.$new(true);

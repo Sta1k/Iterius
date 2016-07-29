@@ -1,5 +1,5 @@
 APP
-  .controller('LoginCtrl',
+  .controller('SplashCtrl',
     function ($scope,
               $rootScope,
               $ionicPlatform,
@@ -11,9 +11,9 @@ APP
               dataService,
               $stateParams,
               $timeout) {
-      $timeout(navigator.splashscreen.hide(),2000);
+      $scope.$on('$ionicView.loaded', function () {
         ionic.Platform.ready(function () {
-          
+          if (navigator && navigator.splashscreen)
             $scope.isAndroid = ionic.Platform.isAndroid();
           $scope.user = {};
 
@@ -22,12 +22,13 @@ APP
           function remember() {
             $scope.check = data.check;
             if ($scope.check == 'on') {
-              $scope.user=data.user
-              // $scope.LogIn(data.user);
-            } 
+              $scope.LogIn(data.user);
+            } else {
+              $state.go('login', {}, {reload: true});
+            }
           }
         });
-      
+      });
       $rootScope.$on('logout', function () {
         $scope.user = undefined;
       });
@@ -38,7 +39,7 @@ APP
           .then(function
             success(response) {
             // console.log(response);
-            $scope.user=dataService.login = objUser;
+            $scope.user = dataService.login = objUser;
 
             if (response.data.success) {
               data.user.role = response.data.type;
@@ -46,7 +47,7 @@ APP
               if ($scope.user.remember == true && $scope.user.password.length > 6) {
                 dataService.rememberMe($scope.user)
               }
-              if ($scope.user.remember == false||!$scope.user.remember) {
+              if ($scope.user.remember == false || !$scope.user.remember) {
                 dataService.delRemember()
               }
               if (data.user.role > 0) {
@@ -62,34 +63,13 @@ APP
             } else {
 
               alert(response.data.errors.password[0]);
-              $timeout(navigator.splashscreen.hide(),500)
+              navigator.splashscreen.hide();
             }
 
           }, function err(res) {
             console.log(res.status + ' ' + res.statusText);
-            
+            navigator.splashscreen.hide();
           })
 
       };
-
-      $scope.StartTouch = function () {
-        $cordovaTouchID.checkSupport().then(function () {
-          $cordovaTouchID.authenticate("You must authenticate").then(function () {
-            $cordovaToast.showShortTop('Please wait');
-            $timeout(dataService.readDb()).then($timeout(function () {
-              $scope.LogIn(data.user)
-            }, 500));
-            // success
-          }, function () {
-            // error
-          });
-        }, function (error) {
-          alert(error); // TouchID not supported
-        });
-
-      };//end function
-
     });
-
-
-

@@ -31,7 +31,7 @@ APP
           $state.go('login', {}, {reload: true})
         })
     };
-    
+
 
 
   });

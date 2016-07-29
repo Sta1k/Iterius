@@ -47,7 +47,7 @@ APP
           + 'false' + '")');
         // APIService.login(data.user)
       }, null);
-
+      // data.user={};
 
     };
     this.writeDB = function (obj) {

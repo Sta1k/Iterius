@@ -38,7 +38,11 @@ APP
 APP
   .filter('bigTiming', function () {
     return function (num) {
-      var a = new Date(num);
+      if(!num){
+        return 'not working'
+      }
+      var b=num*1000;
+      var a = new Date(b);
       var h = a.getHours();
       var m = a.getMinutes();
       if (h < 10)

@@ -19,7 +19,9 @@ APP
           $scope.userTasks = dataService.memberTasks=res.tasks;
           console.log(dataService.memberTasks);
           $scope.id = $stateParams.id;
+          $scope.checkStarted();
         });
+
       $scope.timeCount = dataService.AllWorkedTime;
       console.log('UserTasksCtrl');
 
@@ -32,16 +34,18 @@ APP
         }
         else if (obj.current == true) {
           // dataService.showTime = true;
-          updateMemberTime.StartTimer(obj);
-          $interval(function () {
-            $scope.userTasks = dataService.memberTasks;
-            // $scope.timeCount = dataService.AllWorkedTime;
-            //console.log(obj);
-          }, 1000);
+          updateMemberTime.StartTimer(obj)
         }
-        // console.log(obj)
       };
-      $scope.checkStarted();
+
+      $scope.$watch(function () {
+        return dataService.memberTasks;
+      }, function (newVal, oldVal, scope) {
+        if (newVal) {
+          $scope.userTasks = newVal;
+          // console.log(newVal);
+        }
+      });
       $scope.toggleT = function (task) {
 
         APIService.toggleState(task.id)

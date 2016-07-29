@@ -9,7 +9,12 @@
 
 
 }
-
+.hiding{
+  width: 50px;
+}
+.hiding.button-assertive.button {
+  padding: 3;
+}
 .grey_back {
   background-color: #e1e1e1;
 }
@@ -162,7 +167,7 @@ div.time-now > p {
   margin: 0;
 }
 .margin-left{
-  margin-left: 10px;
+  margin-left: 3%;
 }
 div .startStopOrder {
   margin: 28% auto;

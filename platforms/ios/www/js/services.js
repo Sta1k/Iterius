@@ -1,6 +1,6 @@
 APP
   .service('APIService', function ($http, $httpParamSerializerJQLike) {
-    var url = 'http://dev.tt.smiss.ua/api/';
+    var url = 'http://tt.smiss.ua/api/';
     this.login = function (request) {//loginService.sendData to APIService.login
       // console.log(request);
       var login = {
@@ -12,7 +12,7 @@ APP
       };
       return $http({
         method: 'POST',
-        url: url+'login',
+        url: url + 'login',
         data: $httpParamSerializerJQLike(login),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       })
@@ -21,7 +21,7 @@ APP
       // console.log(req);
       return $http({
         method: 'POST',
-        url: url+'tasks'
+        url: url + 'tasks'
       });
     };
     this.toggleState = function (id) {//taskToggle.toggleState to APIService.toggleState
@@ -30,7 +30,7 @@ APP
         method: 'POST',
         data: $httpParamSerializerJQLike({id: id}),
         // permissions: ['http://172.16.3.141/'],
-        url: url+'toggle'
+        url: url + 'toggle'
       })
     };
     this.TaskCreate = function (object) {//createTask.TaskCreate to APIService.TaskCreate
@@ -41,19 +41,21 @@ APP
         method: 'POST',
         data: $httpParamSerializerJQLike({
           title: object.title,
-          description: object.desc
+          description: object.description,
+          task_id: object.id || undefined,
+          user_id: object.assigned || undefined
         }),
-        url: url+'createTask'
+        url: url + 'createTask'
       })
     };
-    this.logout=function () {
+    this.logout = function () {
       return $http({
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         method: 'POST',
         data: $httpParamSerializerJQLike({
           //data
         }),
-        url: url+'logout'
+        url: url + 'logout'
       })
     };
     this.teamStatus = function () {
@@ -61,9 +63,9 @@ APP
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         method: 'POST',
         data: $httpParamSerializerJQLike({
-         //data
+          //data
         }),
-        url: url+'teamStatus'
+        url: url + 'teamStatus'
       })
     };
     this.requestUserTasks = function (id) {
@@ -74,7 +76,7 @@ APP
           user: id
         }),
         method: 'POST',
-        url: url+'tasks'
+        url: url + 'tasks'
       });
     };
     this.TaskUpdate = function (object) {//createTask.TaskCreate to APIService.TaskCreate
@@ -84,9 +86,9 @@ APP
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         method: 'POST',
         data: $httpParamSerializerJQLike({
-          id:object.id
+          id: object.id
         }),
-        url: url+'getTaskModel'
+        url: url + 'getTaskModel'
       })
     };
     this.TaskDelete = function (object) {//createTask.TaskCreate to APIService.TaskCreate
@@ -96,9 +98,9 @@ APP
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         method: 'POST',
         data: $httpParamSerializerJQLike({
-          id:object.id
+          id: object.id
         }),
-        url: url+'deleteTask'
+        url: url + 'deleteTask'
       })
     };
   });

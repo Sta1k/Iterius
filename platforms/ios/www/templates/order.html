@@ -1,4 +1,4 @@
-<ion-view hide-back-button="true" animation="slide-left-right">
+<ion-view hide-back-button="true" animation="slide-right-left">
   <!--<div>в тайтле разместить название задачи</div>-->
   <ion-nav-buttons side="right">
     <img class="iterius" src="img/h-logo.png">
@@ -14,7 +14,7 @@
       <section class="task-name">
         <div class="container-fluid">
           <div class="titlePage">
-            <div><h3 ng-bind="currentTask.name"></h3></div>
+            <div style="width:90%; float:left;"><h3 ng-bind="currentTask.name"></h3></div>
             <div ng-if="busy"><ion-spinner></ion-spinner></div>
 
           </div>
