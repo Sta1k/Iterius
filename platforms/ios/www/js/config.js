@@ -2,8 +2,8 @@
  * Created by smissltd on 16.05.16.
  */
 var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
-  .config(function ($compileProvider) {
-
+  .config(function ($compileProvider,$ionicConfigProvider) {
+    $ionicConfigProvider.views.swipeBackEnabled(false);
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
   })
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -67,6 +67,17 @@ var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
           }
         }
       })
+      .state('app.stat', {
+        // abstract:true,
+        cache: false,
+        url: "/statistic/",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/stat.html",
+            controller: 'StatCtrl'
+          }
+        }
+      })
       .state('app.tasks', {
         // abstract:true,
         cache: false,
@@ -101,22 +112,21 @@ var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
           }
         }
       })
-      
+
       .state('splash', {
         url: "/splash",
         templateUrl: "templates/splash.html",
         controller: 'SplashCtrl'
       })
-      
+      .state('finger', {
+        url: "/finger",
+        templateUrl: "templates/splash.html",
+        controller: 'FingerCtrl'
+      })
       .state('login', {
         url: "/login",
         templateUrl: "templates/login.html",
-        controller: 'LoginCtrl',
-        // onEnter: function($state, Auth){
-        //   if(!Auth.isLoggedIn()){
-        //     $state.go('login');
-        //   }
-        // }
+        controller: 'LoginCtrl'
       });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/splash');

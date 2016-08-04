@@ -17,7 +17,7 @@
           <i class="icon ion-ios-briefcase-outline"></i>
           My Tasks
         </ion-item>
-        <ion-item  nav-clear menu-close href="" ng-click="team()">
+        <ion-item  ng-if="role>0" nav-clear menu-close href="" ng-click="team()">
           <i class="icon ion-person-stalker"></i>
           Status of team
         </ion-item>
@@ -28,6 +28,10 @@
         <ion-item nav-clear menu-close href="" ng-click="pref()">
           <i class="icon ion-ios-gear-outline"></i>
           Settings
+        </ion-item>
+        <ion-item ng-if="role>0" nav-clear menu-close href="" ng-click="stat()">
+          <i class="icon ion-ios-gear-outline"></i>
+          Statistic
         </ion-item>
         <ion-item nav-clear menu-close href="" ng-click="logout()">
           <i class="icon ion-android-exit"></i>

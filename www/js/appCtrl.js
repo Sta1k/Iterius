@@ -1,7 +1,6 @@
 APP
-  .controller('AppCtrl', function ($scope,$rootScope, $state,dataService,data, $stateParams, $cordovaVibration,APIService) {
-    //$scope.role = data.user.role;
-
+  .controller('AppCtrl', function ($scope,$rootScope,$state,dataService,data, $stateParams, $cordovaVibration,APIService) {
+    $scope.role = data.user.role;
     // $scope.$watch(function () {
     //   return data.user.role
     // }, function (newValue) {
@@ -21,6 +20,9 @@ APP
     };
     $scope.pref = function () {
       $state.go('app.pref',{},{reload:true})
+    };
+    $scope.stat = function () {
+      $state.go('app.stat',{},{reload:true})
     };
     $scope.logout = function () {
       APIService.logout().then(

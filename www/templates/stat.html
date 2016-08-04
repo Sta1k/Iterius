@@ -1,0 +1,56 @@
+<ion-view class="revertcolor" hide-back-button="true" animation="slide-right-left">
+  <!--<div>в тайтле разместить название задачи</div>-->
+  <ion-nav-buttons side="right">
+    <img class="iterius" src="img/h-logo.png">
+    <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
+
+    <div ng-if="timeCount>0"
+         ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
+  </ion-nav-buttons>
+
+
+  <ion-content style="background: #e5e5e5" class="has-header">
+    <div class="list-task" style="margin-top: 5%">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          User:
+        </div>
+        <select ng-model="query.user">
+          <option ng-repeat="object in userStatList" ng-value="object.user.id">{{object.user.name}}</option>
+        </select>
+      </label>
+    </div>
+    <div class="list-task">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Year:
+        </div>
+        <select ng-model="query.year">
+          <option ng-repeat="year in years" ng-value="year">{{year}}</option>
+        </select>
+      </label>
+    </div>
+    <div class="list-task">
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Month:
+        </div>
+        <select ng-model="query.month">
+          <option ng-repeat="month in months" ng-value="month.id">{{month.name}}</option>
+        </select>
+      </label>
+
+    </div>
+    <div class="row button-create">
+      <input ng-click="runQuery()"
+             class="button button-block button-positive"
+             value="Search"
+             type="submit"
+      >
+    </div>
+    <div class="blue-parallel">Sum of hours per month:</div>
+    <div class="blue-parallel">Underworked:</div>
+    <div class="blue-parallel">Sum of hours per month (Issue Tracker):</div>
+  </ion-content>
+</ion-view>

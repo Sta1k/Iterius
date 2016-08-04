@@ -21,8 +21,9 @@ APP
           $timeout(remember, 800);
           function remember() {
             $scope.check = data.check;
-            if ($scope.check == 'on') {
-              $scope.user=data.user
+            if ($scope.check == 'true') {
+              $scope.user=data.user;
+              $scope.user.remember=true;
               // $scope.LogIn(data.user);
             } 
           }
@@ -44,7 +45,7 @@ APP
               data.user.role = response.data.type;
               // console.log(data.user.role);
               if ($scope.user.remember == true && $scope.user.password.length > 6) {
-                dataService.rememberMe($scope.user)
+                dataService.writeDB($scope.user)
               }
               if ($scope.user.remember == false||!$scope.user.remember) {
                 dataService.delRemember()

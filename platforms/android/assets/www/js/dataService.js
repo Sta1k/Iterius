@@ -12,7 +12,7 @@ APP
   .service('dataService', function (data) {
     var db = window.openDatabase('iterius_db', 1, 'mobile', 2 * 1024 * 1024);
     this.Global = {};
-    this.editingTask={};
+    this.editingTask = {};
     this.tasksList = {};
     this.currentUser = null;
     this.currentTask = {};
@@ -30,89 +30,58 @@ APP
 
     this.checkRemember = function () {
       db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM LOGS WHERE id>=4', [], function (tx, results) {
-          data.check = results.rows.item(2).log;
-          data.user.username = results.rows.item(0).log;
-          data.user.password = results.rows.item(1).log;
-          data.user.remember = true;
-          console.log(data.user);
-          // APIService.login(data.user)
+        tx.executeSql('SELECT finger,remember,username,password FROM LOGS', [], function (tx, results) {
+          data.check = results.rows.item(0).remember;
+          data.user.username = results.rows.item(0).username;
+          data.user.password = results.rows.item(0).password;
+          data.user.finger = results.rows.item(0).finger;
+          console.log(data);
         }, null);
       });
-
+      
     };
+
     this.delRemember = function () {
       db.transaction(function (tx) {
-        tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (10, "'
+        tx.executeSql('INSERT OR REPLACE INTO LOGS (id, remember) VALUES (1, "'
           + 'false' + '")');
         // APIService.login(data.user)
       }, null);
       // data.user={};
 
     };
-    this.writeDB = function (obj) {
-
+    this.writeDB = function (obj) {//finger
       db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
-        tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (1, "'
-          + obj.username + '")');
-        tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (2, "'
-          + obj.password + '")');
-        tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (3, "'
-          + obj.touch + '")');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique,username,password,finger,remember)');
+        if (!obj.touch) {
+          tx.executeSql('INSERT OR REPLACE INTO LOGS (id, username, password, remember) VALUES (1, "'
+            + obj.username + '","' + obj.password + '","' + obj.remember + '")');
+        } else {
+          tx.executeSql('INSERT OR REPLACE INTO LOGS (id, username, password, finger) VALUES (1, "'
+            + obj.username + '","' + obj.password + '","' + obj.touch + '")');
+        }
 
       });
       console.log(
         'SAVED \nLOGIN :' + obj.username +
-        '\nPASSWORD :' + obj.password);
-
-    };
-    this.rememberMe = function (obj) {
-
-      db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
-        tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (4, "'
-          + obj.username + '")');
-        tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (5, "'
-          + obj.password + '")');
-        tx.executeSql('INSERT OR REPLACE INTO LOGS (id, log) VALUES (10, "'
-          + 'on' + '")');
-      });
-      console.log(
-        'SAVED \nLOGIN :' + obj.username +
-        '\nPASSWORD :' + obj.password);
+        '\nPASSWORD :' + obj.password +
+        '\nFinger :' + obj.touch);
 
     };
     this.checkFinger = function () {
       db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM LOGS WHERE id=3', [], function (tx, results) {
-          var len = results.rows.length, i;
-          msg = "Found rows: " + len;
-          console.log(msg +
-            '\ncheck: ' + results.rows.item(0).log);
-          return results.rows.item(0).log;
-
+        tx.executeSql('SELECT finger,username,password FROM LOGS', [], function (tx, results) {
+          return results.rows.item(0).finger;
         })
-      })
 
+      })
     };
     this.readDb = function (success, error) {
-
       db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
-          var len = results.rows.length, i;
-          msg = "Found rows: " + len;
-          console.log(msg +
-            '\nlogin: ' + results.rows.item(0).log +
-            '\npass: ' + results.rows.item(1).log);
-          data.user.username = results.rows.item(0).log;
-          data.user.password = results.rows.item(1).log;
-
-          // console.log('LOADED \nLOGIN :'
-          //     + datasec.Username+'\nPASSWORD :'
-          //     +datasec.Password+'\nCODE :'+datasec.Code);
-
-
+        tx.executeSql('SELECT username,password FROM LOGS', [], function (tx, results) {
+          data.user.username = results.rows.item(0).username;
+          data.user.password = results.rows.item(0).password;
+          console.log(data);
         }, null);
       });
     }
@@ -207,5 +176,5 @@ APP
     return {
       show: false
     }
-  })
+  });
 
