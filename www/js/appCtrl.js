@@ -1,5 +1,5 @@
 APP
-  .controller('AppCtrl', function ($scope,$rootScope,$state,dataService,data, $stateParams, $cordovaVibration,APIService) {
+  .controller('AppCtrl', function ($scope,$ionicPlatform,$translate,$rootScope,$state,dataService,data, $stateParams, $cordovaVibration,APIService) {
     $scope.role = data.user.role;
     // $scope.$watch(function () {
     //   return data.user.role
@@ -34,6 +34,17 @@ APP
         })
     };
 
+    $ionicPlatform.ready(function () {
+      if (typeof navigator.globalization !== "undefined") {
+        navigator.globalization.getPreferredLanguage(function (language) {
+          $translate.use((language.value).split("-")[0]).then(function (data) {
 
+            console.log("SUCCESS -> " + data);
+          }, function (error) {
+            console.log("ERROR -> " + error);
+          });
+        }, null);
+      }
+    })
 
   });

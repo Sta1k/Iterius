@@ -43,6 +43,10 @@
                         {
                             "xml": "<feature name=\"Vibration\"><param name=\"ios-package\" value=\"CDVVibration\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Globalization\"><param name=\"ios-package\" value=\"CDVGlobalization\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -72,6 +76,9 @@
             "PACKAGE_NAME": "com.timetracker.smiss"
         },
         "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.iterius.smiss"
+        },
+        "cordova-plugin-globalization": {
             "PACKAGE_NAME": "com.iterius.smiss"
         }
     },
@@ -139,6 +146,22 @@
                 "navigator.notification",
                 "navigator"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
+            "id": "cordova-plugin-globalization.GlobalizationError",
+            "pluginId": "cordova-plugin-globalization",
+            "clobbers": [
+                "window.GlobalizationError"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/globalization.js",
+            "id": "cordova-plugin-globalization.globalization",
+            "pluginId": "cordova-plugin-globalization",
+            "clobbers": [
+                "navigator.globalization"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -149,6 +172,7 @@
         "cordova-plugin-x-toast": "2.5.2",
         "ionic-plugin-keyboard": "2.2.0",
         "cordova-plugin-touchid": "0.3.1",
-        "cordova-plugin-vibration": "2.1.1"
+        "cordova-plugin-vibration": "2.1.1",
+        "cordova-plugin-globalization": "1.0.4-dev"
     }
 }

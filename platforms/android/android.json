@@ -35,6 +35,10 @@
                         {
                             "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Globalization\"><param name=\"android-package\" value=\"org.apache.cordova.globalization.Globalization\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -74,6 +78,9 @@
             "PACKAGE_NAME": "com.timetracker.smiss"
         },
         "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.iterius.smiss"
+        },
+        "cordova-plugin-globalization": {
             "PACKAGE_NAME": "com.iterius.smiss"
         }
     },
@@ -133,6 +140,20 @@
                 "navigator.notification",
                 "navigator"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
+            "id": "cordova-plugin-globalization.GlobalizationError",
+            "clobbers": [
+                "window.GlobalizationError"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/globalization.js",
+            "id": "cordova-plugin-globalization.globalization",
+            "clobbers": [
+                "navigator.globalization"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -143,6 +164,7 @@
         "cordova-plugin-x-toast": "2.5.2",
         "ionic-plugin-keyboard": "2.2.0",
         "cordova-plugin-touchid": "0.3.1",
-        "cordova-plugin-vibration": "2.1.1"
+        "cordova-plugin-vibration": "2.1.1",
+        "cordova-plugin-globalization": "1.0.4-dev"
     }
 }

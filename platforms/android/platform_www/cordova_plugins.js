@@ -54,6 +54,20 @@ module.exports = [
             "navigator.notification",
             "navigator"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
+        "id": "cordova-plugin-globalization.GlobalizationError",
+        "clobbers": [
+            "window.GlobalizationError"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-globalization/www/globalization.js",
+        "id": "cordova-plugin-globalization.globalization",
+        "clobbers": [
+            "navigator.globalization"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -66,7 +80,8 @@ module.exports.metadata =
     "cordova-plugin-x-toast": "2.5.2",
     "ionic-plugin-keyboard": "2.2.0",
     "cordova-plugin-touchid": "0.3.1",
-    "cordova-plugin-vibration": "2.1.1"
+    "cordova-plugin-vibration": "2.1.1",
+    "cordova-plugin-globalization": "1.0.4-dev"
 };
 // BOTTOM OF METADATA
 });

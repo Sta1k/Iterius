@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		03C4C0130ACB41CDAE334B84 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5104B2FE9F14FD99F2619C4 /* Toast+UIView.m */; };
@@ -29,6 +28,7 @@
 		CAE3E98AD2D94BD392AF4660 /* CDVVibration.m in Sources */ = {isa = PBXBuildFile; fileRef = FB256ADF0BBF4C37A3E795A1 /* CDVVibration.m */; };
 		EF981CE5F9D64354B13D89BC /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AE2612DDE9489A9711D284 /* CDVSplashScreen.m */; };
 		FF4870C78658430092E841FC /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5C1BA51944F0CBBC6E91D /* Toast.m */; };
+		F1FF733A30D94CFCB2A750B4 /* CDVGlobalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7BAC71639D4C74B6398004 /* CDVGlobalization.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +90,8 @@
 		F92F7FCEFBC64242BFD21BCA /* CDVDevice.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVDevice.h; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; };
 		F9AE2612DDE9489A9711D284 /* CDVSplashScreen.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVSplashScreen.m; path = "cordova-plugin-splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; };
 		FB256ADF0BBF4C37A3E795A1 /* CDVVibration.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVVibration.m; path = "cordova-plugin-vibration/CDVVibration.m"; sourceTree = "<group>"; };
+		6B7BAC71639D4C74B6398004 /* CDVGlobalization.m */ = {isa = PBXFileReference; name = "CDVGlobalization.m"; path = "cordova-plugin-globalization/CDVGlobalization.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		6D60650D643747D4A17C5B43 /* CDVGlobalization.h */ = {isa = PBXFileReference; name = "CDVGlobalization.h"; path = "cordova-plugin-globalization/CDVGlobalization.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,8 @@
 				6C557AF857EC48DF8FEE2055 /* TouchID.h */,
 				FB256ADF0BBF4C37A3E795A1 /* CDVVibration.m */,
 				87F7018F9DA94526813939E9 /* CDVVibration.h */,
+				6B7BAC71639D4C74B6398004 /* CDVGlobalization.m */,
+				6D60650D643747D4A17C5B43 /* CDVGlobalization.h */,
 			);
 			name = Plugins;
 			path = Iterius/Plugins;
@@ -344,6 +348,7 @@
 				2A06D2385035448081C9FDE7 /* IonicKeyboard.m in Sources */,
 				C32B56968D8F4633B28D81DB /* TouchID.m in Sources */,
 				CAE3E98AD2D94BD392AF4660 /* CDVVibration.m in Sources */,
+				F1FF733A30D94CFCB2A750B4 /* CDVGlobalization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

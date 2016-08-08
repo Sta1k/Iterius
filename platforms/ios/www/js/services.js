@@ -48,15 +48,27 @@ APP
         url: url + 'createTask'
       })
     };
-    this.Statistic= function () {
-      return $http({
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        method: 'POST',
-        data: $httpParamSerializerJQLike({
+    this.Statistic = function (obj) {
+      if (!obj) {
+        return $http({
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          method: 'POST',
+          data: $httpParamSerializerJQLike({}),
+          url: url + 'Statistic'
+        })
+      } else {
+        return $http({
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          method: 'POST',
+          data: $httpParamSerializerJQLike({
+            user: obj.user,
+            year: obj.year,
+            month: obj.month
+          }),
+          url: url + 'Statistic'
+        })
+      }
 
-        }),
-        url: url + 'Statistic'
-      })
     };
     this.logout = function () {
       return $http({

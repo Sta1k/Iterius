@@ -10,6 +10,7 @@
 
 
   <ion-content style="background: #e5e5e5" class="has-header">
+    <div class="spin-container"><div class="spin" ng-if="busy"><ion-spinner icon="lines"></ion-spinner></div></div>
     <div class="list-task" style="margin-top: 5%">
       <label class="item item-input item-select">
         <div class="input-label">
@@ -45,12 +46,26 @@
     <div class="row button-create">
       <input ng-click="runQuery()"
              class="button button-block button-positive"
-             value="Search"
+             value="{{search_button|translate}}"
              type="submit"
       >
     </div>
-    <div class="blue-parallel">Sum of hours per month:</div>
-    <div class="blue-parallel">Underworked:</div>
-    <div class="blue-parallel">Sum of hours per month (Issue Tracker):</div>
+    <div class="blue-parallel ">{{sum_hours|translate}}<span class="right-col">{{iter|statSumTime}}</span></div>
+    <div class="blue-parallel ">{{underworked|translate}}</div>
+    <div class="blue-parallel ">{{sum_issue|translate}}</div>
+    <table class="table-stat">
+      <thead>
+      <tr class="background">
+        <th>№</th><th>{{date|translate}}</th><th>{{day|translate}}</th><th>{{time|translate}}</th>
+        <th>{{break|translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in answer.user.days" >
+        <td>{{$index+1}}</td><td>{{item.date}}</td><td>{{item.day}}</td><td>{{item.time|statTime}}</td><td>{{item.break|statTime}}</td>
+      </tr>
+      </tbody>
+    </table>
+
   </ion-content>
 </ion-view>

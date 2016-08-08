@@ -1,10 +1,17 @@
 /**
  * Created by smissltd on 16.05.16.
  */
-var APP = angular.module('tt', ['ionic', 'ngCordova'])//'tt.services'
-  .config(function ($compileProvider,$ionicConfigProvider) {
+var APP = angular.module('tt', ['ionic', 'ngCordova','pascalprecht.translate'])//'tt.services'
+  .config(function ($compileProvider,$ionicConfigProvider,$translateProvider) {
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+    $translateProvider.translations('en', {
+      
+    });
+    $translateProvider.translations('de', {
+      
+    });
+    $translateProvider.preferredLanguage('en');
   })
   .config(function ($stateProvider, $urlRouterProvider) {
 
