@@ -14,7 +14,7 @@
                  ng-minlength="3"
                  ng-pattern="/^[a-zA-Z0-9._]*$/"
                  ng-model="user.username"
-                 placeholder="{{user_login|translate}}"
+                 placeholder="{{'user_login'|translate}}"
                  required
           >
         </label>
@@ -27,20 +27,20 @@
                  ng-minlength="7"
                  ng-pattern="/^[a-zA-Z0-9._]*$/"
                  ng-model="user.password"
-                 placeholder='{{password|translate}}'
+                 placeholder="{{'password'|translate}}"
                  required
           >
         </label>
       </div>
       <div style="text-align: left;padding-left: 3%; color: #ff0500;" ng-show="form.$submitted || form.login.$touched || form.pass.$touched">
-        <div ng-show="form.login.$error.required">{{error1|translate}}</div>
-        <div ng-show="form.login.$error.minlength">{{error2|translate}}</div>
-        <div ng-show="form.login.$error.maxlength">{{error3|translate}}</div>
-        <div ng-show="form.login.$error.pattern">{{error4|translate}}</div>
-        <div ng-show="form.pass.$error.required">{{error5|translate}}</div>
-        <div ng-show="form.pass.$error.minlength">{{error6|translate}}</div>
-        <div ng-show="form.pass.$error.maxlength">{{error7|translate}}</div>
-        <div ng-show="form.pass.$error.pattern">{{error8|translate}}</div>
+        <div ng-show="form.login.$error.required">{{'error1'|translate}}</div>
+        <div ng-show="form.login.$error.minlength">{{'error2'|translate}}</div>
+        <div ng-show="form.login.$error.maxlength">{{'error3'|translate}}</div>
+        <div ng-show="form.login.$error.pattern">{{'error4'|translate}}</div>
+        <div ng-show="form.pass.$error.required">{{'error5'|translate}}</div>
+        <div ng-show="form.pass.$error.minlength">{{'error6'|translate}}</div>
+        <div ng-show="form.pass.$error.maxlength">{{'error7'|translate}}</div>
+        <div ng-show="form.pass.$error.pattern">{{'error8'|translate}}</div>
       </div>
 
       <div class="padding">
@@ -48,13 +48,13 @@
                id="loginButton"
                type="submit"
                ng-click="LogIn(user)"
-               value='{{login_button|translate}}'
+               value="{{'login_button'|translate}}"
 
               ng-disabled="form.pass.$invalid || form.login.$invalid">
 
 
       </div>
-      <ion-checkbox  class="login-check" ng-model="user.remember">{{remember_me|translate}}</ion-checkbox>
+      <ion-checkbox  class="login-check" ng-model="user.remember">{{'remember_me'|translate}}</ion-checkbox>
 
       <!--<input type="button" class="button button-block button-positive" ng-click="test()">-->
       <!--<div ng-messages="login.login.$error" style="color:maroon" role="alert">-->

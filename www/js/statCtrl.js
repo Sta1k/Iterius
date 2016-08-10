@@ -38,15 +38,14 @@ APP
           $scope.iter = $scope.sumOfHours.reduce(function (sum, cur) {
             return Number(sum) + Number(cur)
           });
+            $scope.differ=$scope.answer.user.working_hours-$scope.iter;
           console.log($scope.iter)
         }).finally(function () {
+            
           $scope.busy = false
         })
       }
     };
-//     $scope.sumOfHours =_.pluck($scope.result,'days')
-// var a=$scope.sumOfHours.reduce(function (sum,cur) {
-//   return
-// })
+
 
   });

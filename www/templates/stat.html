@@ -14,7 +14,7 @@
     <div class="list-task" style="margin-top: 5%">
       <label class="item item-input item-select">
         <div class="input-label">
-          User:
+          {{'stat_user'|translate}}
         </div>
         <select ng-model="query.user">
           <option ng-repeat="object in userStatList" ng-value="object.user.id">{{object.user.name}}</option>
@@ -24,7 +24,7 @@
     <div class="list-task">
       <label class="item item-input item-select">
         <div class="input-label">
-          Year:
+          {{'stat_year'|translate}}
         </div>
         <select ng-model="query.year">
           <option ng-repeat="year in years" ng-value="year">{{year}}</option>
@@ -35,7 +35,7 @@
 
       <label class="item item-input item-select">
         <div class="input-label">
-          Month:
+          {{'stat_month'|translate}}
         </div>
         <select ng-model="query.month">
           <option ng-repeat="month in months" ng-value="month.id">{{month.name}}</option>
@@ -46,18 +46,19 @@
     <div class="row button-create">
       <input ng-click="runQuery()"
              class="button button-block button-positive"
-             value="{{search_button|translate}}"
+             value="{{'search_button'|translate}}"
              type="submit"
       >
     </div>
-    <div class="blue-parallel ">{{sum_hours|translate}}<span class="right-col">{{iter|statSumTime}}</span></div>
-    <div class="blue-parallel ">{{underworked|translate}}</div>
-    <div class="blue-parallel ">{{sum_issue|translate}}</div>
+    <div class="blue-parallel ">{{'sum_hours'|translate}}<span class="right-col">{{iter|statSumTime}}</span></div>
+    <div class="blue-parallel" ng-if="differ>=0||differ==undefined">{{'underworked'|translate}} <span class="right-col">{{differ|statSumTime}}</span></div>
+    <div class="blue-parallel" ng-if="differ<0">{{'overworked'|translate}} <span class="right-col">{{differ|statSumTime}}</span></div>
+    <div class="blue-parallel ">{{'sum_issue'|translate}}</div>
     <table class="table-stat">
       <thead>
       <tr class="background">
-        <th>№</th><th>{{date|translate}}</th><th>{{day|translate}}</th><th>{{time|translate}}</th>
-        <th>{{break|translate}}</th>
+        <th>№</th><th>{{'date'|translate}}</th><th>{{'day'|translate}}</th><th>{{'time'|translate}}</th>
+        <th>{{'break'|translate}}</th>
       </tr>
       </thead>
       <tbody>

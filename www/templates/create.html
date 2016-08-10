@@ -26,21 +26,21 @@
                            type="text"
                            ng-maxlength="255"
                            ng-minlength="4"
-                           placeholder="Title: *"
+                           placeholder="{{'create_title'|translate}}"
                            ng-model="task.title"
                            required
                     >
                   </label>
                   <div style="text-align: left;padding-left: 3%; color: #ff0500;"
                        ng-show="createForm.$submitted || createForm.title.$touched">
-                    <div ng-show="createForm.title.$error.required">Task "Title" is required</div>
-                    <div ng-show="createForm.title.$error.minlength">Title is too short</div>
-                    <div ng-show="createForm.title.$error.maxlength">Title is too long</div>
+                    <div ng-show="createForm.title.$error.required">{{'create_err1'|translate}}</div>
+                    <div ng-show="createForm.title.$error.minlength">{{'create_err2'|translate}}</div>
+                    <div ng-show="createForm.title.$error.maxlength">{{'create_err3'|translate}}</div>
 
                   </div>
                   <label style="margin-top: 3%" class="item item-input">
                     <textarea rows='5'
-                              placeholder="Description"
+                              placeholder="{{'create_desc'|translate}}"
                               ng-model="task.description"
                     ></textarea>
                   </label>
@@ -50,7 +50,7 @@
 
                   <label class="item item-input item-select">
                     <div class="input-label">
-                      Assign: *
+                      {{'create_assign'|translate}}
                     </div>
                     <select  ng-model="task.assigned">
                       <option ng-repeat="user in currentTeam" ng-value="user.id">{{user.name}}</option>
@@ -59,9 +59,9 @@
 
                 </div>
                 <ion-list ng-model="task.associated">
-                  <ion-radio  ng-value="'0'">Not associate</ion-radio>
-                  <ion-radio  ng-value="1">Associated with project</ion-radio>
-                  <ion-radio  ng-value="2">Associated with task</ion-radio>
+                  <ion-radio  ng-value="'0'">{{'create_assign1'|translate}}</ion-radio>
+                  <ion-radio  ng-value="1">{{'create_assign2'|translate}}</ion-radio>
+                  <ion-radio  ng-value="2">{{'create_assign3'|translate}}</ion-radio>
                 </ion-list>
                 <div class="row button-create">
                   <input ng-click="createT(task)"
@@ -76,7 +76,7 @@
                 <div class="row button-create">
                   <input ng-click="clearForm()"
                          class="button button-block button-positive"
-                         value="Clear"
+                         value="{{'clear'|translate}}"
                          type="submit"
                   >
 

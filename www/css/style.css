@@ -28,6 +28,10 @@ th{
   background-color: #0a9dc7;
   color: white;
 }
+table{
+  border-collapse: collapse; /* Убираем двойные линии между ячейками */
+  border: 2px solid #e5e5e5;
+}
 th,td{
   border-style: solid;
   border-width: 1px;
