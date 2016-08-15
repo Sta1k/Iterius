@@ -29,7 +29,7 @@ APP
     ];
     $scope.runQuery = function () {
       if ($scope.query.user !== '' && $scope.query.year !== '' && $scope.query.month !== '') {
-        $scope.busy = true;
+        $scope.busy = $scope.table=true;
         APIService.Statistic($scope.query).then(function (res) {
           console.log(res);
           $scope.answer = res.data.data[0];

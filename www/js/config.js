@@ -28,7 +28,7 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
         remember_me:'Remember me',
         sum_hours:'Sum of hours per month: ',
         underworked:'Underworked:',
-        overworked:'Overworked',
+        overworked:'Overworked:',
         sum_issue:'Sum of hours per month (Issue Tracker):',
         date:'Date',
         day:'Day of week',
@@ -51,7 +51,22 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
         create_assign1:'Not associate',
         create_assign2:'Associated with project',
         create_assign3:'Associated with task',
-        clear:'Clear'
+        clear:'Clear',
+        edit_task:'Edit Task',
+        task_edited:'Task edited',
+        create_button:'Create',
+        create_head:'Create Task',
+        create_mes:'Task created',
+        please_wait:'Please wait...',
+        task_start:'Task started',
+        task_stop:'Task stopped',
+        touch_mes:'You must authenticate',
+        touch_mes2:'Now You may login with fingerprint',
+        touch_mes3:'Fingerprint auth turned off',
+        delete_popup:'Delete this Task',
+        delete_popup2:'Are you sure you want to delete this Task?',
+        incorrect_login:'Incorrect login or password',
+        server_error:'Server Error'
         
         
       });
@@ -75,10 +90,10 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
         error8:'Спецсимволы не разрешены',
         login_button:'ВХОД',
         remember_me:'Запомнить меня',
-        sum_hours:'Сумма отработанных часов за месяц',
+        sum_hours:'Сумма часов за месяц:',
         underworked:'Недоработка:',
         overworked:'Переработка:',
-        sum_issue:'Сумма отработанных часов за месяц(Issue Tracker):',
+        sum_issue:'Сумма часов за месяц(Issue Tracker):',
         date:'Дата',
         day:'День недели',
         time:'Время',
@@ -90,7 +105,7 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
         delete_button:'Удалить',
         stat_user:'Пользователь:',
         stat_year:'Год:',
-        stat_month:'Месяц',
+        stat_month:'Месяц:',
         create_title:'Имя задачи: *',
         create_desc:'Описание',
         create_err1:'Имя задачи обязательно',
@@ -100,7 +115,22 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
         create_assign1:'Не ассоциировать',
         create_assign2:'Ассоциировать с проектом',
         create_assign3:'Ассоциировать с задачей',
-        clear:'Очистить'
+        clear:'Очистить',
+        edit_task:'Редактировать задачу',
+        task_edited:'Задача отредактирована',
+        create_button:'Создать',
+        create_head:'Создать Задачу',
+        create_mes:'Задача создана',
+        please_wait:'Пожалуйста подождите',
+        task_start:'Задача запущена',
+        task_stop:'Задача остановлена',
+        touch_mes:'Вы должны авторизоваться',
+        touch_mes2:'Теперь вы можете залогиниться по отпечатку пальца',
+        touch_mes3:'Авторизация отпечатком пальца выключена',
+        delete_popup:'Удалить задачу',
+        delete_popup2:'Вы уверены что хотите удалить эту задачу?',
+        incorrect_login:'Неверный логин или пароль',
+        server_error:'Серверная ошибка'
       });
       $translateProvider.translations('de', {});
       $translateProvider.preferredLanguage('en');

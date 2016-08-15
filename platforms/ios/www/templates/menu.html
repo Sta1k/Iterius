@@ -15,27 +15,27 @@
       <ion-list>
         <ion-item nav-clear menu-close href="" ng-click="tasks()">
           <i class="icon ion-ios-briefcase-outline"></i>
-          {{menu_tasks|translate}}
+          {{'menu_tasks'|translate}}
         </ion-item>
         <ion-item  ng-if="role>0" nav-clear menu-close href="" ng-click="team()">
           <i class="icon ion-person-stalker"></i>
-          {{menu_status_of_team|translate}}
+          {{'menu_status_of_team'|translate}}
         </ion-item>
         <ion-item nav-clear menu-close href="" ng-click="createTask()">
           <i class="icon ion-ios-plus-outline"></i>
-          {{menu_create|translate}}
+          {{'menu_create'|translate}}
         </ion-item>
         <ion-item nav-clear menu-close href="" ng-click="pref()">
           <i class="icon ion-ios-gear-outline"></i>
-          {{menu_pref|translate}}
+          {{'menu_pref'|translate}}
         </ion-item>
         <ion-item ng-if="role>0" nav-clear menu-close href="" ng-click="stat()">
           <i class="icon ion-ios-gear-outline"></i>
-          {{menu_stat|translate}}
+          {{'menu_stat'|translate}}
         </ion-item>
         <ion-item nav-clear menu-close href="" ng-click="logout()">
           <i class="icon ion-android-exit"></i>
-          {{menu_logout|translate}}
+          {{'menu_logout'|translate}}
         </ion-item>
       </ion-list>
     </ion-content>

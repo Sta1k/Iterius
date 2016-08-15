@@ -9,25 +9,19 @@
   </ion-nav-buttons>
 
 
-  <ion-content class="has-header">
-    <main id="main">
-      <section class="task-name">
-        <div class="container-fluid">
-          <div class="titlePage">
-            <div style="width:90%; float:left;"><h3 ng-bind="currentTask.name"></h3></div>
-            <div ng-if="busy"><ion-spinner></ion-spinner></div>
-
-          </div>
-          <div class="startStopOrder" ng-click="toggleT(currentTask)">
-            <img ng-if="!currentTask.current" class="playPause" ng-src="img/play.png"/>
-            <img ng-if="currentTask.current" class="playPause" ng-src="img/pause.png"/>
-          </div>
-
-          <div class="currentTime">
-            <div class="ticky" ng-bind-html="currentTask.time | upperTiming"></div>
-          </div>
-        </div>
-      </section>
-    </main>
+  <ion-content class="has-header" on-swipe-right="bacu()">
+    <div class="titlePage">
+      <div style="width:90%; float:left;"><h3 ng-bind="currentTask.name"></h3></div>
+      <div ng-if="busy">
+        <ion-spinner></ion-spinner>
+      </div>
+    </div>
+    <div class="startStopOrder" ng-click="toggleT(currentTask)">
+      <img ng-if="!currentTask.current" class="playPause" ng-src="img/play.png"/>
+      <img ng-if="currentTask.current" class="playPause" ng-src="img/pause.png"/>
+    </div>
+    <div class="currentTime">
+      <div class="ticky" ng-bind-html="currentTask.time | upperTiming"></div>
+    </div>
   </ion-content>
 </ion-view>

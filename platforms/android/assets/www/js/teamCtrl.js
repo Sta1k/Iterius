@@ -2,7 +2,7 @@ APP
   .controller('TeamCtrl', function ($scope, $state,$timeout, $cordovaToast, APIService, showTeam,dataService, $stateParams) {
     $scope.timeCount = dataService.AllWorkedTime;
     $scope.showTeam = function (team) {
-      $cordovaToast.showShortTop('Loading...');
+      //$cordovaToast.showShortTop('Loading...');
       dataService.currentTeam=team;
       $state.go('app.curteam/:teamId',{teamId: team.title},{reload:true});
     };

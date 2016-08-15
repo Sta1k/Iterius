@@ -1,11 +1,21 @@
 APP
-  .controller('EditCtrl', function ($scope, $state, $cordovaToast,data, $ionicNavBarDelegate, dataService, APIService, $stateParams) {
+  .controller('EditCtrl', function ($scope, $state,$translate, $cordovaToast,data, $ionicNavBarDelegate, dataService, APIService, $stateParams) {
     console.log('editCtrl');
     $ionicNavBarDelegate.showBackButton(false);
     $scope.task = dataService.editingTask;
     $scope.timeCount = dataService.AllWorkedTime;
-    $scope.title = 'Edit Task';
-    $scope.button = 'Edit';
+    $translate('edit_button').then(function (result) {
+      $scope.button = result;
+    });
+    $translate('edit_task').then(function (result) {
+      $scope.title = result;
+    });
+    $translate('task_edited').then(function (result) {
+      $scope.mes = result;
+    });
+    $translate('server_error').then(function (result) {
+      $scope.err1 = result;
+    });
     $scope.clearForm = function () {
       $scope.task = {};
     };
@@ -16,7 +26,7 @@ APP
     if(data.user.role==2){
       $scope.currentTeam = dataService.Global.all;
     }
-    console.log(dataService.Global.all)
+    //console.log(dataService.Global.all);
     $scope.createT = function () {
       console.log(dataService.Global);
       APIService.TaskCreate($scope.task)
@@ -26,11 +36,11 @@ APP
               $scope.busy = true;
               if (!res.data.success) {
                 $scope.busy = false;
-                alert(res.data.error);
+                $cordovaToast.showShortTop($scope.err1)
 
               } else {
                 dataService.tasksList = res.data.tasks;
-                $cordovaToast.show('Task edited', 'short', 'top')
+                $cordovaToast.show($scope.mes, 'short', 'top')
               }
             })
             .then(function (success) {

@@ -9,11 +9,11 @@
 
   <ion-content class="has-header grey_back">
     <div class="titlePage">
-        <h3>Settings</h3>
+        <h3>{{'menu_pref'|translate}}</h3>
     </div>
     <ul class="list">
       <li style="padding-left: 3%" class="item item-toggle">
-        Login with TouchID
+        {{'login_touchid'|translate}}
         <label class="toggle toggle-positive">
           <input type="checkbox" ng-model="checkbox" ng-checked="checkbox" ng-click="showState()">
           <div class="track">
@@ -23,7 +23,7 @@
       </li>
 
     </ul>
-<p class="margin-left">For use touchID please swipe left on Login Screen </p>
+<p class="margin-left">{{'phrase_touchid'|translate}}</p>
 
   </ion-content>
 </ion-view>

@@ -7,7 +7,7 @@
          ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
   </ion-nav-buttons>
 
-  <ion-content class="has-header grey_back">
+  <ion-content class="has-header grey_back" on-swipe-right="bac()">
 
     <!--<div class="list list-inset">-->
     <!--<label class="item item-input">-->
@@ -16,7 +16,9 @@
     <!--</label>-->
     <!--</div>-->
     <div class="titlePage">
-      <div style="width:90%; float:left;"><h3>{{user.name}}</h3></div>
+      <div style="width:80%; float:left;"><h3>{{user.name}}</h3></div>
+      <div class="call_icon" ng-if="user.tel"><a href="tel:{{user.tel}}"><img src="img/telephone-icon.png"></a></div>
+      <div class="call_icon" ng-if="!user.tel"><img src="img/telephone-icon-disabled.png"></div>
       <div ng-if="busy">
         <ion-spinner></ion-spinner>
       </div>

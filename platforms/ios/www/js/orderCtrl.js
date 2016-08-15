@@ -1,6 +1,6 @@
 APP
   .controller('OrderCtrl',
-    function ($scope, $stateParams, APIService, $cordovaToast, dataService, updateOneTime, $interval) {
+    function ($scope,$state, $stateParams,$translate, APIService, $cordovaToast, dataService, updateOneTime, $interval) {
       //$scope.orderId = $stateParams.orderId;
       $scope.currentTask =_.findWhere(dataService.tasksList, {id: $stateParams.orderId});
       var unbindWatch;
@@ -30,7 +30,15 @@ APP
           }
         }
       );
-
+      $translate('task_start').then(function (result) {
+        $scope.mes = result;
+      });
+      $translate('task_stop').then(function (result) {
+        $scope.mes2 = result;
+      });
+      $translate('server_error').then(function (result) {
+        $scope.err1 = result;
+      });
       $scope.toggleT = function (task) {
         $scope.busy=true;
         dataService.currentTask = task;
@@ -39,7 +47,7 @@ APP
             dataService.showTime = true;
             console.log(resp);
             if (resp.data.started === false && resp.data.success === true) {
-              $cordovaToast.showShortBottom('Task stopped');
+              $cordovaToast.showShortBottom($scope.mes2);
               $scope.busy=false;
               dataService.showTime = false;
               updateOneTime.StopTimer(task);
@@ -48,7 +56,7 @@ APP
               APIService.requestTasks()
                 .then(function success(res) {
                   if (!res.data.success) {
-                    alert(res.data.error);
+                    $cordovaToast.showShortTop($scope.err1);
                   } else {
                     console.log(res);
                     dataService.tasksList = res.data.tasks;
@@ -63,7 +71,7 @@ APP
               console.log(resp.data.started);
             } else if (resp.data.started === true && resp.data.success === true) {
               // stop timer
-              $cordovaToast.showShortBottom('Task started');
+              $cordovaToast.showShortBottom($scope.mes);
               $scope.currentTask.current = true;
               $scope.busy=false;
               // dataService.currentTask = $scope.currentTask;
@@ -72,7 +80,7 @@ APP
             APIService.requestTasks()
               .then(function success(res) {
                 if (!res.data.success) {
-                  alert(res.data.error);
+                  $cordovaToast.showShortTop($scope.err1);
                 } else {
                   console.log(res);
                   dataService.tasksList = res.data.tasks;
@@ -102,5 +110,9 @@ APP
               }
             })
           })
+      };
+      $scope.bacu=function () {
+        console.log('swipe-right');
+        $state.go('app.tasks',{},{reload:true});
       }
     });

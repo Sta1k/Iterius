@@ -6,7 +6,7 @@
     <div ng-if="timeCount>0"
          ng-bind-html="timeCount | upperTiming" class="time-now" ng-controller="timeCtrl"></div>
   </ion-nav-buttons>
-  <ion-content padding="true" class="grey_back">
+  <ion-content padding="true" class="grey_back" on-swipe-right="bac()">
     <!--<div class="list list-inset">-->
     <!--<label class="item item-input">-->
     <!--<i class="icon ion-search placeholder-icon"></i>-->

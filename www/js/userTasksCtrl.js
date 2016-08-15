@@ -5,6 +5,7 @@ APP
               $ionicPopup,
               $ionicListDelegate,
               updateMemberTime,
+              $translate,
               $interval,
               APIService,
               showTeam,
@@ -24,7 +25,18 @@ APP
 
       $scope.timeCount = dataService.AllWorkedTime;
       console.log('UserTasksCtrl');
-
+      $translate('task_start').then(function (result) {
+        $scope.mes = result;
+      });
+      $translate('task_stop').then(function (result) {
+        $scope.mes2 = result;
+      });
+      $translate('delete_popup').then(function (result) {
+        $scope.mes3 = result;
+      });
+      $translate('delete_popup2').then(function (result) {
+        $scope.mes4 = result;
+      });
 
       $scope.checkStarted = function () {
         var obj = _.findWhere(dataService.memberTasks, {current: true});
@@ -55,7 +67,7 @@ APP
               $cordovaToast.showShortTop(resp.data.error);
             }
             if (resp.data.started === false && resp.data.success === true) {
-              $cordovaToast.showShortTop('Task stopped');
+              $cordovaToast.showShortTop($scope.mes2);
               // dataService.showTime = false;
               updateMemberTime.StopTimer(task);
               APIService.requestUserTasks($scope.id)
@@ -72,7 +84,7 @@ APP
 
 
             } else if (resp.data.started === true && resp.data.success === true) {
-              $cordovaToast.showShortTop('Task started');
+              $cordovaToast.showShortTop($scope.mes);
               APIService.requestUserTasks($scope.id)
                 .then(function success(res) {
                   if (!res.data.success) {
@@ -120,8 +132,8 @@ APP
       };
       $scope.showConfirm = function (obj) {
         var confirmPopup = $ionicPopup.confirm({
-          title: 'Delete this Task',
-          template: 'Are you sure you want to delete this Task?',
+          title: $scope.mes3,
+          template: $scope.mes4,
           cancelType: 'button-positive',
           okType: 'button-assertive'
         });
@@ -149,5 +161,8 @@ APP
         $ionicListDelegate.closeOptionButtons();
         $scope.showConfirm(task)
       };
+      $scope.bac=function () {
+        $state.go('app.curteam/:teamId',{teamId: dataService.currentTeam.title},{reload:true});
+      }
 
     });

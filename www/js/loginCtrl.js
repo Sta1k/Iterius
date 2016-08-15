@@ -3,6 +3,7 @@ APP
         function ($scope,
                   $rootScope,
                   $ionicPlatform,
+                  $translate,
                   $cordovaTouchID,
                   $cordovaToast,
                   data,
@@ -62,7 +63,7 @@ APP
 
                         } else {
 
-                            alert(response.data.errors.password[0]);
+                          $cordovaToast.showShortTop($scope.mes3);
                             $timeout(navigator.splashscreen.hide(), 500)
                         }
 
@@ -72,11 +73,19 @@ APP
                     })
 
             };
-
+          $translate('incorrect_login').then(function (result) {
+            $scope.mes3 = result;
+          });
+          $translate('please_wait').then(function (result) {
+            $scope.mes2 = result;
+          });
+          $translate('touch_mes').then(function (result) {
+            $scope.mes = result;
+          });
             $scope.StartTouch = function () {
                 $cordovaTouchID.checkSupport().then(function () {
-                    $cordovaTouchID.authenticate("You must authenticate").then(function () {
-                        $cordovaToast.showShortTop('Please wait');
+                    $cordovaTouchID.authenticate($scope.mes).then(function () {
+                        $cordovaToast.showShortTop($scope.mes2);
                         $timeout(dataService.readDb()).then($timeout(function () {
                             $scope.LogIn(data.user)
                         }, 500));

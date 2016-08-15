@@ -5,6 +5,7 @@ APP
               $ionicPlatform,
               $cordovaTouchID,
               $cordovaToast,
+              $translate,
               data,
               APIService,
               $state,
@@ -40,7 +41,9 @@ APP
           $scope.user = undefined;
         });
 
-
+        $translate('incorrect_login').then(function (result) {
+          $scope.mes = result;
+        });
         $scope.LogIn = function (objUser) {
           APIService.login(objUser)
             .then(function
@@ -69,7 +72,7 @@ APP
 
               } else {
 
-                alert(response.data.errors.password[0]);
+                $cordovaToast.showShortTop($scope.mes);
                 navigator.splashscreen.hide();
               }
 

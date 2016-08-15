@@ -4,6 +4,7 @@ APP
               $ionicPlatform,
               dataService,
               data,
+              $translate,
               $cordovaToast,
               $cordovaTouchID,
               $timeout,
@@ -16,11 +17,6 @@ APP
           console.log($scope.checkbox)
         });
         $scope.timeCount = dataService.AllWorkedTime;
-        // $scope.$watch('checkbox',function () {
-        //   if($scope.checkbox==true){
-        //    
-        //   }
-        // });
         $scope.showState = function () {
           if($scope.checkbox==false){
             
@@ -30,14 +26,23 @@ APP
             $scope.buttonOff()
           }
         };
+        $translate('touch_mes').then(function (result) {
+          $scope.mes = result;
+        });
+        $translate('touch_mes2').then(function (result) {
+          $scope.mes2 = result;
+        });
+        $translate('touch_mes3').then(function (result) {
+          $scope.mes3 = result;
+        });
         $scope.buttonON = function () {
           $cordovaTouchID.checkSupport().then(function () {
-            $cordovaTouchID.authenticate("You must authenticate").then(function () {
+            $cordovaTouchID.authenticate($scope.mes).then(function () {
               $scope.obj = dataService.login;
               $scope.obj.touch=true;
               dataService.writeDB($scope.obj);
               $scope.checkbox=true;
-              $cordovaToast.showShortTop('Now You may login with fingerprint');
+              $cordovaToast.showShortTop($scope.mes2);
               
 
             }, function (error) {
@@ -47,15 +52,7 @@ APP
         };
         $scope.buttonOff = function () {
           dataService.DBoff();
-          $cordovaToast.showShortTop('Fingerprint auth turned off');
-        }
-        $scope.check = function () {
-          dataService.readDb()
-        }
-        $scope.write = function () {
-          $scope.obj = dataService.login;
-          console.log($scope.obj);
-          dataService.writeDB($scope.obj)
+          $cordovaToast.showShortTop($scope.mes3);
         }
 
       })

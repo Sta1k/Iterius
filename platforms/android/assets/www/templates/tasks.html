@@ -18,7 +18,7 @@
       <!--</label>-->
     <!--</div>-->
     <div class="titlePage">
-      <div style="width:90%; float:left;"><h3>My Tasks</h3></div>
+      <div style="width:90%; float:left;"><h3>{{'menu_tasks'|translate}}</h3></div>
       <div ng-if="busy"><ion-spinner></ion-spinner></div>
     </div>
 
@@ -42,11 +42,11 @@
           <!--<i ng-if="task.current" class="icon icon-right ion-ios-pause-outline"></i>-->
           <ion-option-button class="hiding button-positive"
                              ng-click="editTask(task)">
-            Edit
+            {{'edit_button'|translate}}
           </ion-option-button>
           <ion-option-button class="hiding button-assertive"
                              ng-click="deleteTask(task)">
-            Delete
+            {{'delete_button'|translate}}
           </ion-option-button>
         </div>
       </ion-item>

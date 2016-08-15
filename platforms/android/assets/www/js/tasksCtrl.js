@@ -6,6 +6,7 @@ APP.controller('TasksCtrl',
     'dataService',
     'updateTaskTime',
     '$filter',
+    '$translate',
     '$cordovaVibration',
     '$cordovaToast',
     'APIService',
@@ -20,6 +21,7 @@ APP.controller('TasksCtrl',
               dataService,
               updateTaskTime,
               $filter,
+              $translate,
               $cordovaVibration,
               $cordovaToast,
               APIService,
@@ -29,7 +31,6 @@ APP.controller('TasksCtrl',
               $stateParams) {
       $timeout(navigator.splashscreen.hide(),2000);
       $rootScope.$on("logout", function () {
-        console.log('!!!!!!');
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
         dataService = undefined;
@@ -41,7 +42,7 @@ APP.controller('TasksCtrl',
           $scope.busy = true;
           if (!res.data.success) {
             $scope.busy = false;
-            alert(res.data.error);
+            $cordovaToast.showShortTop($scope.err1)
 
           } else {
             dataService.tasksList = res.data.tasks;
@@ -59,7 +60,16 @@ APP.controller('TasksCtrl',
         }).finally(function () {
         $scope.busy = false;
       });
-
+      $translate('server_error').then(function (result) {
+        $scope.err1 = result;
+      });
+      $translate('delete_popup').then(function (result) {
+        $scope.mes3 = result;
+      });
+      $translate('delete_popup2').then(function (result) {
+        $scope.mes4 = result;
+      });
+      
       $scope.checkStarted = function () {
         var obj = _.findWhere(dataService.tasksList, {current: true});
         if (obj == undefined) {
@@ -69,15 +79,7 @@ APP.controller('TasksCtrl',
         else if (obj.current == true) {
           dataService.showTime = true;
           updateTaskTime.StartTimer(obj);
-          // $interval(function () {
-          //   $scope.tasksList = dataService.tasksList;
-          //
-          //   $scope.timeCount = dataService.AllWorkedTime;
-          //
-          //   // console.log($scope.timeCount);
-          // }, 1000);
         }
-        // console.log(obj)
       };
       $scope.$watch(function () {
         return dataService.tasksList;
@@ -103,7 +105,7 @@ APP.controller('TasksCtrl',
           .then(function success(res) {
             if (!res.data.success) {
 
-              alert(res.data.error);
+              $cordovaToast.showShortTop($scope.err1)
 
             } else {
               dataService.tasksList = res.data.tasks;
@@ -144,7 +146,7 @@ APP.controller('TasksCtrl',
         $ionicListDelegate.closeOptionButtons();
         APIService.TaskUpdate(task).then(function (res) {
           if (!res.data) {
-            alert('Server error')
+            $cordovaToast.showShortTop($scope.err1)
           } else {
             dataService.editingTask = res.data;
             console.log(dataService.editingTask);
@@ -156,8 +158,8 @@ APP.controller('TasksCtrl',
       };
       $scope.showConfirm = function (obj) {
         var confirmPopup = $ionicPopup.confirm({
-          title: 'Delete this Task',
-          template: 'Are you sure you want to delete this Task?',
+          title: $scope.mes3,
+          template: $scope.mes4,
           cancelType: 'button-positive',
           okType: 'button-assertive'
         });
@@ -180,66 +182,6 @@ APP.controller('TasksCtrl',
         $ionicListDelegate.closeOptionButtons();
         $scope.showConfirm(task)
       };
-      // Старт стоп задачи
-      // $scope.toggleT = function (task) {
-      //   if(!task){
-      //     task=dataService.currentTask;
-      //     console.log(task);
-      //     console.log(dataService.currentTask)
-      //   }
 
-      //   APIService.toggleState(task.id)
-      //     .then(function success(resp) {
-      //       console.log(resp);
-
-      //       if (resp.data.started === false && resp.data.success === true) {
-
-      //         dataService.showTime = false;
-      //         updateTaskTime.StopTimer(task);
-      //         APIService.requestTasks()
-      //           .then(function success(res) {
-      //             if (!res.data.success) {
-      //               alert(res.data.error);
-      //             } else {
-      //               console.log(res);
-      //               dataService.tasksList = res.data.tasks;
-      //               $scope.tasksList = dataService.tasksList;
-      //             }
-
-      //           });
-
-
-      //       } else if (resp.data.started === true && resp.data.success === true) {
-      //         APIService.requestTasks()
-      //           .then(function success(res) {
-      //             if (!res.data.success) {
-      //               alert(res.data.error);
-      //             } else {
-      //               console.log(res);
-      //               dataService.tasksList = res.data.tasks;
-      //             }
-
-      //           }).then(function () {
-      //           $scope.tasksList = dataService.tasksList;
-
-      //           var obj = _.findWhere(dataService.tasksList, {id: task.id});
-      //           console.log(obj);
-      //           if (obj == undefined) {
-      //             return false
-      //           }
-      //           else if (obj.current == true) {
-      //             dataService.showTime = true;
-      //             updateTaskTime.StartTimer(obj);
-      //             $interval(function () {
-      //               dataService.tasksList = $scope.tasksList;
-      //               $scope.timeCount = dataService.AllWorkedTime;
-      //               // console.log(typeof $scope.timeCount);
-      //             }, 1000);
-
-      //           }
-      //         })
-      //       }
-      //     })
-      // }
     }
   ]);
