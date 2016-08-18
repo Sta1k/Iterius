@@ -51,4 +51,7 @@ APP
 
 
     };
+    $scope.tasks = function () {
+      $state.go('app.tasks', {}, {reload: true});
+    };
   });

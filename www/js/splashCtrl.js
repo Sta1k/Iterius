@@ -74,6 +74,7 @@ APP
 
                 $cordovaToast.showShortTop($scope.mes);
                 navigator.splashscreen.hide();
+                $state.go('login', {}, {reload: true});
               }
 
             }, function err(res) {

@@ -1,6 +1,6 @@
 <ion-view hide-back-button="true" animation="slide-right-left">
   <ion-nav-buttons side="right">
-    <img class="iterius" src="img/h-logo.png">
+    <img class="iterius" src="img/h-logo.png"  ng-click="tasks()">
     <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
 
     <div ng-if="timeCount>0"
@@ -26,7 +26,8 @@
 
     </div>
     <div class="teamPage">
-      <h4 ng-bind="user.startedTime|bigTiming"></h4>
+      <h4 ng-bind="user.status||'Not working'"></h4>
+      <!--<h4 ng-bind="user.startedTime|bigTiming"></h4>-->
     </div>
     <ion-list can-swipe='true'>
       <ion-item class='itemTask' ng-class="{ActiveBackground: task.current == true}"

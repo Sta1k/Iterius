@@ -1,6 +1,13 @@
-
+a.item-content img {
+  padding-right: 5%;
+}
+.associat{
+  color: #4d4d4d;
+  padding: 0 3%;
+  font-size: small;
+}
 .itemTask {
-  height: 70px;
+  height: 60px;
   border-radius: 3px;
   margin: 5px;
 }
@@ -13,12 +20,24 @@
   padding-right: 10;
   float: right;
 }
+.input-label {
+  display: table;
+  padding: 7px 10px 7px 0px;
+  max-width: 200px;
+  width: 35%;
+  color: darkgrey;
+  font-size: 14px;
+}
 .spin{
-  position: absolute;
-  margin: 0 auto;
-  z-index: 100;
-  padding: 59% 0 0 70%;
 
+  top: 50%; /* Отступ в процентах от верхнего края окна */
+  left: 50%; /* Отступ в процентах от левого края окна */
+  width: 10%; /* Ширина блока */
+  height: 10%; /* Высота блока */
+  position: absolute; /* Абсолютное позиционирование блока */
+  margin-top: -5%; /* Отрицательный отступ от верхнего края страницы, должен равняться половине высоты блока со знаком минус */
+  margin-left: -5%; /* Отрицательный отступ от левого края страницы, должен равняться половине высоты блока со знаком минус */
+  z-index: 100;
 }
 .table-stat{
   width: 94%;
@@ -37,7 +56,7 @@ th{
   color: white;
 }
 table{
-  border-collapse: collapse; /* Убираем двойные линии между ячейками */
+  border-collapse: collapse;
   border: 2px solid #e5e5e5;
 }
 th,td{
@@ -83,7 +102,12 @@ td{
 .has-header.delete-overscroll.scroll-content.ionic-scroll.overflow-scroll {
   overflow-y: hidden;
 }
-
+.h3min{
+  font-size: large!important;
+}
+.h3max{
+  font-size: x-large!important;
+}
 .logo {
   padding: 10% 0 45% 0;
   text-align: center;
@@ -96,9 +120,11 @@ td{
   background-color: inherit;
   color: white;
 }
-
+.orderTitle{
+  font-size: large;
+}
 .list-task {
-  margin: 0 3% 5% 3%;
+  margin: 0 3% 3% 3%;
 }
 
 label.item.item-input {
@@ -258,7 +284,8 @@ div .startStopOrder {
 .icon.ion-ios-gear-outline,
 .icon.ion-ios-plus-outline,
 .icon.ion-person-stalker,
-.icon.ion-ios-briefcase-outline {
+.icon.ion-ios-briefcase-outline,
+.icon.ion-arrow-graph-up-right{
   padding-right: 10%;
   font-size: 250% !important;
   color: #116B97;
@@ -318,7 +345,7 @@ div .startStopOrder {
 }
 
 .titlePage {
-  height: 10%;
+  height: 11%;
   color: #282d39;
   background: #e1e1e1;
   /*text-align: center;*/

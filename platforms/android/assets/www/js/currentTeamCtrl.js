@@ -15,5 +15,8 @@ APP
     };
     $scope.bac=function () {
       $state.go('app.team',{},{reload:true});
-    }
+    };
+    $scope.tasks = function () {
+      $state.go('app.tasks', {}, {reload: true});
+    };
   });

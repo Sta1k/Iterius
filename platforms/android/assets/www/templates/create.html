@@ -1,6 +1,6 @@
 <ion-view class="background" animation="slide-right-left">
   <ion-nav-buttons side="right">
-    <img class="iterius" src="img/h-logo.png">
+    <img class="iterius" src="img/h-logo.png" ng-click="tasks()">
     <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
 
     <div ng-if="timeCount>0"
@@ -16,7 +16,7 @@
       <main id="main">
         <div class="titlePage hide-on-keyboard-open"><h3 ng-bind="title"></h3></div>
         <section>
-          <div class="container-fluid">
+          <div class="container-fluid" style="min-height: 320">
             <div class="create-block">
               <form id="create-form-id" name="createForm">
                 <div class="list-task">
@@ -48,46 +48,47 @@
 
                 <div class="list-task">
 
-                  <label class="item item-input item-select">
-                    <div class="input-label">
+                  <label class="item item-input item-select" style="height: 45">
+                    <div class="input-label" ng-if="!task.assigned">
                       {{'create_assign'|translate}}
                     </div>
-                    <select  ng-model="task.assigned">
+                    <select ng-model="task.assigned">
                       <option ng-repeat="user in currentTeam" ng-value="user.id">{{user.name}}</option>
                     </select>
                   </label>
 
                 </div>
-                <ion-list ng-model="task.associated">
-                  <ion-radio  ng-value="'0'">{{'create_assign1'|translate}}</ion-radio>
-                  <ion-radio  ng-value="1">{{'create_assign2'|translate}}</ion-radio>
-                  <ion-radio  ng-value="2">{{'create_assign3'|translate}}</ion-radio>
-                </ion-list>
-                <div class="row button-create">
-                  <input ng-click="createT(task)"
-                         class="button button-block button-positive"
-                         ng-value="button"
-                         ng-disabled="createForm.title.$invalid||task.associated==undefined"
-                         type="submit"
-                  >
+                <!--<ion-list ng-model="task.associated">-->
+                <p class="associat">{{'create_assign1'|translate}}</p>
+                <!--<ion-radio  ng-value="1">{{'create_assign2'|translate}}</ion-radio>-->
+                <!--<ion-radio  ng-value="2">{{'create_assign3'|translate}}</ion-radio>-->
+                <!--</ion-list>-->
 
 
-                </div>
-                <div class="row button-create">
-                  <input ng-click="clearForm()"
-                         class="button button-block button-positive"
-                         value="{{'clear'|translate}}"
-                         type="submit"
-                  >
-
-
-                </div>
               </form>
             </div>
           </div>
         </section>
       </main>
-      <footer id="footer"></footer>
+      <footer id="footer">
+        <div class="row button-create">
+          <input ng-click="createT(task)"
+                 class="button button-block button-positive"
+                 ng-value="button"
+                 ng-disabled="createForm.title.$invalid||task.associated==undefined"
+                 type="submit"
+          >
+
+
+        </div>
+        <div class="row button-create">
+          <input ng-click="clearForm()"
+                 class="button button-block button-positive"
+                 value="{{'clear'|translate}}"
+                 type="submit"
+          >
+        </div>
+      </footer>
     </div>
   </ion-content>
 </ion-view>

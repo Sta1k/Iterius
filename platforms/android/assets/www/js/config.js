@@ -67,8 +67,8 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
         delete_popup2:'Are you sure you want to delete this Task?',
         incorrect_login:'Incorrect login or password',
         server_error:'Server Error'
-        
-        
+
+
       });
       $translateProvider.translations('ru', {
         menu_tasks: 'Мои задачи',
@@ -100,7 +100,7 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
         break:'Перерыв',
         search_button:'Поиск',
         login_touchid:'Вход с помощью TouchID',
-        phrase_touchid:'Для использования TouchID свайпните влево по экрану на странице Логина',
+        phrase_touchid:"Для использования авторизации по отпечатку пальца, активируйте функцию \"Вход с помощью TouchID\"",
         edit_button:'Редактировать',
         delete_button:'Удалить',
         stat_user:'Пользователь:',
@@ -112,19 +112,19 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
         create_err2:'Имя задачи сликом короткое',
         create_err3:'Имя задачи сликом длинное',
         create_assign:' Назначить: *',
-        create_assign1:'Не ассоциировать',
+        create_assign1:'*Без ассоциации',
         create_assign2:'Ассоциировать с проектом',
         create_assign3:'Ассоциировать с задачей',
         clear:'Очистить',
         edit_task:'Редактировать задачу',
         task_edited:'Задача отредактирована',
         create_button:'Создать',
-        create_head:'Создать Задачу',
+        create_head:'Создать задачу',
         create_mes:'Задача создана',
         please_wait:'Пожалуйста подождите',
         task_start:'Задача запущена',
         task_stop:'Задача остановлена',
-        touch_mes:'Вы должны авторизоваться',
+        touch_mes:'Пожалуйста, используйте отпечаток пальца для проверки',
         touch_mes2:'Теперь вы можете залогиниться по отпечатку пальца',
         touch_mes3:'Авторизация отпечатком пальца выключена',
         delete_popup:'Удалить задачу',
@@ -262,13 +262,16 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
     $urlRouterProvider.otherwise('/splash');
 
   })
-  .run(function ($ionicPlatform, $translate) {
+  .run(function ($ionicPlatform, $translate,dataService) {
     $ionicPlatform.ready(function () {
+      if(window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+      }
       if (typeof navigator.globalization !== "undefined") {
         navigator.globalization.getPreferredLanguage(function (language) {
           $translate.use((language.value).split("-")[0]).then(function (data) {
-
-            console.log("SUCCESS -> " + data);
+            dataService.lang=data;
+            console.log(dataService.lang);
           }, function (error) {
             console.log("ERROR -> " + error);
           });

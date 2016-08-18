@@ -14,28 +14,34 @@
     <ion-content class="has-header delete-overscroll">
       <ion-list>
         <ion-item nav-clear menu-close href="" ng-click="tasks()">
-          <i class="icon ion-ios-briefcase-outline"></i>
-          {{'menu_tasks'|translate}}
+          <!--<i class="icon ion-ios-briefcase-outline"></i>-->
+          <img src="img/ico/brief.png">
+          <span>{{'menu_tasks'|translate}}</span>
         </ion-item>
         <ion-item  ng-if="role>0" nav-clear menu-close href="" ng-click="team()">
-          <i class="icon ion-person-stalker"></i>
-          {{'menu_status_of_team'|translate}}
+          <img src="img/ico/people.png">
+          <!--<i class="icon-users" aria-hidden="true"></i>-->
+          <span class="">{{'menu_status_of_team'|translate}}</span>
         </ion-item>
         <ion-item nav-clear menu-close href="" ng-click="createTask()">
-          <i class="icon ion-ios-plus-outline"></i>
-          {{'menu_create'|translate}}
+          <img src="img/ico/plus.png">
+          <!--<i class="icon-plus" aria-hidden="true"></i>-->
+          <span>{{'menu_create'|translate}}</span>
         </ion-item>
         <ion-item nav-clear menu-close href="" ng-click="pref()">
-          <i class="icon ion-ios-gear-outline"></i>
-          {{'menu_pref'|translate}}
+          <img src="img/ico/gear.png">
+          <!--<i class="icon-gear" aria-hidden="true"></i>-->
+          <span>{{'menu_pref'|translate}}</span>
         </ion-item>
         <ion-item ng-if="role>0" nav-clear menu-close href="" ng-click="stat()">
-          <i class="icon ion-ios-gear-outline"></i>
-          {{'menu_stat'|translate}}
+          <img src="img/ico/stat.png">
+          <!--<i class="icon-stat" aria-hidden="true"></i>-->
+          <span>{{'menu_stat'|translate}}</span>
         </ion-item>
         <ion-item nav-clear menu-close href="" ng-click="logout()">
-          <i class="icon ion-android-exit"></i>
-          {{'menu_logout'|translate}}
+          <img src="img/ico/logout.png">
+          <!--<i class="icon-logout" aria-hidden="true"></i>-->
+          <span>{{'menu_logout'|translate}}</span>
         </ion-item>
       </ion-list>
     </ion-content>

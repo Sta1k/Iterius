@@ -3,7 +3,7 @@ APP
     console.log('createCtrl');
     $ionicNavBarDelegate.showBackButton(false);
     $scope.task = {
-      associated: '',
+      associated: 0,
       assigned: '',
       title: '',
       desc: ''
@@ -58,5 +58,8 @@ APP
     };
     $scope.clearForm = function () {
       $scope.task = {};
-    }
+    };
+    $scope.tasks = function () {
+      $state.go('app.tasks', {}, {reload: true});
+    };
   });

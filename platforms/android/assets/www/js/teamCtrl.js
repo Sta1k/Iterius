@@ -25,6 +25,9 @@ APP
         console.log("ERROR");
         console.log(res)
 
-      })
+      });
+    $scope.tasks = function () {
+      $state.go('app.tasks', {}, {reload: true});
+    };
 
   });

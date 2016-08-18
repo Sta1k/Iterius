@@ -12,13 +12,11 @@ APP
               dataService,
               $cordovaToast,
               $stateParams) {
-      $scope.user=_.findWhere(dataService.currentTeam.users, {id: $stateParams.id});
+      $scope.user = _.findWhere(dataService.currentTeam.users, {id: $stateParams.id});
       console.log($scope.user);
       APIService.requestUserTasks($stateParams.id)
         .success(function (res) {
-
-          $scope.userTasks = dataService.memberTasks=res.tasks;
-          console.log(dataService.memberTasks);
+          $scope.userTasks = dataService.memberTasks = res.tasks;
           $scope.id = $stateParams.id;
           $scope.checkStarted();
         });
@@ -37,7 +35,9 @@ APP
       $translate('delete_popup2').then(function (result) {
         $scope.mes4 = result;
       });
-
+      $translate('server_error').then(function (result) {
+        $scope.err1 = result;
+      });
       $scope.checkStarted = function () {
         var obj = _.findWhere(dataService.memberTasks, {current: true});
         console.log(obj);
@@ -64,7 +64,7 @@ APP
           .then(function success(resp) {
             console.log(resp);
             if (resp.data.success === false) {
-              $cordovaToast.showShortTop(resp.data.error);
+              $cordovaToast.showShortTop($scope.err1);
             }
             if (resp.data.started === false && resp.data.success === true) {
               $cordovaToast.showShortTop($scope.mes2);
@@ -73,24 +73,24 @@ APP
               APIService.requestUserTasks($scope.id)
                 .then(function success(res) {
                   if (!res.data.success) {
-                    alert(res.data.error);
+                    $cordovaToast.showShortTop($scope.err1);
                   } else {
                     console.log(res);
                     dataService.memberTasks = res.data.tasks;
+                    $scope.user=res.data.user;
                     $scope.userTasks = dataService.memberTasks;
                   }
 
                 });
-
-
             } else if (resp.data.started === true && resp.data.success === true) {
               $cordovaToast.showShortTop($scope.mes);
               APIService.requestUserTasks($scope.id)
                 .then(function success(res) {
                   if (!res.data.success) {
-                    alert(res.data.error);
+                    $cordovaToast.showShortTop($scope.err1);
                   } else {
                     console.log(res);
+                    $scope.user=res.data.user;
                     dataService.memberTasks = res.data.tasks;
                   }
 
@@ -103,14 +103,7 @@ APP
                   return false
                 }
                 else if (obj.current == true) {
-                  // dataService.showTime = true;
                   updateMemberTime.StartTimer(obj);
-                  $interval(function () {
-                    dataService.memberTasks = $scope.userTasks;
-                    // $scope.timeCount = dataService.AllWorkedTime;
-                    // console.log(dataService.memberTasks);
-                  }, 1000);
-
                 }
               })
             }
@@ -145,7 +138,7 @@ APP
                 APIService.requestUserTasks($stateParams.id)
                   .success(function (res) {
 
-                    $scope.userTasks = dataService.memberTasks=res.tasks;
+                    $scope.userTasks = dataService.memberTasks = res.tasks;
                     console.log(dataService.memberTasks);
                     $scope.id = $stateParams.id;
                   });
@@ -161,8 +154,10 @@ APP
         $ionicListDelegate.closeOptionButtons();
         $scope.showConfirm(task)
       };
-      $scope.bac=function () {
-        $state.go('app.curteam/:teamId',{teamId: dataService.currentTeam.title},{reload:true});
-      }
-
+      $scope.bac = function () {
+        $state.go('app.curteam/:teamId', {teamId: dataService.currentTeam.title}, {reload: true});
+      };
+      $scope.tasks = function () {
+        $state.go('app.tasks', {}, {reload: true});
+      };
     });

@@ -1,7 +1,7 @@
 <ion-view hide-back-button="true" animation="slide-right-left">
   <!--<div>в тайтле разместить название задачи</div>-->
   <ion-nav-buttons side="right">
-    <img class="iterius" src="img/h-logo.png">
+    <img class="iterius" src="img/h-logo.png"  ng-click="tasks()">
     <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
 
     <div ng-if="timeCount>0"
@@ -11,7 +11,7 @@
 
   <ion-content class="has-header" on-swipe-right="bacu()">
     <div class="titlePage">
-      <div style="width:90%; float:left;"><h3 ng-bind="currentTask.name"></h3></div>
+      <div style="width:90%; float:left;" ng-bind-html="currentTask.name|sliceTitle"></div>
       <div ng-if="busy">
         <ion-spinner></ion-spinner>
       </div>

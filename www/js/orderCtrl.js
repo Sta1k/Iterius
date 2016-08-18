@@ -114,5 +114,8 @@ APP
       $scope.bacu=function () {
         console.log('swipe-right');
         $state.go('app.tasks',{},{reload:true});
-      }
+      };
+      $scope.tasks = function () {
+        $state.go('app.tasks', {}, {reload: true});
+      };
     });

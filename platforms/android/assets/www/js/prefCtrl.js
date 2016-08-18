@@ -1,6 +1,7 @@
 APP
   .controller('PrefCtrl',
     function ($scope,
+              $state,
               $ionicPlatform,
               dataService,
               data,
@@ -19,7 +20,7 @@ APP
         $scope.timeCount = dataService.AllWorkedTime;
         $scope.showState = function () {
           if($scope.checkbox==false){
-            
+
             $scope.buttonON()
           }else{
             $scope.checkbox=false;
@@ -43,7 +44,7 @@ APP
               dataService.writeDB($scope.obj);
               $scope.checkbox=true;
               $cordovaToast.showShortTop($scope.mes2);
-              
+
 
             }, function (error) {
               console.log(JSON.stringify(error));
@@ -53,7 +54,9 @@ APP
         $scope.buttonOff = function () {
           dataService.DBoff();
           $cordovaToast.showShortTop($scope.mes3);
-        }
-
+        };
+        $scope.tasks = function () {
+          $state.go('app.tasks', {}, {reload: true});
+        };
       })
-    });    
+    });

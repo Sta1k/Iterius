@@ -19,7 +19,7 @@ APP
     this.memberTasks = [];
     this.login = {};
     this.AllWorkedTime = 0;
-    this.showTime = undefined;
+    this.lang = undefined;
     this.check = undefined;
     this.DBoff = function () {
       db.transaction(function (tx) {
