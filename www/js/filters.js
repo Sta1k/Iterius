@@ -87,6 +87,8 @@ APP
       var m = Math.floor(num / 60) % 60;
       if (m < 10 && m > 0)
         m = '0' + m;
+      if (m===0)
+        m= '00';
       out = h + ':' + m;
       return out;
 
