@@ -22,8 +22,8 @@ APP
         }
       })
       .error(function (res) {
-        console.log("ERROR");
-        console.log(res)
+        console.log("ERROR", res);
+
 
       });
     $scope.tasks = function () {
