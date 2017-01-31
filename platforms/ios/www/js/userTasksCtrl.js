@@ -12,10 +12,11 @@ APP
               dataService,
               $cordovaToast,
               $stateParams) {
-      $scope.user = _.findWhere(dataService.currentTeam.users, {id: $stateParams.id});
+      // $scope.user = _.findWhere(dataService.currentTeam.users, {id: $stateParams.id});
       console.log($scope.user);
       APIService.requestUserTasks($stateParams.id)
         .success(function (res) {
+          $scope.user=res.user||_.findWhere(dataService.currentTeam.users, {id: $stateParams.id});
           $scope.userTasks = dataService.memberTasks = res.tasks;
           $scope.id = $stateParams.id;
           $scope.checkStarted();

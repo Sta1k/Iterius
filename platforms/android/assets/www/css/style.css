@@ -68,15 +68,27 @@ th,td{
 tbody tr {
   background: white;
 }
-tbody tr:nth-child(odd) {
+tbody.statisticTable tr:nth-child(odd) {
   background: #e5e5e5;
 }
-tbody tr:nth-child(odd) td {
+tbody.statisticTable tr:nth-child(odd) td {
   border-color: white;
+}
+tbody tr.userData {
+  background: #597EAA;
+  border-color: #597EAA;
+}
+.teamPage table{
+  width: 100%;
+  color: white;
 }
 td{
   text-align: right;
   padding-right: 1%;
+}
+.userData td{
+  border-color: #597EAA;
+  text-align: left;
 }
 .hiding{
   width: 50px;

@@ -17,7 +17,7 @@
  under the License.
  */
 //
-// Prefix header for all source files of the 'Timetracker' target in the 'Timetracker' project
+// Prefix header for all source files of the 'Iterius' target in the 'Iterius' project
 //
 
 #ifdef __OBJC__

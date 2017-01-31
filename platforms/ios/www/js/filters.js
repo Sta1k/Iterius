@@ -49,7 +49,7 @@ APP
       if (m < 10)
         m = '0' + m;
       out = h + ':' + m;
-      return 'began to work: ' + out;
+      return  out;
     }
   });
 APP

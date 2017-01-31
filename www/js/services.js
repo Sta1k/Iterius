@@ -1,6 +1,9 @@
 APP
   .service('APIService', function ($http, $httpParamSerializerJQLike) {
-    var url = 'http://dev.tt.smiss.ua/api/';
+    var url = 'http://iterius.com/api/';
+    // var url = 'http://tt.smiss.ua/api/';
+    // var url = 'http://dev.tt.smiss.ua/api/';
+    
     this.login = function (request) {//loginService.sendData to APIService.login
       // console.log(request);
       var login = {

@@ -44,7 +44,8 @@ APP
 
                         if (response.data.success) {
                             data.user.role = response.data.type;
-                            // console.log(data.user.role);
+                            data.user.id = response.data.id;
+                            console.log(data.user.id);
                             if ($scope.user.remember == true && $scope.user.password.length > 6) {
                                 dataService.writeDB($scope.user)
                             }

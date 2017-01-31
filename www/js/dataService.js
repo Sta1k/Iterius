@@ -1,11 +1,9 @@
-/**
- * Created by smissltd on 19.05.16.
- */
 APP.service('data', function () {
   this.check = undefined;
   this.user = {
     role: undefined,
-    finger: undefined
+    finger: undefined,
+    id:undefined
   };
 });
 APP

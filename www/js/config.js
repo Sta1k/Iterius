@@ -7,6 +7,9 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
       $ionicConfigProvider.views.swipeBackEnabled(false);
       $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
       $translateProvider.translations('en', {
+        user:'User',
+        start:'Start',
+        end:'End',
         menu_tasks: 'My Tasks',
         menu_status_of_team: 'Status of team',
         menu_create: 'Create task',
@@ -71,6 +74,9 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
 
       });
       $translateProvider.translations('ru', {
+        user:'Пользователь',
+        start:'Начало',
+        end:'Конец',
         menu_tasks: 'Мои задачи',
         menu_status_of_team: 'Статус команды',
         menu_create: 'Создать задачу',
@@ -133,6 +139,9 @@ APP = angular.module('tt', ['ionic', 'ngCordova', 'pascalprecht.translate'])//'t
         server_error:'Серверная ошибка'
       });
       $translateProvider.translations('de', {
+        user:'Benutzer',
+        start:'Anfang',
+        end:'Ende',
         menu_tasks: 'Meine Aufgaben',
         menu_status_of_team: 'Teamstatus',
         menu_create: 'Aufgabe erstellen',

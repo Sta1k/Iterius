@@ -1,6 +1,9 @@
 APP
   .service('APIService', function ($http, $httpParamSerializerJQLike) {
-    var url = 'http://tt.smiss.ua/api/';
+    var url = 'http://iterius.com/api/';
+    // var url = 'http://tt.smiss.ua/api/';
+    // var url = 'http://dev.tt.smiss.ua/api/';
+    
     this.login = function (request) {//loginService.sendData to APIService.login
       // console.log(request);
       var login = {
@@ -126,27 +129,6 @@ APP
       })
     };
   });
-// APP.directive('select', function () {
-//   return {
-//     restrict: 'E',
-//     link: function (_, element) {
-//       element.bind('focus', function (e) {
-//
-//         if (window.cordova && window.cordova.plugins.Keyboard) {
-//           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-//         }
-//
-//       });
-//       element.bind('blur', function (e) {
-//
-//         if (window.cordova && window.cordova.plugins.Keyboard) {
-//           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-//         }
-//       });
-//      
-//     }
-//   }
-// });
 
 
 

@@ -42,8 +42,8 @@ APP.controller('TasksCtrl',
           $scope.busy = true;
           if (!res.data.success) {
             $scope.busy = false;
-            $cordovaToast.showShortTop($scope.err1)
-
+            $cordovaToast.showShortTop($scope.err1);
+            $state.go('splash',{},{reload:true})
           } else {
             dataService.tasksList = res.data.tasks;
             $scope.tasksList = dataService.tasksList;
@@ -69,7 +69,7 @@ APP.controller('TasksCtrl',
       $translate('delete_popup2').then(function (result) {
         $scope.mes4 = result;
       });
-      
+
       $scope.checkStarted = function () {
         var obj = _.findWhere(dataService.tasksList, {current: true});
         if (obj == undefined) {
@@ -104,9 +104,7 @@ APP.controller('TasksCtrl',
         APIService.requestTasks()
           .then(function success(res) {
             if (!res.data.success) {
-
               $cordovaToast.showShortTop($scope.err1)
-
             } else {
               dataService.tasksList = res.data.tasks;
               $scope.tasksList = dataService.tasksList;

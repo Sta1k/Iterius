@@ -48,12 +48,12 @@ APP
           APIService.login(objUser)
             .then(function
               success(response) {
-              // console.log(response);
+              // console.log('NEED ', response);
               $scope.user = dataService.login = objUser;
 
               if (response.data.success) {
                 data.user.role = response.data.type;
-                // console.log(data.user.role);
+                data.user.id = response.data.id;
                 if ($scope.user.remember == true && $scope.user.password.length > 6) {
                   dataService.writeDB($scope.user)
                 }

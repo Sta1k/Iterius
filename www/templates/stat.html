@@ -15,7 +15,7 @@
         <ion-spinner icon="lines"></ion-spinner>
       </div>
     </div>
-    <div class="list-task" style="margin-top: 5%">
+    <div ng-if='role>0' class="list-task" style="margin-top: 5%">
       <label class="item item-input item-select">
         <div class="input-label">
           {{'stat_user'|translate}}
@@ -31,7 +31,7 @@
           {{'stat_year'|translate}}
         </div>
         <select ng-model="query.year">
-          <option ng-repeat="year in years" ng-value="year">{{year}}</option>
+          <option ng-repeat="year in years"  ng-value="year">{{year}}</option>
         </select>
       </label>
     </div>
@@ -48,7 +48,7 @@
 
     </div>
     <div class="row button-create">
-      <input ng-click="runQuery()"
+      <input ng-click="runQuery(query)"
              class="button button-block button-positive"
              value="{{'search_button'|translate}}"
              type="submit"
@@ -70,7 +70,7 @@
         <th>{{'break'|translate}}</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody class="statisticTable">
       <tr ng-repeat="item in answer.user.days">
         <td>{{$index+1}}</td>
         <td>{{item.date}}</td>

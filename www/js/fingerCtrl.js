@@ -30,8 +30,9 @@ APP
                   $scope.LogIn(data.user)
                 }, 500));
                 // success
-              }, function () {
-                // error
+              }, function (err) {
+                console.log(err);// error
+                $state.go('login', {}, {reload: true});
               });
             }, function (error) {
               alert(error); // TouchID not supported

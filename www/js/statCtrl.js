@@ -1,19 +1,46 @@
 APP
   .controller('StatCtrl', function ($scope, $state, $cordovaToast, data, dataService, APIService, $stateParams) {
     $scope.timeCount = dataService.AllWorkedTime;
-    APIService.Statistic().then(function (res) {
-
-      $scope.userStatList = res.data.data;
-      console.log($scope.userStatList);
-    });
-    $scope.tasks = function () {
-      $state.go('app.tasks', {}, {reload: true});
+    $scope.role=data.user.role;
+    var q = {
+      user:data.user.id,
+      year:new Date().getFullYear(),
+      month:new Date().getMonth()+1
     };
     $scope.query = {
       user: '',
       year: '',
       month: ''
     };
+    // console.log(q);
+    $scope.runQuery = function (data) {
+      // if ($scope.query.user !== '' && $scope.query.year !== '' && $scope.query.month !== '') {
+        $scope.busy = $scope.table = true;
+        $scope.iter = $scope.differ = 0;
+        APIService.Statistic(data).then(function (res) {
+          console.log(res);
+          $scope.answer = res.data.data[0];
+          $scope.sumOfHours = _.compact(_.pluck($scope.answer.user.days, 'time'));
+          console.log($scope.sumOfHours);
+          $scope.iter = $scope.sumOfHours.reduce(function (sum, cur) {
+            return Number(sum) + Number(cur)
+          });
+          $scope.differ = $scope.answer.user.working_hours - $scope.iter;
+          console.log($scope.iter)
+        }).finally(function () {
+          $scope.busy = false
+        })
+      // }
+    };
+    // if(data.user.role>0)
+    APIService.Statistic().then(function (res) {
+      $scope.userStatList = res.data.data;
+      // console.log($scope.userStatList);
+    }).then($scope.runQuery(q));
+    $scope.tasks = function () {
+      $state.go('app.tasks', {}, {reload: true});
+    };
+
     if (dataService.lang == 'ru') {
       $scope.months = [
         {id: 1, name: 'Январь'},
@@ -45,28 +72,6 @@ APP
         {id: 12, name: 'December'}
       ];
     }
-    $scope.years = [2016, 2015, 2014];
-
-    $scope.runQuery = function () {
-      if ($scope.query.user !== '' && $scope.query.year !== '' && $scope.query.month !== '') {
-        $scope.busy = $scope.table = true;
-        $scope.iter = $scope.differ = 0;
-        APIService.Statistic($scope.query).then(function (res) {
-          console.log(res);
-          $scope.answer = res.data.data[0];
-          $scope.sumOfHours = _.compact(_.pluck($scope.answer.user.days, 'time'));
-          console.log($scope.sumOfHours);
-          $scope.iter = $scope.sumOfHours.reduce(function (sum, cur) {
-            return Number(sum) + Number(cur)
-          });
-          $scope.differ = $scope.answer.user.working_hours - $scope.iter;
-          console.log($scope.iter)
-        }).finally(function () {
-
-          $scope.busy = false
-        })
-      }
-    };
-
-
+    var year = new Date().getFullYear();
+    $scope.years = [year, year-1, year-2];
   });
